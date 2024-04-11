@@ -61,13 +61,15 @@ class environment:
         
         x = self.current_x
         y = self.current_y
+
         self.rooms[5][7].Isclean = 1 #test clean print
         if self.Iswall == WALL:
             print("--------------------------------")
             for i in range(0, 10):
                 for j in range(0, 10):
-                    if x == i and y == j:
+                    if x == j and y == i:
                         print("R ", end="") 
+                        continue
                     if self.rooms[i][j].Isclean == 0:
                         print("* ", end="")
                     else:
@@ -80,7 +82,9 @@ class environment:
             print("--------------------------------")
             for i in range(0, 10):
                 for j in range(0, 10):
-                    
+                    if x == j and y == i:
+                        print("R ", end="") 
+                        continue
                     if self.rooms[i][j].Isclean == 0:
                         print("* ", end="")
                     else:
