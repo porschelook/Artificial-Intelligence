@@ -62,7 +62,7 @@ class environment:
         x = self.current_x
         y = self.current_y
 
-        self.rooms[5][7].Isclean = 1 #test clean print
+        #self.rooms[5][7].Isclean = 1 #test clean print
         if self.Iswall == WALL:
             print("--------------------------------")
             for i in range(0, 10):
