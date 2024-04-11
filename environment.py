@@ -66,6 +66,8 @@ class environment:
             print("--------------------------------")
             for i in range(0, 10):
                 for j in range(0, 10):
+                    if x == i and y == j:
+                        print("R ", end="") 
                     if self.rooms[i][j].Isclean == 0:
                         print("* ", end="")
                     else:
