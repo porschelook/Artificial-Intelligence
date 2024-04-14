@@ -32,7 +32,7 @@ class environment:
     current_y = 0
     Iswall = NO_WALL
     
-    UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face
+    UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face in an order such that +1 is clockwise and -1 is counterclockwise
     INITIAL_DIRECTION=UP
     
     def __init__(self,wall):
@@ -63,7 +63,7 @@ class environment:
             self.rooms[5][7].IsDoor = 1
 
     def advance(self):
-        #TODO implement movement based on orientation
+            #moves based on stored orientation
         if self.current_direction == environment.UP:
                 self.current_y-=1
         if self.current_direction == environment.DOWN:
@@ -78,8 +78,30 @@ class environment:
         self.current_y=min(self.ROOM_DIMENSION,self.current_y)
         self.current_x=min(self.ROOM_DIMENSION,self.current_x)        
         #Next is to fix the robot from encountering a wall in the middle of the field
-                
-        
+        return
+    def turnLeft(self):
+            #turn counter-clockwise
+            self.current_direction=(self.current_direction-1)%4
+    def turnRight(self):       
+            #turn clockwise
+            self.current_direction=(self.current_direction+1)%4
+    def detectWall(self):
+        test_x=self.current_x
+        test_y=self.current_y
+        if self.current_direction == environment.UP:
+                test_y=self.current_y-1
+        if self.current_direction == environment.DOWN:
+                test_y=self.current_y+1
+        if self.current_direction == environment.RIGHT:
+                test_x=self.current_x+1
+        if self.current_direction == environment.LEFT:
+                test_x=self.current_x-1
+        #This only works for the empty enviornment.
+        if test_x<0 or test_y<0:
+                return True
+        if test_x>10 or test_y>10:
+                return True
+        return False
     def printCurrentWorld(self):
        
         
