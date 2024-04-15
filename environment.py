@@ -99,9 +99,14 @@ class environment:
         #This only works for the empty enviornment.
         if test_x<0 or test_y<0:
                 return True
-        if test_x>10 or test_y>10:
+        if test_x>=10 or test_y>=10:
                 return True
         return False
+    def detectHome(self):
+            return (self.current_x==0 and self.current_y==0)
+
+    def getCurrentRoom(self):
+            return self.rooms[self.current_x][self.current_y]
     def printCurrentWorld(self):
        
         
