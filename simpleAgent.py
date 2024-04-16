@@ -18,3 +18,4 @@ class SimpleAgent(Agent):
         #If the way is blocked, turn right
         environment.turnRight()
     
+ 

@@ -1,7 +1,8 @@
  
 import os
 import random
- 
+from random import randrange
+
  
 
 NO_WALL = 0
@@ -85,6 +86,9 @@ class environment:
     def turnRight(self):       
             #turn clockwise
             self.current_direction=(self.current_direction+1)%4
+    def turnRandom(self):
+            #turn counter-clockwise
+            self.current_direction=(self.current_direction +randrange(4))%4
     def detectWall(self):
         test_x=self.current_x
         test_y=self.current_y
@@ -103,10 +107,13 @@ class environment:
                 return True
         return False
     def detectHome(self):
-            return (self.current_x==0 and self.current_y==0)
+            return (self.current_x== 0 and self.current_y== 9)
 
     def getCurrentRoom(self):
-            return self.rooms[self.current_x][self.current_y]
+            print("current_x ",self.current_x)
+            print("current_y ",self.current_y)
+
+            return self.rooms[self.current_y][self.current_x]
     def printCurrentWorld(self):
        
         
@@ -122,7 +129,7 @@ class environment:
                     if x == j and y == i:
                         print("R ", end="") 
                         continue
-                    if self.rooms[i][j].Isclean == 0:
+                    if self.rooms[i][j].Isclean == False:
                         print("* ", end="")
                     else:
                         print("  ", end="")
@@ -137,11 +144,11 @@ class environment:
                     if x == j and y == i:
                         print("R ", end="") 
                         continue
-                    if self.rooms[i][j].Isclean == 0:
+                    if self.rooms[i][j].Isclean == False:
                         print("* ", end="")
                     else:
-                        print("  ", end="")
+                        print("C ", end="")
                 print("\n")
 
-            print("--------------------------------")            
+            print("--------------------------------")              
     

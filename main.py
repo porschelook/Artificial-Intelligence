@@ -2,6 +2,7 @@ import sys
 import random
 from environment import *
 from simpleAgent import *
+from RandomAgent import *
 
 NO_WALL = 0
 WALL = 1
@@ -15,7 +16,7 @@ match model:
         vacuum_model=SimpleAgent()
     case 2:
         print("model_2")
-
+        vacuum_model=RandomAgent()
         #set the model to be a random memoryless agent
     case 3:
         print("model_3")
@@ -41,3 +42,6 @@ if map == 2:
 for i in range(500):
     vacuum_model.stepProgram(state)
     #record relavent parameters for the report
+
+    state.printCurrentWorld()
+ 
