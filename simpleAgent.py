@@ -10,6 +10,7 @@ class SimpleAgent(Agent):
         #first, if the room is dirty, clean it
         if(not environment.getCurrentRoom().Isclean):
             environment.getCurrentRoom().Isclean=True
+            environment.clean+=1
             return
         #Next, if the way forward is clear, move forward
         if(not environment.detectWall()):
