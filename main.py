@@ -39,7 +39,13 @@ if map == 2:
     state.printCurrentWorld()
  
 #run a fixed number of steps. 500 should be good
+stop = int(state.ROOM_DIMENSION*state.ROOM_DIMENSION*0.60)
 for i in range(500):
+    print(state.clean)
+    if state.clean >= stop:
+        if state.detectHome():
+            print("THISSSSSSS")
+            break
     vacuum_model.stepProgram(state)
     #record relavent parameters for the report
 
