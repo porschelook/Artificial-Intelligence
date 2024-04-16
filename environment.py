@@ -8,6 +8,9 @@ from random import randrange
 NO_WALL = 0
 WALL = 1
 
+class Agent:
+    def stepProgram(self,environment):
+        return
 
 
 class room:
