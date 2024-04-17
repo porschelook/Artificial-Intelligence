@@ -35,6 +35,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{listings}
 \usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 \title{Report for Programming Assignment 1}
 
@@ -87,11 +88,32 @@
 \end{abstract}
 
 \section{Introduction}
-
+In this paper we present performance of three different autonomous agents that control a simulated robot vacuum in two different configurations of room. The robot vacuum is assumed to have a perfect sensors and can perfectly navigate and clean individual squares of a 10 by 10 grid. The room begins completly covered in dirt and the goal of the agents is to clean as much of the room as fast as possible. 
 \section{Agent Descriptions}
+The available actions of the agent are to clean the square it is on, to move forward one square, to turn left (counter clockwise) $90^\circ$, to turn right (clockwise) $90^\circ$, and to turn off. Since there is no cost for making actions, no agent that we designed was instructed to turn off.
 
+The agents have te ability to detect whether the square they are on are clean or dirty with 100\% reliability. Additionally, they can detect if they are facing a wall and if they are on the square they started on. This last sensor input was not determined to be useful for our purposes. 
 \subsection{Memoryless deterministic reflex agent}
-
+This agent was designed to have only deterministic rules for actions based solely on the current precepts. When designing this, we determined that the highest priority action was to clean the square it was on if it found the square to be dirty. Otherwise, it would turn if it found itself facing a wall, and advance otherwise. The design is shown explicitly in Algorithm~\ref{alg:SimpleAgent}
+\begin{algorithm}[h]
+  
+  \caption{Programatic Description of Simple Reflex Agent}
+  \begin{algorithmic}[1]
+    
+    \For {timestep $t$ until termination}
+    \If {on dirty tile}
+    \State clean tile 
+    \EndIf
+    \If{ not on dirty tile and facing wall}
+    \State turn clockwise
+    \EndIf
+    \If{not facing wall and not on dirty tile}
+    \State move forward
+    \EndIf
+    \EndFor
+  \end{algorithmic}
+  \label{alg:SimpleAgent}
+\end{algorithm}
 \subsection{Memoryless random reflex agent}
 
 
