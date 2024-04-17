@@ -114,6 +114,7 @@ class environment:
         if self.current_direction == environment.LEFT:
                 test_x=self.current_x-1
         if self.Iswall == WALL:
+                
                 if test_x == 5 :
                         if test_y != self.door1 or test_y != self.door2 :
                                 return True
@@ -129,8 +130,7 @@ class environment:
         if test_x>=10 or test_y>=10:
                 return True
         
-        if (self.rooms[test_x][test_y].Isclean == True):
-            return True
+         
         
         return False       
     def detectWall(self):
@@ -149,11 +149,11 @@ class environment:
         print("test_y : " ,test_y)
         if self.Iswall == WALL:
                 if test_x == 5 :
-                        if test_y != self.door1 or test_y != self.door2 :
+                        if test_y != self.door1 and test_y != self.door2 :
                                 return True
                         
                 if test_y == 5 :
-                        if test_x != self.door1 or test_y != self.door2:
+                        if test_x != self.door1 and test_x != self.door2:
                                 return True      
 
       
@@ -162,9 +162,9 @@ class environment:
                 return True
         if test_x>=10 or test_y>=10:
                 return True
-        if self.Iswall == WALL:
-            if self.rooms[test_x][test_y].IsDoor==False:
-                return True
+        
+        
+            
         return False
     def detectHome(self):
             return (self.current_x== 0 and self.current_y== 9)
