@@ -99,6 +99,37 @@ class environment:
     def turnRandom(self):
             #turn counter-clockwise
             self.current_direction=(self.current_direction +randrange(4))%4
+    def detectNextClean_mem(self):
+        test_x=self.current_x
+        test_y=self.current_y
+        if self.current_direction == environment.UP:
+                test_y=self.current_y-1
+        if self.current_direction == environment.DOWN:
+                test_y=self.current_y+1
+        if self.current_direction == environment.RIGHT:
+                test_x=self.current_x+1
+        if self.current_direction == environment.LEFT:
+                test_x=self.current_x-1
+        if self.Iswall == WALL:
+                if test_x == 5 :
+                        if test_y != 2 or test_y != 7 :
+                                return True
+                        
+                if test_y == 5 :
+                        if test_x != 2 or test_x != 7:
+                                return True      
+
+        #This only works for the empty enviornment.
+        
+        if test_x<0 or test_y<0:
+                return True
+        if test_x>=10 or test_y>=10:
+                return True
+        
+        if (self.rooms[test_x][test_y].Isclean == True):
+                return True
+        
+        return False       
     def detectWall(self):
         test_x=self.current_x
         test_y=self.current_y

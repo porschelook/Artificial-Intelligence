@@ -3,6 +3,7 @@ import random
 from environment import *
 from simpleAgent import *
 from RandomAgent import *
+from lowmemoryAgent import *
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -25,6 +26,7 @@ match model:
         #set the model to be a random memoryless agent
     case 3:
         print("model_3")
+        vacuum_model=lowmemoryAgent()
         numRuns=1
         #set the model to be a small-memory agent
  
