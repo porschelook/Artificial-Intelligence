@@ -7,7 +7,7 @@
 
 
 % ready for submission
-\usepackage[final]{neurips_2023}
+\usepackage[preprint]{neurips_2023}
 
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
@@ -33,7 +33,7 @@
 \usepackage{microtype}      % microtypography
 \usepackage{xcolor}         % colors
 \usepackage{amsmath,amssymb}
-\usepackage{listings}
+\usepackage{listings,graphicx}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
@@ -94,7 +94,9 @@ The available actions of the agent are to clean the square it is on, to move for
 
 The agents have te ability to detect whether the square they are on are clean or dirty with 100\% reliability. Additionally, they can detect if they are facing a wall and if they are on the square they started on. This last sensor input was not determined to be useful for our purposes. 
 \subsection{Memoryless deterministic reflex agent}
-This agent was designed to have only deterministic rules for actions based solely on the current precepts. When designing this, we determined that the highest priority action was to clean the square it was on if it found the square to be dirty. Otherwise, it would turn if it found itself facing a wall, and advance otherwise. The design is shown explicitly in Algorithm~\ref{alg:SimpleAgent}
+This agent was designed to have only deterministic rules for actions based solely on the current precepts. When designing this, we determined that the highest priority action was to clean the square it was on if it found the square to be dirty. Otherwise, it would turn if it found itself facing a wall, and advance otherwise. The design is shown explicitly in Algorithm~\ref{alg:SimpleAgent}. Since it cannot record previous precepts, it does not have a way to translate over a column and therefore the best it can do is to clean the edges of the space it is in.
+
+Under the constraints provided, this is the optimal agent that can be constructed regardless of the enviornment it is in. Therefore if the room had obstacles placed in it the same agent would be used. 
 \begin{algorithm}[h]
   
   \caption{Programatic Description of Simple Reflex Agent}
@@ -118,14 +120,102 @@ This agent was designed to have only deterministic rules for actions based solel
 
 
 \subsection{Low-memory deterministic reflex agent}
+The low-memory determinsitic reflex agent was designed such that it would clean the room column by column, making a u-turn in alternating directions when it reaches a wall. With the way it was designed it needs three bits of memory to function. It performs very well in the empty room scenario, but when internal walls ar introduced it does not perform as well because the aditional walls cause problems with the parity of alternating turns and since it is designed to clean via columns it has dificulty entering rooms with doors on the sides or on the top. The agent is explained in detail in Algorithm ~\ref{alg:ThreeBit}
 
+With more memory the agent could remember all the spaces it had yet to travel to and could plan a path towards these regions. This would allow perfect cleaning regardless of the obstacles present.
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \For {timestep $t$ until termination}
+      \If{ on dirty tile}
+        \State clean tile
+      \Else 
+        \If {turnState==FinishTurn}
+          \State clear turnState
+          \If{LeftUTurn}
+            \State turn left
+            \State LeftUTurn $\gets$ False
+            
+          \Else
+            \State turn right
+            \State LeftUTurn $\gets$ True
+          \EndIf
+        \EndIf
+        \If{Detect Wall}
+          \State turnState $\gets$ ShiftOver
+          \If {LeftUTurn}
+            \State turn left
+          \Else
+            \State turn right
+          \EndIf
+          
+        \Else
+          \If {turnState == ShiftOver}
+            \State turnState $\gets$ FinishTurn
+            \State move forward
+          \Else
+            \State move forward
+          \EndIf
+        \EndIf
+      \EndIf
+    \EndFor
+  \end{algorithmic}\caption{The structure of the low memory agent as if-then rules}
+  \label{alg:ThreeBit}
+\end{algorithm}
 \section{Experimental setup}
+The agent starts at the bottom left hand corner of a 10 by 10 grid facing up. It can advance one square in the direction it is facing, and can turn $90^\circ$ either direction during a time step. The agent was run for 500 time steps with the number of clean tiles recorded at each step. The random agent was run 50 times with the room and agent reset after 500 time steps each time.
 
+There were two configurations of room. One configuration consisted of 10 by 10 cells connected at the edges  all initially marked as dirty. The second consisted of four rooms with doors near the center of the room. 
+
+%please include more detail about the room with extra walls
 \section{Results}
+Here we include several figures of number of clean cells vs. number of time steps. 
+\begin{figure}
+  \centering
+
+  \includegraphics[width=0.8\textwidth]{SimpleNoWallPerformance}
+  \caption{Performance of simple agent in empty room. The agent is unable to clean 90\% of the area isnce it is unable to leave the perimeter of the room. }
+  \label{fig:SimpleNoWall}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{SimpleExtraWallPerformance}
+  \caption{Performance of simple agent in room with internal walls. The aditional walls provide aditional places for the agent to turn, increasing its performance. }
+  \label{fig:SimpleExtraWall}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{RandomNoWallPerformance}
+  \caption{Please Comment on the performance here}
+  \label{fig:1}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{RandomExtraWallPerformance}
+  \caption{Lorem Ipsum}
+  
+\end{figure}
 
 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{FancyNoWallPerformance}
+  \caption{Three bit agent performance in the empty room. The agent quickly cleans every tile. }
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{FancyExtraWallPerformance}
+  \caption{Three bit agent performance in room with additional walls. The agent gets turned away from the botom right room and thus fails to clean a quarter of the room. }
+  \label{fig:FancyExtraWall}
+\end{figure}
 \section{Discusion}
-%Answer the remaining questions not answered in earlier sections
+% Answer the remaining questions not answered in earlier sections
+
+We were surprised by how difficult the low-memory agent was to implement sucessfully and that it performed so poorly when additional walls were introduced.
+
+
 \subsection{Tables}
 
 
