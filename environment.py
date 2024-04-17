@@ -127,7 +127,7 @@ class environment:
                 return True
         
         if (self.rooms[test_x][test_y].Isclean == True):
-                return True
+            return True
         
         return False       
     def detectWall(self):
@@ -144,22 +144,17 @@ class environment:
         print("detectWall")
         print("test_x : " ,test_x)
         print("test_y : " ,test_y)
-        if self.Iswall == WALL:
-                if test_x == 5 :
-                        if test_y != 2 or test_y != 7 :
-                                return True
-                        
-                if test_y == 5 :
-                        if test_x != 2 or test_x != 7:
-                                return True      
+       
 
-        #This only works for the empty enviornment.
+      
         
         if test_x<0 or test_y<0:
                 return True
         if test_x>=10 or test_y>=10:
                 return True
-        
+        if self.Iswall == WALL:
+            if self.rooms[test_x][test_y].IsDoor==False:
+                return True
         return False
     def detectHome(self):
             return (self.current_x== 0 and self.current_y== 9)

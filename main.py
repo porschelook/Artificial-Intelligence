@@ -4,6 +4,7 @@ from environment import *
 from simpleAgent import *
 from RandomAgent import *
 from lowmemoryAgent import *
+from threeBitAgent import *
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -26,7 +27,7 @@ match model:
         #set the model to be a random memoryless agent
     case 3:
         print("model_3")
-        vacuum_model=lowmemoryAgent()
+        vacuum_model=threeBitAgent()
         numRuns=1
         #set the model to be a small-memory agent
  
@@ -51,7 +52,7 @@ for run in range(numRuns):
  
 
 
-    for i in range(1500):
+    for i in range(500):
         print(state.clean)
         cleanTrace[i]+=state.clean
         if state.clean >= stop:
