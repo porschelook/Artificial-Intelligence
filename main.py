@@ -51,7 +51,7 @@ for run in range(numRuns):
  
 
 
-    for i in range(1500):
+    for i in range(500):
         print(state.clean)
         cleanTrace[i]+=state.clean
         if state.clean >= stop:

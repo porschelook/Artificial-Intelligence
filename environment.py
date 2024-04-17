@@ -28,7 +28,7 @@ class environment:
     
     rooms = None
   
- 
+        
     p = 1
     INITIAL_X = 0
     INITIAL_Y = 0
@@ -36,7 +36,9 @@ class environment:
     current_x = 0
     current_y = 0
     Iswall = NO_WALL
-    
+    door1 = 4
+    door2 = 6
+
     UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face in an order such that +1 is clockwise and -1 is counterclockwise
     INITIAL_DIRECTION=UP
     
@@ -66,10 +68,11 @@ class environment:
                 self.rooms[wallPosition][i].IsDoor = 0
                 self.rooms[i][wallPosition].IsDoor = 0
         # set Door
-        self.rooms[5][2].IsDoor = 1
-        self.rooms[5][7].IsDoor = 1
-        self.rooms[2][5].IsDoor = 1
-        self.rooms[7][5].IsDoor = 1
+        
+        self.rooms[5][self.door1].IsDoor = 1
+        self.rooms[5][self.door2].IsDoor = 1
+        self.rooms[self.door1][5].IsDoor = 1
+        self.rooms[self.door2][5].IsDoor = 1
         
         self.printCurrentWorld()
 
@@ -112,11 +115,11 @@ class environment:
                 test_x=self.current_x-1
         if self.Iswall == WALL:
                 if test_x == 5 :
-                        if test_y != 2 or test_y != 7 :
+                        if test_y != self.door1 or test_y != self.door2 :
                                 return True
                         
                 if test_y == 5 :
-                        if test_x != 2 or test_x != 7:
+                        if test_x != self.door1 or test_x != self.door2:
                                 return True      
 
         #This only works for the empty enviornment.
@@ -146,11 +149,11 @@ class environment:
         print("test_y : " ,test_y)
         if self.Iswall == WALL:
                 if test_x == 5 :
-                        if test_y != 2 or test_y != 7 :
+                        if test_y != self.door1 or test_y != self.door2 :
                                 return True
                         
                 if test_y == 5 :
-                        if test_x != 2 or test_x != 7:
+                        if test_x != self.door1 or test_y != self.door2:
                                 return True      
 
         #This only works for the empty enviornment.
