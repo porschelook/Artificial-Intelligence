@@ -16,6 +16,7 @@ class Agent:
 class room:
         Isclean = 0
         IsDoor = 1
+        
         name = ""
         def __init__(self, name):
             self.name = name
@@ -56,15 +57,21 @@ class environment:
         
         self.Iswall = wall
 
+        wallPosition = int(self.ROOM_DIMENSION/2)
+        print(self.ROOM_DIMENSION/2)
         if self.Iswall == WALL:
+            print("asdasd")
             for i in range(0, self.ROOM_DIMENSION):
-                for j in range(0, self.ROOM_DIMENSION):
-                    self.rooms[i][j].IsDoor  = 0 # set to wall
-            #create Door set Door
-            self.rooms[2][5].IsDoor = 1
-            self.rooms[4][2].IsDoor = 1
-            self.rooms[7][4].IsDoor = 1
-            self.rooms[5][7].IsDoor = 1
+                # set Wall
+                self.rooms[wallPosition][i].IsDoor = 0
+                self.rooms[i][wallPosition].IsDoor = 0
+        # set Door
+        self.rooms[5][2].IsDoor = 1
+        self.rooms[5][7].IsDoor = 1
+        self.rooms[2][5].IsDoor = 1
+        self.rooms[7][5].IsDoor = 1
+        
+        self.printCurrentWorld()
 
     def advance(self):
             #moves based on stored orientation
@@ -103,11 +110,25 @@ class environment:
                 test_x=self.current_x+1
         if self.current_direction == environment.LEFT:
                 test_x=self.current_x-1
+        print("detectWall")
+        print("test_x : " ,test_x)
+        print("test_y : " ,test_y)
+        if self.Iswall == WALL:
+                if test_x == 5 :
+                        if test_y != 2 or test_y != 7 :
+                                return True
+                        
+                if test_y == 5 :
+                        if test_x != 2 or test_x != 7:
+                                return True      
+
         #This only works for the empty enviornment.
+        
         if test_x<0 or test_y<0:
                 return True
         if test_x>=10 or test_y>=10:
                 return True
+        
         return False
     def detectHome(self):
             return (self.current_x== 0 and self.current_y== 9)
@@ -132,10 +153,13 @@ class environment:
                     if x == j and y == i:
                         print("R ", end="") 
                         continue
-                    if self.rooms[i][j].Isclean == False:
-                        print("* ", end="")
+                    if self.rooms[i][j].IsDoor == False:
+                        print("W ", end="")
                     else:
-                        print("  ", end="")
+                        if self.rooms[i][j].Isclean == False:
+                                print("* ", end="")
+                        else:
+                                print("  ", end="")
                 print("\n")
 
             print("--------------------------------")
@@ -147,10 +171,14 @@ class environment:
                     if x == j and y == i:
                         print("R ", end="") 
                         continue
-                    if self.rooms[i][j].Isclean == False:
-                        print("* ", end="")
+                    if self.rooms[i][j].IsDoor == False:
+                        print("W ", end="")
                     else:
-                        print("C ", end="")
+                          
+                        if self.rooms[i][j].Isclean == False:
+                                print("* ", end="")
+                        else:
+                                print("C ", end="")
                 print("\n")
 
             print("--------------------------------")              

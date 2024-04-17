@@ -21,7 +21,7 @@ match model:
     case 2:
         print("model_2")
         vacuum_model=RandomAgent()
-        numRuns=50
+        numRuns=1
         #set the model to be a random memoryless agent
     case 3:
         print("model_3")
@@ -38,25 +38,25 @@ cleanTrace=np.zeros(500)
 for run in range(numRuns):
     #restart the enviornment after each run
     if map == 1:
-        state = environment( NO_WALL)
+        state = environment(NO_WALL)
 
         state.printCurrentWorld()
 
  
     if map == 2:
-        state = environment( WALL)
+        state = environment(WALL)
         state.printCurrentWorld()
  
 
 
-    for i in range(500):
+    for i in range(1500):
         print(state.clean)
         cleanTrace[i]+=state.clean
         if state.clean >= stop:
             if state.detectHome():
                 print("THISSSSSSS")
                 break
-        
+        state.printCurrentWorld()
         vacuum_model.stepProgram(state)
     #record relavent parameters for the report
 

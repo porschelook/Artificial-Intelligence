@@ -14,6 +14,7 @@ class SimpleAgent(Agent):
             return
         #Next, if the way forward is clear, move forward
         if(not environment.detectWall()):
+            print(not environment.detectWall())
             environment.advance()
             return
         #If the way is blocked, turn right
