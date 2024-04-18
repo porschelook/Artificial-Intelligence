@@ -201,9 +201,24 @@ There were two configurations of room. One configuration consisted of 10 by 10 c
 
 The room with internal walls has walls in the middle such that one room is of size 5 and the other is of size 4. There are four gaps in these internal walls right around the intersection between the walls.  The simulation was run for 500 time steps and repeated 50 times for the random agent. 
 \section{Results}
-Here we include several figures of number of clean cells vs. number of time steps.  In our experiments, the random agent took 500 steps to clean 90\% of the area of it succeeded in doing so at all. it failed to clean 90\% more than five times, so the average is also 500.
+Here we include several figures of number of clean cells vs. number of time steps.  In our experiments, the random agent took 500 steps to clean 90\% of the area of it succeeded in doing so at all. it failed to clean 90\% more than five times, so the average is also 500. This is explained in table~\ref{tab:randomPerf}
 
-\begin{figure}
+
+\begin{table}
+  \caption{Sample table title}
+  \label{tab:randomPerf}
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    Setting     & Top 45 Average     & Mode \\
+    \midrule
+    Empty room &  500 & 500    \\
+    Internal walls     & 500 & 500     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[h!]
   \centering
 
   \includegraphics[width=0.8\textwidth]{SimpleNoWallPerformance}
@@ -211,19 +226,19 @@ Here we include several figures of number of clean cells vs. number of time step
   \label{fig:SimpleNoWall}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{SimpleExtraWallPerformance}
   \caption{Performance of simple agent in room with internal walls. The additional walls provide aditional places for the agent to turn, increasing its performance. }
   \label{fig:SimpleExtraWall}
 \end{figure}
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{RandomNoWallPerformance}
   \caption{Performance of random agent on room without internal walls. This does not clean the entire region in the 500 cycles.  }
   \label{fig:1}
 \end{figure}
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{RandomExtraWallPerformance}
   \caption{Performance of random agent with internal walls. This performs roughly as well as without the internal walls but the number of clean tiles is smaller since there are fewer tiles (some are displaced by walls).  }
@@ -232,13 +247,13 @@ Here we include several figures of number of clean cells vs. number of time step
 
 
 
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{FancyNoWallPerformance}
   \caption{Three bit agent performance in the empty room. The agent quickly cleans every tile. }
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{FancyExtraWallPerformance}
   \caption{Three bit agent performance in room with additional walls. The agent gets turned away from the bottom right room and thus fails to clean a quarter of the room. }
@@ -250,44 +265,6 @@ Here we include several figures of number of clean cells vs. number of time step
 We were surprised by how difficult the low-memory agent was to implement successfully and that it performed so poorly when additional walls were introduced.
 
 
-\subsection{Tables}
-
-
-All tables must be centered, neat, clean and legible.  The table number and
-title always appear before the table.  See Table~\ref{sample-table}.
-
-
-Place one line space before the table title, one line space after the
-table title, and one line space after the table. The table title must
-be lower case (except for first word and proper nouns); tables are
-numbered consecutively.
-
-
-Note that publication-quality tables \emph{do not contain vertical rules.} We
-strongly suggest the use of the \verb+booktabs+ package, which allows for
-typesetting high-quality, professional tables:
-\begin{center}
-  \url{https://www.ctan.org/pkg/booktabs}
-\end{center}
-This package was used to typeset Table~\ref{sample-table}.
-
-
-\begin{table}
-  \caption{Sample table title}
-  \label{sample-table}
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    \multicolumn{2}{c}{Part}                   \\
-    \cmidrule(r){1-2}
-    Name     & Description     & Size ($\mu$m) \\
-    \midrule
-    Dendrite & Input terminal  & $\sim$100     \\
-    Axon     & Output terminal & $\sim$10      \\
-    Soma     & Cell body       & up to $10^6$  \\
-    \bottomrule
-  \end{tabular}
-\end{table}
 
 
 \end{document}
