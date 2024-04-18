@@ -88,18 +88,18 @@
 \end{abstract}
 
 \section{Introduction}
-In this paper we present performance of three different autonomous agents that control a simulated robot vacuum in two different configurations of room. The robot vacuum is assumed to have a perfect sensors and can perfectly navigate and clean individual squares of a 10 by 10 grid. The room begins completly covered in dirt and the goal of the agents is to clean as much of the room as fast as possible. 
+In this paper we present performance of three different autonomous agents that control a simulated robot vacuum in two different configurations of room. The robot vacuum is assumed to have a perfect sensors and can perfectly navigate and clean individual squares of a 10 by 10 grid. The room begins completely covered in dirt and the goal of the agents is to clean as much of the room as fast as possible.  compared
 \section{Agent Descriptions}
 The available actions of the agent are to clean the square it is on, to move forward one square, to turn left (counter clockwise) $90^\circ$, to turn right (clockwise) $90^\circ$, and to turn off. Since there is no cost for making actions, no agent that we designed was instructed to turn off.
 
-The agents have te ability to detect whether the square they are on are clean or dirty with 100\% reliability. Additionally, they can detect if they are facing a wall and if they are on the square they started on. This last sensor input was not determined to be useful for our purposes. 
+The agents have the ability to detect whether the square they are on are clean or dirty with 100\% reliability. Additionally, they can detect if they are facing a wall and if they are on the square they started on. This last sensor input was not determined to be useful for our purposes. 
 \subsection{Memoryless deterministic reflex agent}
 This agent was designed to have only deterministic rules for actions based solely on the current precepts. When designing this, we determined that the highest priority action was to clean the square it was on if it found the square to be dirty. Otherwise, it would turn if it found itself facing a wall, and advance otherwise. The design is shown explicitly in Algorithm~\ref{alg:SimpleAgent}. Since it cannot record previous precepts, it does not have a way to translate over a column and therefore the best it can do is to clean the edges of the space it is in.
 
-Under the constraints provided, this is the optimal agent that can be constructed regardless of the enviornment it is in. Therefore if the room had obstacles placed in it the same agent would be used. 
+Under the constraints provided, this is the optimal agent that can be constructed regardless of the environment it is in. Therefore if the room had obstacles placed in it the same agent would be used. 
 \begin{algorithm}[h]
   
-  \caption{Programatic Description of Simple Reflex Agent}
+  \caption{Programmatic Description of Simple Reflex Agent}
   \begin{algorithmic}[1]
     
     \For {timestep $t$ until termination}
@@ -117,9 +117,30 @@ Under the constraints provided, this is the optimal agent that can be constructe
   \label{alg:SimpleAgent}
 \end{algorithm}
 \subsection{Memoryless random reflex agent}
-The random reflex agent was designed to allow the vacuum to rotate even if there is no wall in front of it. Response systems work on a probabilistic basis. This allows the vacuum to choose between turning left and right with equal chance when facing a wall or even in the case where there are no obstructions. In general, This random agent prioritizes forward movement whenever possible to increase performance, it receives more possibility in decision-making compared to turning with a ratio of 85:15
+The random reflex agent was designed to allow the vacuum to rotate even if there is no wall in front of it. Random systems work on a probabilistic basis. This allows the vacuum to choose between turning left and right with equal chance when facing a wall or even in the case where there are no obstructions. In general, This random agent prioritizes forward movement to increase performance, it weights moving forward compared to turning with a ratio of 85:15.
+The formulation is made explicit in Algorithm \ref{alg:RandAgent}. One advantage of random agents is that they can have a best-case performance comparable to an agent with much higher memory to define a model. In addition, it is much easier to design such an agent and the same agent can work in many different environments, even with obstacles. The dissadvantage is that lower bounds on performance are hard to make and expected performance is often lower than a well designed agent. 
+
+\begin{algorithm}
+  \caption{The structure of the random reflex agent}
+  \begin{algorithmic}[1]
+    \For {timestep $t$ until termination}
+      \If{on dirty tile}
+        \State clean tile
+      \Else
+        \If{ not facing wall}
+           move forward 0.85 - turn left 0.075 - turn right 0.075
+        \Else
+          \State turn left 0.5 - turn right 0.5
+        \EndIf
+      \EndIf
+    \EndFor
+  \end{algorithmic}
+  \label{alg:RandAgent}
+\end{algorithm}
+
+
 \subsection{Low-memory deterministic reflex agent}
-The low-memory determinsitic reflex agent was designed such that it would clean the room column by column, making a u-turn in alternating directions when it reaches a wall. With the way it was designed it needs three bits of memory to function. It performs very well in the empty room scenario, but when internal walls ar introduced it does not perform as well because the aditional walls cause problems with the parity of alternating turns and since it is designed to clean via columns it has dificulty entering rooms with doors on the sides or on the top. The agent is explained in detail in Algorithm ~\ref{alg:ThreeBit}
+The low-memory deterministic reflex agent was designed such that it would clean the room column by column, making a u-turn in alternating directions when it reaches a wall. With the way it was designed it needs three bits of memory to function. It performs very well in the empty room scenario, but when internal walls are introduced it does not perform as well because the aditional walls cause problems with the parity of alternating turns and since it is designed to clean via columns it has difficulty entering rooms with doors on the sides or on the top. The agent is explained in detail in Algorithm ~\ref{alg:ThreeBit}
 
 With more memory the agent could remember all the spaces it had yet to travel to and could plan a path towards these regions. This would allow perfect cleaning regardless of the obstacles present.
 \begin{algorithm}
@@ -165,9 +186,12 @@ The agent starts at the bottom left hand corner of a 10 by 10 grid facing up. It
 
 There were two configurations of room. One configuration consisted of 10 by 10 cells connected at the edges  all initially marked as dirty. The second consisted of four rooms with doors near the center of the room. 
 
-%please include more detail about the room with extra walls
+% please include more detail about the room with extra walls
+
+The room with internal walls has walls in the middle such that one room is of size 5 and the other is of size 4. There are four gaps in these internal walls right around the intersection between the walls.  The simulation was run for 500 time steps and repeated 50 times for the random agent. 
 \section{Results}
-Here we include several figures of number of clean cells vs. number of time steps. 
+Here we include several figures of number of clean cells vs. number of time steps.  In our experiments, the random agent took 500 steps to clean 90\% of the area of it succeeded in doing so at all. it failed to clean 90\% more than five times, so the average is also 500.
+
 \begin{figure}
   \centering
 
@@ -179,19 +203,19 @@ Here we include several figures of number of clean cells vs. number of time step
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{SimpleExtraWallPerformance}
-  \caption{Performance of simple agent in room with internal walls. The aditional walls provide aditional places for the agent to turn, increasing its performance. }
+  \caption{Performance of simple agent in room with internal walls. The additional walls provide aditional places for the agent to turn, increasing its performance. }
   \label{fig:SimpleExtraWall}
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{RandomNoWallPerformance}
-  \caption{Please Comment on the performance here}
+  \caption{Performance of random agent on room without internal walls. This does not clean the entire region in the 500 cycles.  }
   \label{fig:1}
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{RandomExtraWallPerformance}
-  \caption{Lorem Ipsum}
+  \caption{Performance of random agent with internal walls. This performs roughly as well as without the internal walls but the number of clean tiles is smaller since there are fewer tiles (some are displaced by walls).  }
   
 \end{figure}
 
@@ -206,13 +230,13 @@ Here we include several figures of number of clean cells vs. number of time step
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{FancyExtraWallPerformance}
-  \caption{Three bit agent performance in room with additional walls. The agent gets turned away from the botom right room and thus fails to clean a quarter of the room. }
+  \caption{Three bit agent performance in room with additional walls. The agent gets turned away from the bottom right room and thus fails to clean a quarter of the room. }
   \label{fig:FancyExtraWall}
 \end{figure}
-\section{Discusion}
+\section{Discussion}
 % Answer the remaining questions not answered in earlier sections
 
-We were surprised by how difficult the low-memory agent was to implement sucessfully and that it performed so poorly when additional walls were introduced.
+We were surprised by how difficult the low-memory agent was to implement successfully and that it performed so poorly when additional walls were introduced.
 
 
 \subsection{Tables}
