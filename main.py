@@ -12,7 +12,7 @@ NO_WALL = 0
 WALL = 1
 
 vacuum_model = None
-model = int(input("Select Model: \n1 First_Model \n2 Second_Model \n3 Third_Model \n"))
+model = int(input("Select Model: \n1 Simple_Agent \n2 Random_Agent \n3 ThreeBit_Agent \n"))
 numRuns=1
 match model:
     case 1:
