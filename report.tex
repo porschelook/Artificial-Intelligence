@@ -118,6 +118,32 @@ Under the constraints provided, this is the optimal agent that can be constructe
 \end{algorithm}
 \subsection{Memoryless random reflex agent}
 The random reflex agent was designed to allow the vacuum to rotate even if there is no wall in front of it. Response systems work on a probabilistic basis. This allows the vacuum to choose between turning left and right with equal chance when facing a wall or even in the case where there are no obstructions. In general, This random agent prioritizes forward movement whenever possible to increase performance, it receives more possibility in decision-making compared to turning with a ratio of 85:15
+
+\begin{algorithm}[h]
+  
+  \caption{Programatic Description of Simple Reflex Agent}
+  \begin{algorithmic}[1]
+    
+    \For {timestep $t$ until termination}
+    \If {on dirty tile}
+    \State clean tile 
+    \EndIf
+    \State random = (random action of agent) //move forward with 85 possibility and turning with 15 possibility
+    \If {random equal move forward} 
+      \If{not facing wall and not on dirty tile}
+      \State move forward
+      \EndIf
+    \Else { random equal move forward}  
+      \If{ not on dirty tile and facing wall}
+      \State turn clockwise
+      \EndIf
+      \EndIf
+     
+    \EndFor
+  \end{algorithmic}
+  \label{alg:SimpleAgent}
+\end{algorithm}
+
 \subsection{Low-memory deterministic reflex agent}
 The low-memory determinsitic reflex agent was designed such that it would clean the room column by column, making a u-turn in alternating directions when it reaches a wall. With the way it was designed it needs three bits of memory to function. It performs very well in the empty room scenario, but when internal walls ar introduced it does not perform as well because the aditional walls cause problems with the parity of alternating turns and since it is designed to clean via columns it has dificulty entering rooms with doors on the sides or on the top. The agent is explained in detail in Algorithm ~\ref{alg:ThreeBit}
 
