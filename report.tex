@@ -132,16 +132,18 @@ The random reflex agent was designed to allow the vacuum to rotate even if there
     \If {random equal move forward} 
       \If{not facing wall and not on dirty tile}
       \State move forward
+      \Else 
+      \State turn clockwise or counterclockwise //random with 50:50
       \EndIf
     \Else { random equal move forward}  
       \If{ not on dirty tile and facing wall}
-      \State turn clockwise
+      \State turn clockwise or counterclockwise //random with 50:50
       \EndIf
       \EndIf
      
     \EndFor
   \end{algorithmic}
-  \label{alg:SimpleAgent}
+  \label{alg:RandomAgent}
 \end{algorithm}
 
 \subsection{Low-memory deterministic reflex agent}
