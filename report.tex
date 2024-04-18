@@ -117,25 +117,36 @@ Under the constraints provided, this is the optimal agent that can be constructe
   \label{alg:SimpleAgent}
 \end{algorithm}
 \subsection{Memoryless random reflex agent}
+<<<<<<< HEAD
 The random reflex agent was designed to allow the vacuum to rotate even if there is no wall in front of it. Random systems work on a probabilistic basis. This allows the vacuum to choose between turning left and right with equal chance when facing a wall or even in the case where there are no obstructions. In general, This random agent prioritizes forward movement to increase performance, it weights moving forward compared to turning with a ratio of 85:15.
-The formulation is made explicit in Algorithm \ref{alg:RandAgent}. One advantage of random agents is that they can have a best-case performance comparable to an agent with much higher memory to define a model. In addition, it is much easier to design such an agent and the same agent can work in many different environments, even with obstacles. The dissadvantage is that lower bounds on performance are hard to make and expected performance is often lower than a well designed agent. 
+The formulation is made explicit in Algorithm \ref{alg:RandomAgent}. One advantage of random agents is that they can have a best-case performance comparable to an agent with much higher memory to define a model. In addition, it is much easier to design such an agent and the same agent can work in many different environments, even with obstacles. The dissadvantage is that lower bounds on performance are hard to make and expected performance is often lower than a well designed agent. 
 
-\begin{algorithm}
-  \caption{The structure of the random reflex agent}
+
+\begin{algorithm}[h]
+  
+  \caption{Programatic Description of Simple Reflex Agent}
   \begin{algorithmic}[1]
+    
     \For {timestep $t$ until termination}
-      \If{on dirty tile}
-        \State clean tile
-      \Else
-        \If{ not facing wall}
-           move forward 0.85 - turn left 0.075 - turn right 0.075
-        \Else
-          \State turn left 0.5 - turn right 0.5
-        \EndIf
+    \If {on dirty tile}
+    \State clean tile 
+    \EndIf
+    \State random = (random action of agent) //move forward with 85 possibility and turning with 15 possibility
+    \If {random equal move forward} 
+      \If{not facing wall and not on dirty tile}
+      \State move forward
+      \Else 
+      \State turn clockwise or counterclockwise //random with 50:50
       \EndIf
+    \Else { random equal move forward}  
+      \If{ not on dirty tile and facing wall}
+      \State turn clockwise or counterclockwise //random with 50:50
+      \EndIf
+      \EndIf
+     
     \EndFor
   \end{algorithmic}
-  \label{alg:RandAgent}
+  \label{alg:RandomAgent}
 \end{algorithm}
 
 
