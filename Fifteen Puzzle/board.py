@@ -8,6 +8,7 @@ class state:
             temp=np.arange(15)+1#fifteen for the fifteen puzzle.
             temp=np.concatenate((temp,np.array([0])))#add in a zero for the empty cell
             self.board=np.reshape(temp,(4,4))# this is in row-major order so the first index is which row it is in and the second is which coilumn it is in.
+            print(self.board[0])
         else:
             self.board=board.copy()#does a deep copy
             
@@ -61,15 +62,14 @@ class state:
         dist = 0
         for row in range(self.row):
             for col in range(self.col):
-
-                if (value := self.board[row,col]) != 0:
+                if (value := self.board[row][col]) != 0:
                     print("v ",value)
                     value -= 1
                     x = value % self.col
                     y = value // self.row
                     dist += abs(x - col) + abs(y - row)
                     print("dist ",dist)
-
         return dist
+    
     def copy(self):
         return state(board=self.board)
