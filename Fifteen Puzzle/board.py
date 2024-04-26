@@ -1,14 +1,16 @@
 import numpy as np
 import random
 
+GOAL = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,0]]
 class state:
+    
     def __init__(self, board=None):
         #init into the solved state
         if board is None:
             temp=np.arange(15)+1#fifteen for the fifteen puzzle.
             temp=np.concatenate((temp,np.array([0])))#add in a zero for the empty cell
             self.board=np.reshape(temp,(4,4))# this is in row-major order so the first index is which row it is in and the second is which coilumn it is in.
-            print(self.board[0])
+             
         else:
             self.board=board.copy()#does a deep copy
             
@@ -65,6 +67,10 @@ class state:
                 print(j, " ", end="")
             print()
 
+    def copy(self):
+        return state(board=self.board)
+
+
     def manh_dist(self):
         dist = 0
         for row in range(self.row):
@@ -78,5 +84,39 @@ class state:
                     print("dist ",dist)
         return dist
     
-    def copy(self):
-        return state(board=self.board)
+    def is_goal(self):
+        if self.manh_dist() == 0:
+            return True
+        return False
+
+class Node:
+    def __init__(self, state, cost, heuristic, parent=None):
+        self.state = state
+        self.cost = cost
+        self.heuristic = heuristic
+        self.parent = parent
+        self.f_score = cost + heuristic
+
+def aStar(self):
+    open_list = [Node(self, 0, self.manh_dist())]  # Start with the initial state
+    closed_list = []
+
+    while open_list:
+        current_node = min(open_list, key=lambda x: x.f_score)
+        open_list.remove(current_node)
+        closed_list.append(current_node)
+
+        if current_node.state.is_goal():  # Define a method is_goal() to check if the state is the goal state
+            return current_node  # Return the goal node
+
+        # Generate successor states and add them to the open list
+        for move in ["up", "down", "left", "right"]:
+            successor_state = current_node.state.copy()
+            getattr(successor_state, f"move{move.capitalize()}")()  # Perform the move
+            cost = current_node.cost + 1  # Assume uniform cost for each move
+            heuristic = successor_state.manh_dist()
+            successor_node = Node(successor_state, cost, heuristic, current_node)
+            if successor_node not in closed_list:
+                open_list.append(successor_node)
+
+    return None  # No solution found
