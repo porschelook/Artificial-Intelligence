@@ -1,44 +1,53 @@
-import numpy as np
-import random
+class Board:
+    goal_state = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 0],
+    ]  # 0 as empty or running factor
+    current_state = [[], [], [], []]
+    algo = ""
+    empty_position = (3, 3)
 
-class state:
-    def __init__(self):
-        #init into the solved state
-        temp=np.arange(15)+1#fifteen for the fifteen puzzle.
-        temp=np.concatenate((temp,np.array([0])))#add in a zero for the empty cell
-        self.board=np.reshape(temp,(4,4))# this is in row-major order so the first index is which row it is in and the second is which coilumn it is in. 
-        self.emptyLoc=(3,3)#initialize the spot of the empty square so it doesn't need to be searched for
+    def __init__(self, algo):
+        self.algo = algo
 
-    def scramble(numSteps):
-        lastMove=None
-        moves={"up", "right","left","down"}
-        for i in range(numSteps):
-            move=random.choice(tuple(moves-{lastMove}))
-            #randomly choose a step that isn't the last one
-            lastMove=move
-            #apply move
-    #changes the board state to that for which the empty (0) square has moved up one tile.         
-    def moveUp(self):
-        assert self.board[self.emptyLoc]==0
-        newEmptyLoc=( max(0,self.emptyLoc[1]-1),self.emptyLoc[0])
-        self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
-        self.emptyLoc=newEmptyLoc
+    def set_empty_position(self, x, y):
+        print("set new position ",x ," and ", y)
+        self.empty_position = (x,y)
+       
 
-    def moveDown(self):
-        assert self.board[self.emptyLoc]==0
-        newEmptyLoc=( min(3,self.emptyLoc[1]+1),self.emptyLoc[0])
-        self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
-        self.emptyLoc=newEmptyLoc
+    def print_current_board(self):
 
-        
-    def moveLeft(self):
-        assert self.board[self.emptyLoc]==0
-        newEmptyLoc=(self.emptyLoc[0], max(0,self.emptyLoc[1]-1))
-        self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
-        self.emptyLoc=newEmptyLoc
+        for i in self.goal_state:
+            for j in i:
+                print(j, " ", end="")
+            print()
 
-    def moveRight(self):
-        assert self.board[self.emptyLoc]==0
-        newEmptyLoc=(self.emptyLoc[0], min(3,self.emptyLoc[1]+1))
-        self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
-        self.emptyLoc=newEmptyLoc
+    def move():
+        print()
+
+    def run(self):
+        if self.algo == "A*":
+            print("A*")
+            self.do_astar()
+
+        elif self.algo == "RBFS":
+            print("RBFS")
+            self.do_RBFS()
+        else:
+            print("None")
+
+    def do_astar():
+        print("do_astar")
+
+    def do_RBFS():
+        print("do_RBFS")
+
+
+b = Board("A*")
+print(b.algo)
+print(b.empty_position)
+b.set_empty_position(1,3)
+print(b.empty_position)
+b.print_current_board()
