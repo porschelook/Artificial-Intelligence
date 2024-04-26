@@ -58,6 +58,13 @@ class state:
         self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
         self.emptyLoc=newEmptyLoc
 
+    def print_current_board(self):
+
+        for i in self.board:
+            for j in i:
+                print(j, " ", end="")
+            print()
+
     def manh_dist(self):
         dist = 0
         for row in range(self.row):
