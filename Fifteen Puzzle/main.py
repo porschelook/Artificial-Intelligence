@@ -20,5 +20,5 @@ if __name__ == "__main__":
 
     print(aStar(b))
 
-    
+    print(b.board)
     
