@@ -46,25 +46,17 @@ class state:
 
     # changes the board state to that for which the empty (0) square has moved up one tile.
     def moveUp(self):
-        
-        assert self.board[self.emptyLoc] == 0
-        newEmptyLoc = (max(0, self.emptyLoc[1] - 1), self.emptyLoc[0])
-        self.board[newEmptyLoc], self.board[self.emptyLoc] = (
-            self.board[self.emptyLoc],
-            self.board[newEmptyLoc],
-        )
-        self.emptyLoc = newEmptyLoc
-        print("up emp ",self.emptyLoc)
+        assert self.board[self.emptyLoc]==0
+        newEmptyLoc=( max(0,self.emptyLoc[0]-1),self.emptyLoc[1])
+        self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
+        self.emptyLoc=newEmptyLoc
 
     def moveDown(self):
-        assert self.board[self.emptyLoc] == 0
-        newEmptyLoc = (min(3, self.emptyLoc[1] + 1), self.emptyLoc[0])
-        self.board[newEmptyLoc], self.board[self.emptyLoc] = (
-            self.board[self.emptyLoc],
-            self.board[newEmptyLoc],
-        )
-        self.emptyLoc = newEmptyLoc
-        print("down emp ",self.emptyLoc)
+        assert self.board[self.emptyLoc]==0
+        newEmptyLoc=( min(3,self.emptyLoc[0]+1),self.emptyLoc[1])
+        self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
+        self.emptyLoc=newEmptyLoc
+
 
     def moveLeft(self):
         assert self.board[self.emptyLoc] == 0
@@ -77,14 +69,20 @@ class state:
         print("left emp ",self.emptyLoc)
 
     def moveRight(self):
-        assert self.board[self.emptyLoc] == 0
-        newEmptyLoc = (self.emptyLoc[0], min(3, self.emptyLoc[1] + 1))
-        self.board[newEmptyLoc], self.board[self.emptyLoc] = (
-            self.board[self.emptyLoc],
-            self.board[newEmptyLoc],
-        )
-        self.emptyLoc = newEmptyLoc
-        print("right emp ",self.emptyLoc)
+        assert self.board[self.emptyLoc]==0
+        newEmptyLoc=(self.emptyLoc[0], min(3,self.emptyLoc[1]+1))
+        self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
+        self.emptyLoc=newEmptyLoc
+
+    def print_current_board(self):
+
+        for i in self.board:
+            for j in i:
+                if j>0:
+                    print(j, " ", end="")
+                else:
+                    print("  ", end="")
+            print()
 
     def copy(self):
         return state(board=self.board)
@@ -94,12 +92,12 @@ class state:
         for row in range(self.row):
             for col in range(self.col):
                 if (value := self.board[row][col]) != 0:
-                    # print("v ",value)
+                    #print("v ",value)
                     value -= 1
                     x = value % self.col
                     y = value // self.row
                     dist += abs(x - col) + abs(y - row)
-                    # print("dist ",dist)
+                    #print("dist ",dist)
         return dist
 
     def is_goal(self):
@@ -126,8 +124,7 @@ class Node:
         self.heuristic = heuristic
         self.parent = parent
         self.f_score = cost + heuristic
-
-
+#This needs to also return the path to the goal yes?
 def aStar(self):
     open_list = [Node(self, 0, self.manh_dist())]  # Start with the initial state
     closed_list = []
