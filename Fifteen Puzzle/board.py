@@ -79,12 +79,12 @@ class state:
         for row in range(self.row):
             for col in range(self.col):
                 if (value := self.board[row][col]) != 0:
-                    print("v ",value)
+                    #print("v ",value)
                     value -= 1
                     x = value % self.col
                     y = value // self.row
                     dist += abs(x - col) + abs(y - row)
-                    print("dist ",dist)
+                    #print("dist ",dist)
         return dist
     
     def is_goal(self):
@@ -99,7 +99,7 @@ class Node:
         self.heuristic = heuristic
         self.parent = parent
         self.f_score = cost + heuristic
-
+#This needs to also return the path to the goal yes?
 def aStar(self):
     open_list = [Node(self, 0, self.manh_dist())]  # Start with the initial state
     closed_list = []
