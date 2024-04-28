@@ -6,17 +6,7 @@ if __name__ == "__main__":
     b.scramble(50)
     print( b.board)
 
-     
-
-    print("manhattan distance", b.manh_dist())
-
-
-    print("emptyLoc ",b.emptyLoc)
-    print( b.board)
-    b.moveLeft()
-
-    print(b.board)
-    print("emptyLoc ",b.emptyLoc)
+    print("main ", b.emptyLoc)
 
     print(aStar(b))
 
