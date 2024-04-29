@@ -9,7 +9,7 @@ if __name__ == "__main__":
     for m in  [10,20,30,40,50]:
         totalTime=0
         totalTime_aStar=0
-        for i in range(50):
+        for i in range(20):
             b=state()
             b.scramble(m)
             #print("shuffle borad \n", b.board)
