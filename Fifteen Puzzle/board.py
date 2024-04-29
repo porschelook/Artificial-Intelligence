@@ -5,7 +5,7 @@ GOAL = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
 
 
 class state:
-
+    emptyLoc =(3,3) 
     def __init__(self, board=None):
         # init into the solved state
         if board is None:
@@ -13,6 +13,7 @@ class state:
             temp = np.concatenate(
                 (temp, np.array([0]))
             )  # add in a zero for the empty cell
+             
             self.board = np.reshape(
                 temp, (4, 4)
             )  # this is in row-major order so the first index is which row it is in and the second is which coilumn it is in.
@@ -20,10 +21,7 @@ class state:
         else:
             self.board = board.copy()  # does a deep copy
 
-        self.emptyLoc = (
-            3,
-            3,
-        )  # initialize the spot of the empty square so it doesn't need to be searched for
+         # initialize the spot of the empty square so it doesn't need to be searched for
         self.row = 4
         self.col = 4
 
@@ -46,6 +44,8 @@ class state:
 
     # changes the board state to that for which the empty (0) square has moved up one tile.
     def moveUp(self):
+        #print(self.emptyLoc)
+        #print("self.board[self.emptyLoc] ",self.board[self.emptyLoc])
         assert self.board[self.emptyLoc]==0
         newEmptyLoc=( max(0,self.emptyLoc[0]-1),self.emptyLoc[1])
         self.board[newEmptyLoc], self.board[self.emptyLoc]=self.board[self.emptyLoc], self.board[newEmptyLoc]
@@ -66,7 +66,7 @@ class state:
             self.board[newEmptyLoc],
         )
         self.emptyLoc = newEmptyLoc
-        print("left emp ",self.emptyLoc)
+   
 
     def moveRight(self):
         assert self.board[self.emptyLoc]==0
@@ -85,7 +85,9 @@ class state:
             print()
 
     def copy(self):
-        return state(board=self.board)
+        newState = state(board=self.board)
+        newState.emptyLoc = self.emptyLoc
+        return newState
 
     def manh_dist(self):
         dist = 0
@@ -105,17 +107,22 @@ class state:
             return True
         return False
 
-    def check_can_move(self,move):
+    def check_can_move(self):
+        cantmove = []
         if self.emptyLoc[0] == 0 :# can't up
-            print("can't up")
+            #print("can't up")
+            cantmove.append("up")
         if self.emptyLoc[0] == 3 :# can't down
-            print("can't down")
+            #print("can't down")
+            cantmove.append("down")
         if self.emptyLoc[1] == 0 :# can't left
-            print("can't left")
+            #print("can't left")
+            cantmove.append("left")
         if self.emptyLoc[1] == 3 :# can't right
-            print("can't right")
+            #print("can't right")
+            cantmove.append("right")
             
-        return False
+        return cantmove
 
 class Node:
     def __init__(self, state, cost, heuristic, parent=None):
@@ -125,18 +132,21 @@ class Node:
         self.parent = parent
         self.f_score = cost + heuristic
 #This needs to also return the path to the goal yes?
-def aStar(self):
-    open_list = [Node(self, 0, self.manh_dist())]  # Start with the initial state
+def aStar(nodeState):
+    open_list = [Node(nodeState, 0, nodeState.manh_dist())]  # Start with the initial state
     closed_list = []
     
     while open_list:
         current_node = min(open_list, key=lambda x: x.f_score)
-        print("current_node \n",current_node.state.board)
+        
+        current_node.state.check_can_move()
+        #print("current_node \n",current_node.state.board)
         open_list.remove(current_node)
         closed_list.append(current_node)
-
+        #print("thissss ",current_node.state.emptyLoc)
+        
         if (
-            current_node.state.is_goal()
+            current_node.heuristic == 0
         ):  # Define a method is_goal() to check if the state is the goal state
             return current_node  # Return the goal node
 
@@ -144,17 +154,45 @@ def aStar(self):
         for move in ["up", "down", "left", "right"]:
             
             successor_state = current_node.state.copy()
-            print("successor_state \n",successor_state.board)
+            #print("thissss 2 ",successor_state.emptyLoc)
+            #print("successor_state \n",successor_state.board)
+            #print("check_can_move") 
+            cannot_move = current_node.state.check_can_move()
+            #print(move)
+            #print(cannot_move)
+            #print(move in cannot_move)
+            if move in cannot_move:
+                #print("cannot_move ", cannot_move)
+                continue
+            #print("this successor_state \n ",successor_state.board)
+            #print(successor_state)
              
-            current_node.state.check_can_move(move)
-            getattr(successor_state, f"move{move.capitalize()}")()  # Perform the move
+            #print(successor_state.emptyLoc)
+            if move == "up":
+                successor_state.moveUp()
+
+            if move == "down":
+                successor_state.moveDown()
+
+            if move == "left":
+                successor_state.moveLeft()
+
+            if move == "right":
+                successor_state.moveRight()
+    
+
+            #getattr(current_node.successor_state, f"move{move.capitalize()}")()  # Perform the move
 
             cost = current_node.cost + 1  # Assume uniform cost for each move
             heuristic = successor_state.manh_dist()
+            #print("successor_state.board ",successor_state.board)
+            #print("heuristic ",heuristic)
             successor_node = Node(successor_state, cost, heuristic, current_node)
             if successor_node not in closed_list:
-
                 open_list.append(successor_node)
-                print("successor_node ", successor_node)
+                #print("successor_node ", successor_node)
 
     return None  # No solution found
+
+
+
