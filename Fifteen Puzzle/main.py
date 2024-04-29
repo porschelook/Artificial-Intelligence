@@ -1,22 +1,34 @@
 from board import *
 import time
 if __name__ == "__main__":
-    initial_state = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 0, 14, 15]] #
+     
     b = state()
     b.scramble(50)
 
 
     for m in  [10,20,30,40,50]:
         totalTime=0
-        for i in range(10):
+        totalTime_aStar=0
+        for i in range(50):
             b=state()
             b.scramble(m)
-            print("shuffle borad \n", b.board)
+            #print("shuffle borad \n", b.board)
             tic=time.perf_counter() 
-            g=aStar(b)
+            initial_node = Node(b, 0, b.manh_dist())
+
+            goal_node, _ = rbfs(initial_node, np.inf)
+
+            #g=aStar(b)
             toc=time.perf_counter()
             totalTime+=toc-tic
-        print("Average time to solve with A-star: " + str(totalTime/10))
-   
-    print(g.state.board)
+            
+            tic_aStar=time.perf_counter() 
+            g=aStar(b)
+            toc_aStar=time.perf_counter()
+            totalTime_aStar+=toc_aStar-tic_aStar
+
+        print("Average time to solve with A-star: " + str(totalTime_aStar/10))
+        print("Average time to solve with RBFS: " + str(totalTime/10))
+        print("------------------------------------")
+    #print(g.state.board)
     

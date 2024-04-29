@@ -195,4 +195,31 @@ def aStar(nodeState):
     return None  # No solution found
 
 
+def rbfs(node, f_limit):
+    if node.state.is_goal():
+        return node, f_limit
+
+    successors = []
+    for move in ["up", "down", "left", "right"]:
+        if move not in node.state.check_can_move():
+            successor_state = node.state.copy()
+            getattr(successor_state, f"move{move.capitalize()}")()
+            cost = node.cost + 1
+            heuristic = successor_state.manh_dist()
+            successor_node = Node(successor_state, cost, heuristic, node)
+            successors.append(successor_node)
+
+    if not successors:
+        return None, np.inf
+
+    while True:
+        successors.sort(key=lambda x: x.f_score)
+        best = successors[0]
+        if best.f_score > f_limit:
+            return None, best.f_score
+        alternative = successors[1].f_score if len(successors) > 1 else np.inf
+        result, best.f_score = rbfs(best, min(f_limit, alternative))
+        if result is not None:
+            return result, best.f_score
+        
 
