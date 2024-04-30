@@ -101,7 +101,19 @@ class state:
                     dist += abs(x - col) + abs(y - row)
                     #print("dist ",dist)
         return dist
-
+    #To find an additional heuristic, I searched https://michael.kim/blog/puzzle
+    def otherHeuristic(self):
+        dist=self.manh_dist()
+        temp=np.transpose(self.board)
+        #count the number of horizontal conflicts
+        horizCon=self.board[:,0:2]==(self.board[:,1:3]+1)
+        dist+=2*np.sum(horizCon)
+        #Do the same thing for vertical. Thisincludes the empty tile which shouldn't be counted.
+        vertCon=temp[:,0:2]==(temp[:,1:3]+1)
+        dist+=2*np.sum(vertCon)
+        return dist
+        
+    
     def is_goal(self):
         if self.manh_dist() == 0:
             return True
@@ -153,7 +165,7 @@ def aStar(nodeState):
         if (
             current_node.heuristic == 0
         ):  # Define a method is_goal() to check if the state is the goal state
-            return current_node  # Return the goal node
+            return current_node, len(closed_list)  # Return the goal node, number nodes expanded
 
         # Generate successor states and add them to the open list
         for move in ["up", "down", "left", "right"]:
@@ -189,12 +201,13 @@ def aStar(nodeState):
             #getattr(current_node.successor_state, f"move{move.capitalize()}")()  # Perform the move
 
             cost = current_node.cost + 1  # Assume uniform cost for each move
-            heuristic = successor_state.manh_dist()
+            heuristic =successor_state.otherHeuristic()#successor_state.manh_dist()
             #print("successor_state.board ",successor_state.board)
             #print("heuristic ",heuristic)
             successor_node = Node(successor_state, cost, heuristic, current_node)
             if successor_node not in closed_list:#This would prefer a better equality
                 open_list.append(successor_node)
+
                 #print("successor_node ", successor_node)
 
     return None  # No solution found
@@ -210,7 +223,7 @@ def rbfs(node, f_limit):
             successor_state = node.state.copy()
             getattr(successor_state, f"move{move.capitalize()}")()
             cost = node.cost + 1
-            heuristic = successor_state.manh_dist()
+            heuristic = successor_state.otherHeuristic()#manh_dist()
             successor_node = Node(successor_state, cost, heuristic, node)
             successors.append(successor_node)
 
