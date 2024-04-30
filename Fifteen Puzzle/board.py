@@ -123,6 +123,8 @@ class state:
             cantmove.append("right")
             
         return cantmove
+    def __eq__(self,other):
+        return np.array_equal(self.board,other.board)
 
 class Node:
     def __init__(self, state, cost, heuristic, parent=None):
@@ -131,7 +133,10 @@ class Node:
         self.heuristic = heuristic
         self.parent = parent
         self.f_score = cost + heuristic
-#This needs to also return the path to the goal yes?
+    def __eq__(self,other):
+        return self.state==other.state and self.f_score==other.f_score#perhaps the new instance has a smaller cost.
+    
+
 def aStar(nodeState):
     open_list = [Node(nodeState, 0, nodeState.manh_dist())]  # Start with the initial state
     closed_list = []
@@ -188,7 +193,7 @@ def aStar(nodeState):
             #print("successor_state.board ",successor_state.board)
             #print("heuristic ",heuristic)
             successor_node = Node(successor_state, cost, heuristic, current_node)
-            if successor_node not in closed_list:
+            if successor_node not in closed_list:#This would prefer a better equality
                 open_list.append(successor_node)
                 #print("successor_node ", successor_node)
 
