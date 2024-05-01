@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import time
 
 GOAL = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
 
@@ -146,13 +147,13 @@ class Node:
         self.parent = parent
         self.f_score = cost + heuristic
     def __eq__(self,other):
-        return self.state==other.state and self.f_score==other.f_score#perhaps the new instance has a smaller cost.
+        return self.state==other.state# and self.f_score==other.f_score#perhaps the new instance has a smaller cost.
     
 
-def aStar(nodeState):
+def aStar(nodeState, funType="Other"):
     open_list = [Node(nodeState, 0, nodeState.manh_dist())]  # Start with the initial state
     closed_list = []
-    
+    totalHeuristic=0#keep running total of heuristic time
     while open_list:
         current_node = min(open_list, key=lambda x: x.f_score)
         
@@ -165,7 +166,7 @@ def aStar(nodeState):
         if (
             current_node.heuristic == 0
         ):  # Define a method is_goal() to check if the state is the goal state
-            return current_node, len(closed_list)  # Return the goal node, number nodes expanded
+            return current_node, len(closed_list), totalHeuristic  # Return the goal node, number nodes expanded
 
         # Generate successor states and add them to the open list
         for move in ["up", "down", "left", "right"]:
@@ -201,7 +202,13 @@ def aStar(nodeState):
             #getattr(current_node.successor_state, f"move{move.capitalize()}")()  # Perform the move
 
             cost = current_node.cost + 1  # Assume uniform cost for each move
-            heuristic =successor_state.otherHeuristic()#successor_state.manh_dist()
+            heuristicTic=time.perf_counter()
+            if funType=="other":
+                heuristic =successor_state.otherHeuristic()#successor_state.manh_dist()
+            else:
+                heuristic=successor_state.manh_dist()
+            heuristicToc=time.perf_counter()
+            totalHeuristic+=heuristicToc-heuristicTic
             #print("successor_state.board ",successor_state.board)
             #print("heuristic ",heuristic)
             successor_node = Node(successor_state, cost, heuristic, current_node)
