@@ -92,6 +92,8 @@ In this paper, we examine the performance of two search algorithms, Compassion A
 
 \section{Environment Descriptions}
 
+\subsection{Heuristic function}
+
 \subsection{A* search}
 
 \begin{algorithm}[h]
@@ -113,6 +115,8 @@ In this paper, we examine the performance of two search algorithms, Compassion A
   \end{algorithmic}
   \label{alg:A*}
 \end{algorithm}
+
+
 \subsection{RBFS search}
 \ref{alg:RandomAgent}.
 
@@ -152,7 +156,15 @@ In this paper, we examine the performance of two search algorithms, Compassion A
 
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
+1. Is there a clear preference ordering among the heuristics you tested considering the number of nodes searched and the total CPU time taken to solve the problems for the two algorithms?
 
+2. Can a small sacrifice in optimality give a large reduction in the number of nodes expanded? What about CPU time?
+
+3. Is the time spent on evaluating the heuristic a significant fraction of the total problem-solving time for any heuristic and algorithm you tested?
+
+4. How did you come up with your heuristic evaluation function?
+
+5. How do the two algorithms compare in the amount of search involved and the cpu-time?
 
 
 \end{document}

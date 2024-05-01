@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  1 MAY 2024 10:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  1 MAY 2024 10:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -540,10 +540,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 99.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 101.
 
 
-LaTeX Warning: Reference `alg:RandomAgent' on page 1 undefined on input line 117.
+LaTeX Warning: Reference `alg:RandomAgent' on page 1 undefined on input line 121.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [1
 
@@ -558,21 +561,21 @@ L3 programming layer <2024-03-14>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: ED2D06F1D76B8937E6611301892F262A;796.
+(rerunfilecheck)             Checksum: 707737227D752579D724546290A8F371;946.
  ) 
 Here is how much of TeX's memory you used:
- 15390 strings out of 474104
- 235831 string characters out of 5747502
- 1943496 words of memory out of 5000000
- 37490 multiletter control sequences out of 15000+600000
- 578839 words of font info for 86 fonts, out of 8000000 for 9000
+ 15398 strings out of 474104
+ 235915 string characters out of 5747502
+ 1941496 words of memory out of 5000000
+ 37491 multiletter control sequences out of 15000+600000
+ 579099 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,8n,79p,1062b,454s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (2 pages, 43568 bytes).
+Output written on report.pdf (2 pages, 45267 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
- 26169 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 71 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
+ 26177 words of extra memory for PDF output out of 29859 (max. 10000000)
 
