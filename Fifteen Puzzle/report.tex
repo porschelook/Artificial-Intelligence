@@ -1,0 +1,158 @@
+\documentclass{article}
+
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2023
+
+
+% ready for submission
+\usepackage[preprint]{neurips_2023}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2023}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2023}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2023}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{amsmath,amssymb}
+\usepackage{listings,graphicx}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\title{Report for Programming Assignment 2 (Fifteen Puzzle)}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  Matthew Callahan\\
+  \And
+  Suphalerk Lortaraprasert
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+ This will be finished after we have the results.
+\end{abstract}
+
+\section{Introduction}
+In this paper, we examine the performance of two search algorithms, Compassion A* and RBFS, using a 4x4 puzzle as a representation. The environment is randomized to ensure optimal exploration. To enhance efficiency, we introduce a random algorithm designed to avoid repeating the same steps.
+
+\section{Environment Descriptions}
+
+\subsection{A* search}
+
+\begin{algorithm}[h]
+  
+  \caption{Programmatic Description of Simple Reflex Agent}
+  \begin{algorithmic}[1]
+    
+    \For {timestep $t$ until termination}
+    \If {on dirty tile}
+    \State clean tile 
+    \EndIf
+    \If{ not on dirty tile and facing wall}
+    \State turn clockwise
+    \EndIf
+    \If{not facing wall and not on dirty tile}
+    \State move forward
+    \EndIf
+    \EndFor
+  \end{algorithmic}
+  \label{alg:A*}
+\end{algorithm}
+\subsection{RBFS search}
+\ref{alg:RandomAgent}.
+
+
+\begin{algorithm}[h]
+  
+  \caption{Programatic Description of Simple Reflex Agent}
+  \begin{algorithmic}[1]
+    
+    \For {timestep $t$ until termination}
+    \If {on dirty tile}
+    \State clean tile 
+    \EndIf
+    \State random = (random action of agent) //move forward with 85 possibility and turning with 15 possibility
+    \If {random equal move forward} 
+      \If{not facing wall and not on dirty tile}
+      \State move forward
+      \Else 
+      \State turn clockwise or counterclockwise //random with 50:50
+      \EndIf
+    \Else { random equal move forward}  
+      \If{ not on dirty tile and facing wall}
+      \State turn clockwise or counterclockwise //random with 50:50
+      \EndIf
+      \EndIf
+     
+    \EndFor
+  \end{algorithmic}
+  \label{alg:RBFS}
+\end{algorithm}
+
+\section{Experimental setup}
+
+\section{Results}
+
+
+
+\section{Discussion}
+% Answer the remaining questions not answered in earlier sections
+
+
+
+\end{document}
