@@ -216,7 +216,7 @@ We have developed multiple heuristics for A* to compare with RBFS algorithms.
 
 \section{Results}
 
-The results of our experimentation are summarized in Table 1. We conducted trials on puzzles of varying sizes, ranging from 10x10 to 50x50, using both A* search with heuristic and Recursive Best-First Search (RBFS).
+The results of our experimentation are summarized in Table 1. We conducted trials on puzzles of varying sizes, ranging from 10 to 50, using both A* search with heuristic and Recursive Best-First Search (RBFS).
 
  
 \begin{table}[!h]
@@ -246,6 +246,8 @@ The results demonstrate that A* search consistently outperforms Recursive Best-F
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
 \subsection{  Is there a clear preference ordering among the heuristics you tested considering the number of nodes searched and the total CPU time taken to solve the problems for the two algorithms?}
+
+{Yes in our result, A* generally surpasses RBFS in terms of time efficiency owing to its methodical and informed traversal of the search space. A* relies on heuristic estimates and optimal cost considerations to guide its exploration, resulting in a more effective approach compared to RBFS.}
 
 \subsection{  Can a small sacrifice in optimality give a large reduction in the number of nodes expanded? What about CPU time?}
 
