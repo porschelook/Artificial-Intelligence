@@ -9,6 +9,7 @@ if __name__ == "__main__":
     for m in  [10,20,30,40,50]:
         totalTime=0
         totalLength=0
+        totalExpand=0
         
         totalTime_aStar=0
         heuristicTime_aStar=0
@@ -21,7 +22,8 @@ if __name__ == "__main__":
             tic=time.perf_counter() 
             initial_node = Node(b, 0, b.manh_dist())
 
-            goal_node, _ = rbfs(initial_node, np.inf)
+            goal_node, _,visit = rbfs(initial_node, np.inf)
+            totalExpand+=visit
             p=goal_node
             while p.state != b:
                 totalLength+=1
@@ -47,7 +49,10 @@ if __name__ == "__main__":
         print("Average nodes to solve with A-star: " + str(totalExpand_aStar/10))
         print("Average length of A-star solution: " + str(totalLength_aStar/10))
         print("Average time to solve with RBFS: " + str(totalTime/10))
+        print("Average time to solve heuristic with RBFS: " + str(heuristicTime_aStar/totalExpand_aStar*totalExpand/10))#calculate this way because counting otherwise won't catch everything
+        print("Average nodes to solve with RBFS: " + str(totalExpand/10))
         print("Average length of RBFS solution: " + str(totalLength/10))
+        
         print("------------------------------------")
     #print(g.state.board)
     

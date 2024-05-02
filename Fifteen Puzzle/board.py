@@ -211,9 +211,10 @@ def aStar(nodeState, funType="Other"):
     return None  # No solution found
 
 #TODO pass a list of what nodes the parrents have already seen so that cycles are reduced. 
-def rbfs(node, f_limit):
+def rbfs(node, f_limit,closedNodes=[]):
+    numVisted=len(closedNodes)
     if node.state.is_goal():
-        return node, f_limit
+        return node, f_limit, numVisted
 
     successors = []
     for move in ["up", "down", "left", "right"]:
@@ -223,19 +224,26 @@ def rbfs(node, f_limit):
             cost = node.cost + 1
             heuristic = successor_state.otherHeuristic()#manh_dist()
             successor_node = Node(successor_state, cost, heuristic, node)
+            '''if successor_node in closedNodes:
+                if cost+heuristic<f_limit:
+                    successors.append(successor_node)
+            else:
+                successors.append(successor_node)'''
+            #somehow want to avoid re-hasing the same nodes
             successors.append(successor_node)
 
     if not successors:
-        return None, np.inf
+        return None, np.inf, numVisted
 
     while True:
         successors.sort(key=lambda x: x.f_score)
         best = successors[0]
         if best.f_score > f_limit:
-            return None, best.f_score
+            return None, best.f_score, numVisted
         alternative = successors[1].f_score if len(successors) > 1 else np.inf
-        result, best.f_score = rbfs(best, min(f_limit, alternative))
+        closedNodes.append(best)
+        result, best.f_score, numVisted = rbfs(best, min(f_limit, alternative))
         if result is not None:
-            return result, best.f_score
+            return result, best.f_score, numVisted
         
 
