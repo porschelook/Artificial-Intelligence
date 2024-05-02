@@ -221,6 +221,9 @@ RBFS offers the advantage of requiring less memory compared to A* search, as it 
 
 2. Can a small sacrifice in optimality give a large reduction in the number of nodes expanded? What about CPU time?
 
+The non-admissible heuristic trades off optimality for efficiency, as it doesn't always produce the optimal solution. However, this compromise in optimality can result in a significant reduction in the number of expanded nodes, leading to decreased overall CPU time. For instance, while an admissible heuristic might underestimate the true cost, causing a large number of node expansions, a non-admissible heuristic may overestimate the cost by only a small margin. Moreover, intentionally overestimating the cost can sometimes simplify the problem. Consequently, the use of a non-admissible heuristic can lead to a substantial decrease in node expansions and, consequently, reduced CPU time compared to an admissible heuristic. An illustrative case is our second non-admissible heuristic, where A* demonstrates exceptional performance.
+
+
 3. Is the time spent on evaluating the heuristic a significant fraction of the total problem-solving time for any heuristic and algorithm you tested?
 
 4. How did you come up with your heuristic evaluation function?
