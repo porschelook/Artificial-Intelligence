@@ -102,37 +102,174 @@ We also used a heuristic suggested by Michael Kim, on his blog at https://michae
 This is not quite the same as what is reccomended by Mr. Kim, since he does not mention anythin about what to do with vertical swaps. We treated vertical swaps differently because the correct offset between vertical tiles is 4 instead of 1. 
 
 \subsection{A* search}
-
+We implement the A* search algorithm for finding the paths between initial states to a given goal state in the problem of puzzle 4x4. It is a variant of the uniform cost search by using a heuristic function for each node in addition to path costs.
 \begin{algorithm}[h]
   
   \caption{Programmatic Description of A$^*$ search}
-  
+   
+    \State {openlist = [Node(nodeState, 0, nodeState.manhdist())] // Start with the initial state}
+    \State {closedlist = []}
+    \State {totalHeuristic = 0  // keep running total of heuristic time}
+    \While  {openlist  is not empty:}
+    \State {currentnode = node with minimum fscore in openlist}
+        
+    \State {currentnode.state.checkcanmove()}
+    
+    \State {remove currentnode from openlist}
+    \State {add currentnode to closedlist}
+    \If { currentnode.heuristic is 0} 
+    \State {return currentnode, length of closedlist, totalHeuristic  // Return the goal node and the number of nodes expanded}
+    \EndIf
+
+
+    \For {move in ["up", "down", "left", "right"]}
+            \State successorstate = copy of currentnode.state
+            
+            \State cannotmove = currentnode.state.checkcanmove()
+            
+            \If {move in cannotmove:}
+            \State continue
+            \EndIf
+            \If {move is "up":}
+            \State successorstate.moveUp()
+            \EndIf
+            \If {move is "down":}
+            \State successorstate.moveDown()
+            \EndIf
+            \If {move is "left":}
+            \State successorstate.moveLeft()
+            \EndIf
+            \If {move is "right":}
+            \State successorstate.moveRight()
+            \EndIf
+
+            \State cost = currentnode.cost + 1  // Assume uniform cost for each move
+            \State heuristicTic = time.perfcounter()
+            \If { funType is "other":}
+            \State heuristic = successorstate.otherHeuristic()
+           
+            \Else 
+            \State heuristic = successorstate.manhdist()
+            \EndIf
+            \State heuristicToc = time.perfcounter()
+            \State totalHeuristic += heuristicToc - heuristicTic
+            
+            \State successornode = Node(successorstate, cost, heuristic, currentnode)
+            \If {successornode not in closedlist:}  // This would prefer a better equality
+            \State add successornode to openlist
+            \EndIf
+
+            \EndFor
+
+            \State {return None}
+
+   
+   
+   
   \label{alg:A*}
 \end{algorithm}
 
 
-\subsection{RBFS search}
+\subsection{Recursive Best-First Search (RBFS)}
+Recursive Best-First Search (RBFS) operates by maintaining an f-limit variable, tracking the f-value of the best alternative path from any ancestor node to the current node. This f-limit guides the algorithm in determining which subtree of the problem tree to explore, balancing between the current path and the best alternative path. RBFS dynamically updates the f-values of nodes during recursion unwinding to ensure search functionality, thereby allowing consideration of forgotten subtrees in future exploration.
+
+RBFS offers the advantage of requiring less memory compared to A* search, as it utilizes linear space. Unlike A*, which stores all explored nodes, RBFS only retains "relevant" nodes in memory. However, RBFS may expand more nodes than A* due to redundancy. Since RBFS doesn't store all explored nodes, it can potentially revisit and re-expand the same nodes, leading to increased computation time.
 \begin{algorithm}
+   
+  \If {node.state isgoal() }
+  \State return node, flimit
+        \EndIf
+        \State successors = []
+        \For {move in ["up", "down", "left", "right"]}
+    \If {move is not in node.state.checkcanmove()  }
+        \State {successorstate = copy of node.state}
+            \State {performmove(move, successorstate) } // Execute the move on the state
+            \State {cost = node.cost + 1}
+            \State  {heuristic = calculateheuristic(successorstate) } // Calculate heuristic value for the successor state
+            \State  {successornode = create Node with successorstate, cost, heuristic, and parent node}
+            \State  {add successornode to successors list}
+            \EndIf
+            \EndFor
+            \If {successors is empty }
+            \State {return None, infinity}
+        \EndIf
+
+    \While {true  }
+    \State {sort successors by fscore}
+        \State {best = first node in successors}
+        \If { best.fscore > flimit }
+        \State {return None, best.fscore}
+            \EndIf
+            \State {alternative = second node's fscore if successors has more than one node else infinity}
+        \State {result, best.fscore = RBFS(best, min(flimit, alternative))}
+        \If { result is not None }
+        \State {return result, best.fscore}
+            \EndIf
+            \EndWhile
   \label{alg:RBFS}
 \end{algorithm}
 
 \section{Experimental setup}
 
+We have developed multiple heuristics for A* to compare with RBFS algorithms.  
+
+
 \section{Results}
 
+The results of our experimentation are summarized in Table 1. We conducted trials on puzzles of varying sizes, ranging from 10x10 to 50x50, using both A* search with heuristic and Recursive Best-First Search (RBFS).
 
+ 
+\begin{table}[!h]
+  \centering
+  \scalebox{0.9}{
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+  \hline
+ 
+
+  M : & 10 & 20 & 30 & 40 & 50\\ \hline
+  Avg. Time (A*) & 0.00038433 & 0.0008775 & 0.00324463 & 0.00929986  & 0.02746816 \\ \hline
+  Avg. Time (Heuristic A*)  & 0.00014227  & 0.00028497 & 0.00065334 & 0.00111751& 0.00161616 \\ \hline
+  Avg. Nodes (A*) & 4.2  & 7.7 & 17.3 & 29.1 & 42.2 \\ \hline
+  Avg. Length (A*)  & 2.9   & 5.9 & 9.4 & 10.1 & 12 \\ \hline
+  Avg. Time (RBFS) & 0.00052958 & 0.0012561& 0.00679943 & 0.03392225& 0.85811134\\ \hline
+  Avg. Length (RBFS) & 2.9   & 5.9 & 9.4 & 10.1 & 12 \\ \hline
+    \end{tabular}
+  }
+  \caption{Comparison of A* Search and RBFS on Different Puzzle Sizes}\end{table}
+
+\label{table:results}
+ 
+
+ 
+The results demonstrate that A* search consistently outperforms Recursive Best-First Search (RBFS) across all puzzle sizes tested. A* search exhibits shorter average solving times and requires fewer nodes to find a solution compared to RBFS. Additionally, while both algorithms produce solutions of comparable lengths, A* search achieves these results more efficiently, making it a better choice for solving the 4x4 puzzle problem.
 
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
-1. Is there a clear preference ordering among the heuristics you tested considering the number of nodes searched and the total CPU time taken to solve the problems for the two algorithms?
+\subsection{  Is there a clear preference ordering among the heuristics you tested considering the number of nodes searched and the total CPU time taken to solve the problems for the two algorithms?}
 
-2. Can a small sacrifice in optimality give a large reduction in the number of nodes expanded? What about CPU time?
+\subsection{  Can a small sacrifice in optimality give a large reduction in the number of nodes expanded? What about CPU time?}
 
-3. Is the time spent on evaluating the heuristic a significant fraction of the total problem-solving time for any heuristic and algorithm you tested?
+{The non-admissible heuristic trades off optimality for efficiency, as it doesn't always produce the optimal solution. However, this compromise in optimality can result in a significant reduction in the number of expanded nodes, leading to decreased overall CPU time. For instance, while an admissible heuristic might underestimate the true cost, causing a large number of node expansions, a non-admissible heuristic may overestimate the cost by only a small margin. Moreover, intentionally overestimating the cost can sometimes simplify the problem. Consequently, the use of a non-admissible heuristic can lead to a substantial decrease in node expansions and, consequently, reduced CPU time compared to an admissible heuristic. An illustrative case is our second non-admissible heuristic, where A* demonstrates exceptional performance.}
 
-4. How did you come up with your heuristic evaluation function?
-We looked to the literature for suggestions. 
+\subsection{ Is the time spent on evaluating the heuristic a significant fraction of the total problem-solving time for any heuristic and algorithm you tested?}
 
-5. How do the two algorithms compare in the amount of search involved and the cpu-time?
+\subsection{ How did you come up with your heuristic evaluation function?}
 
+{We looked to the literature for suggestions. }
+
+\subsection{ How do the two algorithms compare in the amount of search involved and the cpu-time?}
+
+{Amount of Search Involved:}
+
+\t A*: It is a complete, optimal search algorithm. A* expands nodes in a best-first manner, prioritizing nodes based on a combination of the cost to reach a node from the start and a heuristic estimate of the cost to get from the node to the goal. It guarantees finding the optimal path if a solution exists.
+
+\t RBFS: It is also a complete, optimal algorithm. RBFS expands nodes in a best-first manner similar to A*, but it utilizes recursion to handle larger search spaces efficiently. RBFS can be seen as a memory-bounded version of A* because it stores only the best path and the alternative paths that are currently being explored.
+
+{CPU Time:}
+
+\t A*: The CPU time required by A* depends on several factors, including the size of the search space, the quality of the heuristic function, and the specific implementation details. In general, A* can be quite efficient, especially when a good heuristic is available and the search space is not excessively large.
+
+\t RBFS: The CPU time of RBFS is typically competitive with A* for smaller search spaces. However, as the search space grows larger, RBFS may outperform A* in terms of memory efficiency but could require more CPU time due to the overhead of recursive function calls and backtracking.
+
+\t In summary, both A* and RBFS are effective search algorithms with their strengths and weaknesses. A* is well-suited for problems where memory is not a significant constraint and a good heuristic function is available. RBFS, on the other hand, can be more memory-efficient but may require more CPU time for larger search spaces due to its recursive nature. The choice between the two depends on the specific characteristics of the problem at hand and the available computational resources.
 \end{document}
