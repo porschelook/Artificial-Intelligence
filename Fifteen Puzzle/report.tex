@@ -211,9 +211,37 @@ RBFS offers the advantage of requiring less memory compared to A* search, as it 
 
 \section{Experimental setup}
 
+We have developed multiple heuristics for A* to compare with RBFS algorithms.  
+
+
 \section{Results}
 
+The results of our experimentation are summarized in Table 1. We conducted trials on puzzles of varying sizes, ranging from 10x10 to 50x50, using both A* search with heuristic and Recursive Best-First Search (RBFS).
 
+ 
+\begin{table}[!h]
+  \centering
+  \scalebox{0.9}{
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+  \hline
+ 
+
+  M : & 10 & 20 & 30 & 40 & 50\\ \hline
+  Avg. Time (A*) & 0.00038433 & 0.0008775 & 0.00324463 & 0.00929986  & 0.02746816 \\ \hline
+  Avg. Time (Heuristic A*)  & 0.00014227  & 0.00028497 & 0.00065334 & 0.00111751& 0.00161616 \\ \hline
+  Avg. Nodes (A*) & 4.2  & 7.7 & 17.3 & 29.1 & 42.2 \\ \hline
+  Avg. Length (A*)  & 2.9   & 5.9 & 9.4 & 10.1 & 12 \\ \hline
+  Avg. Time (RBFS) & 0.00052958 & 0.0012561& 0.00679943 & 0.03392225& 0.85811134\\ \hline
+  Avg. Length (RBFS) & 2.9   & 5.9 & 9.4 & 10.1 & 12 \\ \hline
+    \end{tabular}
+  }
+  \caption{Comparison of A* Search and RBFS on Different Puzzle Sizes}\end{table}
+
+\label{table:results}
+ 
+
+ 
+The results demonstrate that A* search consistently outperforms Recursive Best-First Search (RBFS) across all puzzle sizes tested. A* search exhibits shorter average solving times and requires fewer nodes to find a solution compared to RBFS. Additionally, while both algorithms produce solutions of comparable lengths, A* search achieves these results more efficiently, making it a better choice for solving the 4x4 puzzle problem.
 
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
