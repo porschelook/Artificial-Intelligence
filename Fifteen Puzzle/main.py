@@ -34,7 +34,7 @@ if __name__ == "__main__":
             totalTime+=toc-tic
             
             tic_aStar=time.perf_counter() 
-            g,expanded,heurist=aStar(b,"Other")
+            g,expanded,heurist=aStar(b,"manh")
             p=g
             while p.state != b:
                 totalLength_aStar+=1

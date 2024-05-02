@@ -226,7 +226,7 @@ def rbfs(node, f_limit,numVisited=0):
             successor_state = node.state.copy()
             getattr(successor_state, f"move{move.capitalize()}")()
             cost = node.cost + 1
-            heuristic = successor_state.otherHeuristic()#manh_dist()
+            heuristic = successor_state.manh_dist()
             numVisited+=1
             successor_node = Node(successor_state, cost, heuristic, node)
             '''if successor_node in closedNodes:
