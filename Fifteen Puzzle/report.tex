@@ -102,17 +102,110 @@ We also used a heuristic suggested by Michael Kim, on his blog at https://michae
 This is not quite the same as what is reccomended by Mr. Kim, since he does not mention anythin about what to do with vertical swaps. We treated vertical swaps differently because the correct offset between vertical tiles is 4 instead of 1. 
 
 \subsection{A* search}
-
+We implement the A* search algorithm for finding the paths between initial states to a given goal state in the problem of puzzle 4x4. It is a variant of the uniform cost search by using a heuristic function for each node in addition to path costs.
 \begin{algorithm}[h]
   
   \caption{Programmatic Description of A$^*$ search}
-  
+   
+    \State {openlist = [Node(nodeState, 0, nodeState.manhdist())] // Start with the initial state}
+    \State {closedlist = []}
+    \State {totalHeuristic = 0  // keep running total of heuristic time}
+    \While  {openlist  is not empty:}
+    \State {currentnode = node with minimum fscore in openlist}
+        
+    \State {currentnode.state.checkcanmove()}
+    
+    \State {remove currentnode from openlist}
+    \State {add currentnode to closedlist}
+    \If { currentnode.heuristic is 0} 
+    \State {return currentnode, length of closedlist, totalHeuristic  // Return the goal node and the number of nodes expanded}
+    \EndIf
+
+
+    \For {move in ["up", "down", "left", "right"]}
+            \State successorstate = copy of currentnode.state
+            
+            \State cannotmove = currentnode.state.checkcanmove()
+            
+            \If {move in cannotmove:}
+            \State continue
+            \EndIf
+            \If {move is "up":}
+            \State successorstate.moveUp()
+            \EndIf
+            \If {move is "down":}
+            \State successorstate.moveDown()
+            \EndIf
+            \If {move is "left":}
+            \State successorstate.moveLeft()
+            \EndIf
+            \If {move is "right":}
+            \State successorstate.moveRight()
+            \EndIf
+
+            \State cost = currentnode.cost + 1  // Assume uniform cost for each move
+            \State heuristicTic = time.perfcounter()
+            \If { funType is "other":}
+            \State heuristic = successorstate.otherHeuristic()
+           
+            \Else 
+            \State heuristic = successorstate.manhdist()
+            \EndIf
+            \State heuristicToc = time.perfcounter()
+            \State totalHeuristic += heuristicToc - heuristicTic
+            
+            \State successornode = Node(successorstate, cost, heuristic, currentnode)
+            \If {successornode not in closedlist:}  // This would prefer a better equality
+            \State add successornode to openlist
+            \EndIf
+
+            \EndFor
+
+            \State {return None}
+
+   
+   
+   
   \label{alg:A*}
 \end{algorithm}
 
 
-\subsection{RBFS search}
+\subsection{Recursive Best-First Search (RBFS)}
+Recursive Best-First Search (RBFS) operates by maintaining an f-limit variable, tracking the f-value of the best alternative path from any ancestor node to the current node. This f-limit guides the algorithm in determining which subtree of the problem tree to explore, balancing between the current path and the best alternative path. RBFS dynamically updates the f-values of nodes during recursion unwinding to ensure search functionality, thereby allowing consideration of forgotten subtrees in future exploration.
+
+RBFS offers the advantage of requiring less memory compared to A* search, as it utilizes linear space. Unlike A*, which stores all explored nodes, RBFS only retains "relevant" nodes in memory. However, RBFS may expand more nodes than A* due to redundancy. Since RBFS doesn't store all explored nodes, it can potentially revisit and re-expand the same nodes, leading to increased computation time.
 \begin{algorithm}
+   
+  \If {node.state isgoal() }
+  \State return node, flimit
+        \EndIf
+        \State successors = []
+        \For {move in ["up", "down", "left", "right"]}
+    \If {move is not in node.state.checkcanmove()  }
+        \State {successorstate = copy of node.state}
+            \State {performmove(move, successorstate) } // Execute the move on the state
+            \State {cost = node.cost + 1}
+            \State  {heuristic = calculateheuristic(successorstate) } // Calculate heuristic value for the successor state
+            \State  {successornode = create Node with successorstate, cost, heuristic, and parent node}
+            \State  {add successornode to successors list}
+            \EndIf
+            \EndFor
+            \If {successors is empty }
+            \State {return None, infinity}
+        \EndIf
+
+    \While {true  }
+    \State {sort successors by fscore}
+        \State {best = first node in successors}
+        \If { best.fscore > flimit }
+        \State {return None, best.fscore}
+            \EndIf
+            \State {alternative = second node's fscore if successors has more than one node else infinity}
+        \State {result, best.fscore = RBFS(best, min(flimit, alternative))}
+        \If { result is not None }
+        \State {return result, best.fscore}
+            \EndIf
+            \EndWhile
   \label{alg:RBFS}
 \end{algorithm}
 

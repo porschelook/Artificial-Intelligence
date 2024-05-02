@@ -158,11 +158,10 @@ def aStar(nodeState, funType="Other"):
         current_node = min(open_list, key=lambda x: x.f_score)
         
         current_node.state.check_can_move()
-        #print("current_node \n",current_node.state.board)
+         
         open_list.remove(current_node)
         closed_list.append(current_node)
-        #print("thissss ",current_node.state.emptyLoc)
-        
+         
         if (
             current_node.heuristic == 0
         ):  # Define a method is_goal() to check if the state is the goal state
@@ -172,20 +171,13 @@ def aStar(nodeState, funType="Other"):
         for move in ["up", "down", "left", "right"]:
             
             successor_state = current_node.state.copy()
-            #print("thissss 2 ",successor_state.emptyLoc)
-            #print("successor_state \n",successor_state.board)
-            #print("check_can_move") 
+              
             cannot_move = current_node.state.check_can_move()
-            #print(move)
-            #print(cannot_move)
-            #print(move in cannot_move)
+            
             if move in cannot_move:
-                #print("cannot_move ", cannot_move)
+                 
                 continue
-            #print("this successor_state \n ",successor_state.board)
-            #print(successor_state)
              
-            #print(successor_state.emptyLoc)
             if move == "up":
                 successor_state.moveUp()
 
@@ -209,13 +201,12 @@ def aStar(nodeState, funType="Other"):
                 heuristic=successor_state.manh_dist()
             heuristicToc=time.perf_counter()
             totalHeuristic+=heuristicToc-heuristicTic
-            #print("successor_state.board ",successor_state.board)
-            #print("heuristic ",heuristic)
+            
             successor_node = Node(successor_state, cost, heuristic, current_node)
             if successor_node not in closed_list:#This would prefer a better equality
                 open_list.append(successor_node)
 
-                #print("successor_node ", successor_node)
+                 
 
     return None  # No solution found
 
