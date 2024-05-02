@@ -211,8 +211,30 @@ RBFS offers the advantage of requiring less memory compared to A* search, as it 
 
 \section{Experimental setup}
 
-We have developed multiple heuristics for A* to compare with RBFS algorithms.  
+To evaluate the performance of the A* search and Recursive Best-First Search (RBFS) algorithms in solving the fifteen puzzle problem, we conducted a series of experiments under controlled conditions. Here is an overview of our experimental setup:
 
+{Puzzle Generation:}
+
+We generated puzzles of varying sizes, ranging from 10 to 50, to assess the scalability of the algorithms.
+Each puzzle was initialized with a random configuration to ensure unbiased testing.
+
+Algorithm Configuration:
+
+We implemented the A* search algorithm and RBFS algorithm in Python to solve the generated puzzles.
+For A* search, we utilized two different heuristic functions: Manhattan distance and the heuristic suggested by Michael Kim, as described in Section 2.1.
+
+Performance Metrics:
+
+We measured the average solving time for each algorithm and heuristic combination.
+Additionally, we recorded the average number of nodes expanded by each algorithm during the search process.
+The length of the solution path was also monitored to evaluate the optimality of the solutions produced by the algorithms.
+
+Replicability:
+
+To ensure the replicability of our experiments, we ran each algorithm and heuristic combination multiple times on different puzzle instances.
+We recorded the average values of solving time, nodes expanded, and solution length across multiple trials for each puzzle size and algorithm configuration.
+ 
+By systematically varying the puzzle sizes and algorithm configurations while maintaining consistency in experimental conditions, we aimed to obtain reliable results for comparing the performance of A* search and RBFS algorithms in solving the fifteen puzzle problem.
 
 \section{Results}
 

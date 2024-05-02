@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  2 MAY 2024 13:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  2 MAY 2024 13:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1927,19 +1927,22 @@ Underfull \hbox (badness 10000) detected at line 208
 
 Underfull \vbox (badness 3312) has occurred while \output is active []
 
- [2] [3
+ [2]
+Underfull \vbox (badness 3343) has occurred while \output is active []
+
+ [3] [4
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.246 \section
-              {Discussion}]
-LaTeX Font Info:    Trying to load font information for OML+ptm on input line 266.
+l.288 \t A
+          *: It is a complete, optimal search algorithm. A* expands nodes in...]
+LaTeX Font Info:    Trying to load font information for OML+ptm on input line 288.
  (c:/texlive/2024/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 266.
- [4] [5] (./report.aux)
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 288.
+ [5] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
@@ -1958,15 +1961,15 @@ Package rerunfilecheck Info: Checksums for `report.out':
 (rerunfilecheck)             After:  0B4D7BF3D30C20868593BDF409D0D5D0;4614.
  ) 
 Here is how much of TeX's memory you used:
- 15487 strings out of 474104
- 236831 string characters out of 5747502
+ 15490 strings out of 474104
+ 236858 string characters out of 5747502
  1944496 words of memory out of 5000000
  37510 multiletter control sequences out of 15000+600000
- 581823 words of font info for 132 fonts, out of 8000000 for 9000
+ 581953 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,9n,79p,1062b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (5 pages, 63148 bytes).
+Output written on report.pdf (5 pages, 64699 bytes).
 PDF statistics:
  69 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream
