@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1714584766.75182 "c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex" "report.pdf" "report" 1714584768.30813 0
-  "c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex" 1714584765 4815 fd7dc82fefb9ec604ab4c132f2afff96 ""
+["pdflatex"] 1714681604.32614 "c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex" "report.pdf" "report" 1714681605.86095 2
+  "c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex" 1714681601 16150 9da5d9578b502c699d1dbee2de2b063a ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1713392715 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1713393231 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1713396976 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -15,6 +15,7 @@
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1713391199 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1713391199 940 228d6584342e91276bf566bcf9716b83 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1713391199 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1713391199 32716 08e384dc442464e7285e891af9f45947 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1713396976 44729 fea0975e20ec51c992338362f05f1146 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb" 1713396976 46026 687528a208fbfc1f00832bb96cccebbb ""
   "c:/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf" 1713396976 2340 df9c920cc5688ebbf16a93f45ce7bdd3 ""
@@ -91,6 +92,7 @@
   "c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg" 1713394826 5594 8fda8f8cdec9bc22efbe5b6131c207e1 ""
   "c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-ptm.cfg" 1713394826 12427 d0509cf2dc5b993687981d2c918820f1 ""
   "c:/texlive/2024/texmf-dist/tex/latex/natbib/natbib.sty" 1713395042 45456 1c8843383c0bd05870c45fa0ebea6cc2 ""
+  "c:/texlive/2024/texmf-dist/tex/latex/psnfss/omlptm.fd" 1713395715 577 008ea4bacb8ccf8c2a39dc94e000ef1f ""
   "c:/texlive/2024/texmf-dist/tex/latex/psnfss/t1ptm.fd" 1713395715 774 61d7da1e9f9e74989b196d147e623736 ""
   "c:/texlive/2024/texmf-dist/tex/latex/refcount/refcount.sty" 1713396023 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "c:/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1713396052 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
@@ -103,9 +105,9 @@
   "c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1713397995 8222565 6199f766c49b3ff23a5073b7169fa9cc ""
   "c:/texlive/2024/texmf.cnf" 1713397712 713 e69b156964470283e0530f5060668171 ""
   "neurips_2023.sty" 1713243367 11681 7a0a622cd12ea31e106a743bb7d4c3c6 ""
-  "report.aux" 1714584768 1512 b92d8f0766879d99834eb989cfcd6b16 "pdflatex"
-  "report.out" 1714584768 946 707737227d752579d724546290a8f371 "pdflatex"
-  "report.tex" 1714584765 4815 fd7dc82fefb9ec604ab4c132f2afff96 ""
+  "report.aux" 1714681605 2739 97bc010b2c579c9ea368766d80a1e5ce "pdflatex"
+  "report.out" 1714681605 4614 0b4d7bf3d30c20868593bdf409d0d5d0 "pdflatex"
+  "report.tex" 1714681601 16150 9da5d9578b502c699d1dbee2de2b063a ""
   (generated)
   "report.aux"
   "report.log"

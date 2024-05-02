@@ -32,15 +32,19 @@ class state:
         for i in range(numSteps):
             move = random.choice(tuple(moves - {lastMove}))
             # randomly choose a step that isn't the last one
-            lastMove = move
+            
             # apply move
             if move == "up":
+                lastMove="down"
                 self.moveUp()
             if move == "right":
+                lastMove="left"
                 self.moveRight()
             if move == "left":
+                lastMove="right"
                 self.moveLeft()
             if move == "down":
+                lastMove="up"
                 self.moveDown()
 
     # changes the board state to that for which the empty (0) square has moved up one tile.
@@ -211,10 +215,10 @@ def aStar(nodeState, funType="Other"):
     return None  # No solution found
 
 #TODO pass a list of what nodes the parrents have already seen so that cycles are reduced. 
-def rbfs(node, f_limit,closedNodes=[]):
-    numVisted=len(closedNodes)
+def rbfs(node, f_limit,numVisited=0):
+   
     if node.state.is_goal():
-        return node, f_limit, numVisted
+        return node, f_limit, numVisited
 
     successors = []
     for move in ["up", "down", "left", "right"]:
@@ -223,6 +227,7 @@ def rbfs(node, f_limit,closedNodes=[]):
             getattr(successor_state, f"move{move.capitalize()}")()
             cost = node.cost + 1
             heuristic = successor_state.otherHeuristic()#manh_dist()
+            numVisited+=1
             successor_node = Node(successor_state, cost, heuristic, node)
             '''if successor_node in closedNodes:
                 if cost+heuristic<f_limit:
@@ -233,17 +238,17 @@ def rbfs(node, f_limit,closedNodes=[]):
             successors.append(successor_node)
 
     if not successors:
-        return None, np.inf, numVisted
+        return None, np.inf, numVisited
 
     while True:
         successors.sort(key=lambda x: x.f_score)
         best = successors[0]
         if best.f_score > f_limit:
-            return None, best.f_score, numVisted
+            return None, best.f_score, numVisited 
         alternative = successors[1].f_score if len(successors) > 1 else np.inf
-        closedNodes.append(best)
-        result, best.f_score, numVisted = rbfs(best, min(f_limit, alternative))
+        #closedNodes.append(best)
+        result, best.f_score, numVisited = rbfs(best, min(f_limit, alternative),numVisited)
         if result is not None:
-            return result, best.f_score, numVisted
+            return result, best.f_score, numVisited
         
 

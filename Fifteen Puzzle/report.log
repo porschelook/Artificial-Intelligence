@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  1 MAY 2024 10:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  2 MAY 2024 13:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -477,7 +477,6 @@ LaTeX Font Info:    ... okay on input line 80.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 80.
-(./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
@@ -497,7 +496,7 @@ LaTeX Info: Redefining \showhyphens on input line 80.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
- (c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+(c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 ) (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -540,10 +539,815 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 101.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 108.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:110: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@0 
+l.110     \State
+                 {openlist = [Node(nodeState, 0, nodeState.manhdist())] // S...
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:110: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.110     \State
+                 {openlist = [Node(nodeState, 0, nodeState.manhdist())] // S...
+I'm ignoring this, since I wasn't doing a \csname.
 
 
-LaTeX Warning: Reference `alg:RandomAgent' on page 1 undefined on input line 121.
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:110: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.110     \State
+                 {openlist = [Node(nodeState, 0, nodeState.manhdist())] // S...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 110
+[][]
+ []
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:111: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@0 
+l.111     \State
+                 {closedlist = []}
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:111: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.111     \State
+                 {closedlist = []}
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:111: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.111     \State
+                 {closedlist = []}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 111
+[][]
+ []
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:112: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@0 
+l.112     \State
+                 {totalHeuristic = 0  // keep running total of heuristic time}
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:112: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.112     \State
+                 {totalHeuristic = 0  // keep running total of heuristic time}
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:112: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.112     \State
+                 {totalHeuristic = 0  // keep running total of heuristic time}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 112
+[][]
+ []
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:113: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@0 
+l.113     \While
+                  {openlist  is not empty:}
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:113: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.113     \While
+                  {openlist  is not empty:}
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:113: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113     \While
+                  {openlist  is not empty:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 113
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:114: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.114     \State
+                 {currentnode = node with minimum fscore in openlist}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 114
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:116: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.116     \State
+                 {currentnode.state.checkcanmove()}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 116
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:118: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118     \State
+                 {remove currentnode from openlist}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 118
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:119: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.119     \State
+                 {add currentnode to closedlist}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 119
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:120: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120     \If
+              { currentnode.heuristic is 0}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 120
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:121: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.121     \State
+                 {return currentnode, length of closedlist, totalHeuristic  ...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 121
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:122: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122     \EndIf
+                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 122
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:125: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125     \For
+               {move in ["up", "down", "left", "right"]}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 125
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:126: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.126             \State
+                         successorstate = copy of currentnode.state
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 126
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:128: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.128             \State
+                         cannotmove = currentnode.state.checkcanmove()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 128
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:130: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130             \If
+                      {move in cannotmove:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 130
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:131: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.131             \State
+                         continue
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 131
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:132: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.132             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 132
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:133: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.133             \If
+                      {move is "up":}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 133
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:134: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.134             \State
+                         successorstate.moveUp()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 134
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:135: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.135             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 135
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:136: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.136             \If
+                      {move is "down":}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 136
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:137: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.137             \State
+                         successorstate.moveDown()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 137
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:138: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.138             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 138
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:139: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.139             \If
+                      {move is "left":}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 139
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:140: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.140             \State
+                         successorstate.moveLeft()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 140
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:141: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.141             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 141
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:142: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.142             \If
+                      {move is "right":}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 142
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:143: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.143             \State
+                         successorstate.moveRight()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 143
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:144: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.144             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 144
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:146: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.146             \State
+                         cost = currentnode.cost + 1  // Assume uniform cost...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 146
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:147: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.147             \State
+                         heuristicTic = time.perfcounter()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 147
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:148: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.148             \If
+                      { funType is "other":}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 148
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:149: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.149             \State
+                         heuristic = successorstate.otherHeuristic()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 149
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:151: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.151             \Else
+                       
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 151
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:152: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152             \State
+                         heuristic = successorstate.manhdist()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 152
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:153: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.153             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 153
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:154: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.154             \State
+                         heuristicToc = time.perfcounter()
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 154
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:155: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155             \State
+                         totalHeuristic += heuristicToc - heuristicTic
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 155
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:157: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.157             \State
+                         successornode = Node(successorstate, cost, heuristi...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 157
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:158: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.158             \If
+                      {successornode not in closedlist:}  // This would pref...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 158
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:159: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159             \State
+                         add successornode to openlist
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 159
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:160: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.160             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 160
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:162: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.162             \EndFor
+                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 162
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:164: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164             \State
+                         {return None}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 164
+[][]
+ []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -551,31 +1355,624 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [1
 
 
-{c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] (./report.aux)
+{c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:179: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@2 
+l.179   \If
+            {node.state isgoal() }
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:179: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.179   \If
+            {node.state isgoal() }
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:179: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.179   \If
+            {node.state isgoal() }
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 179
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:180: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.180   \State
+               return node, flimit
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 180
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:181: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.181         \EndIf
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 181
+[][]
+ []
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:182: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@2 
+l.182         \State
+                     successors = []
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:182: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.182         \State
+                     successors = []
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:182: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182         \State
+                     successors = []
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 182
+[][]
+ []
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:183: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@2 
+l.183         \For
+                   {move in ["up", "down", "left", "right"]}
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:183: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.183         \For
+                   {move in ["up", "down", "left", "right"]}
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:183: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.183         \For
+                   {move in ["up", "down", "left", "right"]}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 183
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:184: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.184     \If
+              {move is not in node.state.checkcanmove()  }
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 184
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:185: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.185         \State
+                     {successorstate = copy of node.state}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 185
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:186: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.186             \State
+                         {performmove(move, successorstate) } // Execute the...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 186
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:187: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.187             \State
+                         {cost = node.cost + 1}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 187
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:188: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188             \State
+                          {heuristic = calculateheuristic(successorstate) } ...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 188
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:189: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.189             \State
+                          {successornode = create Node with successorstate, ...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 189
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:190: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.190             \State
+                          {add successornode to successors list}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 190
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:191: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.191             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 191
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:192: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.192             \EndFor
+                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 192
+[][]
+ []
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:193: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@2 
+l.193             \If
+                      {successors is empty }
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:193: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.193             \If
+                      {successors is empty }
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:193: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.193             \If
+                      {successors is empty }
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 193
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:194: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.194             \State
+                         {return None, infinity}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 194
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:195: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.195         \EndIf
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 195
+[][]
+ []
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:197: Missing \endcsname inserted.
+<to be read again> 
+                   \ALG@currentblock@2 
+l.197     \While
+                 {true  }
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:197: Extra \endcsname.
+\ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
+                                                  \relax \def \ALG@thisblock...
+l.197     \While
+                 {true  }
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:197: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.197     \While
+                 {true  }
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 197
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:198: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.198     \State
+                 {sort successors by fscore}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 198
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:199: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.199         \State
+                     {best = first node in successors}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 199
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:200: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.200         \If
+                  { best.fscore > flimit }
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 200
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:201: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.201         \State
+                     {return None, best.fscore}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 201
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:202: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.202             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 202
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:203: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.203             \State
+                         {alternative = second node's fscore if successors h...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 203
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:204: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.204         \State
+                     {result, best.fscore = RBFS(best, min(flimit, alternati...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 204
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:205: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.205         \If
+                  { result is not None }
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 205
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:206: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.206         \State
+                     {return result, best.fscore}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 206
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:207: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.207             \EndIf
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 207
+[][]
+ []
+
+
+c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex:208: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.208             \EndWhile
+                           
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 208
+[][]
+ []
+
+
+Underfull \vbox (badness 3312) has occurred while \output is active []
+
+ [2]
+Underfull \vbox (badness 3343) has occurred while \output is active []
+
+ [3] [4
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.288 \t A
+          *: It is a complete, optimal search algorithm. A* expands nodes in...]
+LaTeX Font Info:    Trying to load font information for OML+ptm on input line 288.
+ (c:/texlive/2024/texmf-dist/tex/latex/psnfss/omlptm.fd
+File: omlptm.fd 
+)
+LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 288.
+ [5] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 707737227D752579D724546290A8F371;946.
+
+Package rerunfilecheck Warning: File `report.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `report.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  0B4D7BF3D30C20868593BDF409D0D5D0;4614.
  ) 
 Here is how much of TeX's memory you used:
- 15398 strings out of 474104
- 235915 string characters out of 5747502
- 1941496 words of memory out of 5000000
- 37491 multiletter control sequences out of 15000+600000
- 579099 words of font info for 90 fonts, out of 8000000 for 9000
+ 15490 strings out of 474104
+ 236858 string characters out of 5747502
+ 1944496 words of memory out of 5000000
+ 37510 multiletter control sequences out of 15000+600000
+ 581953 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,1062b,454s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (2 pages, 45267 bytes).
+ 75i,9n,79p,1062b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on report.pdf (5 pages, 64699 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 26177 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 69 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
+ 26113 words of extra memory for PDF output out of 29859 (max. 10000000)
 

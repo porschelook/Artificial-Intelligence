@@ -173,7 +173,7 @@ We implement the A* search algorithm for finding the paths between initial state
 \subsection{Recursive Best-First Search (RBFS)}
 Recursive Best-First Search (RBFS) operates by maintaining an f-limit variable, tracking the f-value of the best alternative path from any ancestor node to the current node. This f-limit guides the algorithm in determining which subtree of the problem tree to explore, balancing between the current path and the best alternative path. RBFS dynamically updates the f-values of nodes during recursion unwinding to ensure search functionality, thereby allowing consideration of forgotten subtrees in future exploration.
 
-RBFS offers the advantage of requiring less memory compared to A* search, as it utilizes linear space. Unlike A*, which stores all explored nodes, RBFS only retains "relevant" nodes in memory. However, RBFS may expand more nodes than A* due to redundancy. Since RBFS doesn't store all explored nodes, it can potentially revisit and re-expand the same nodes, leading to increased computation time.
+RBFS offers the advantage of requiring less memory compared to A* search, as it utilizes linear space. Unlike A*, which stores all explored nodes, RBFS only retains "relevant" nodes in memory. However, RBFS may expand more nodes than A* due to its tendancy to backtrack. Since RBFS doesn't store all explored nodes, it can potentially revisit and re-expand the same nodes, leading to increased computation time. Additionally, we had a harder time detecting cycles for RBFS so it would encounter cycles more often. Additionally, since the branching factor of this particular problem is low, the memory load of A$^*$ is not very high.
 \begin{algorithm}
    
   \If {node.state isgoal() }
@@ -211,12 +211,32 @@ RBFS offers the advantage of requiring less memory compared to A* search, as it 
 
 \section{Experimental setup}
 
-We have developed multiple heuristics for A* to compare with RBFS algorithms.  
+To evaluate the performance of the A* search and Recursive Best-First Search (RBFS) algorithms in solving the fifteen puzzle problem, we conducted a series of experiments under controlled conditions. Here is an overview of our experimental setup:
 
+{Puzzle Generation:}
+
+We generated the 4 by 4 puzzle 10 times for each algorithm we tested. Before running our algorithm, we generated a starting point by taking a variying number $m$ random moves from the goal configuration making sure that none of these moves were the direct opposite of the previous move. 
+Algorithm Configuration:
+
+We implemented the A* search algorithm and RBFS algorithm in Python to solve the generated puzzles.
+For A* search, we utilized two different heuristic functions: Manhattan distance and the heuristic suggested by Michael Kim, as described in Section 2.1.
+
+Performance Metrics:
+
+We measured the average solving time for each algorithm and heuristic combination.
+Additionally, we recorded the average number of nodes expanded by each algorithm during the search process.
+The length of the solution path was also monitored to evaluate the optimality of the solutions produced by the algorithms.
+
+Replicability:
+
+To ensure the replicability of our experiments, we ran each algorithm and heuristic combination multiple times on different puzzle instances.
+We recorded the average values of solving time, nodes expanded, and solution length across multiple trials for each puzzle size and algorithm configuration.
+ 
+By systematically varying the puzzle sizes and algorithm configurations while maintaining consistency in experimental conditions, we aimed to obtain reliable results for comparing the performance of A* search and RBFS algorithms in solving the fifteen puzzle problem.
 
 \section{Results}
-
 The results of our experimentation are summarized in Table 1. We conducted trials on puzzles of varying levels of scrambling; we used both A* search and Recursive Best-First Search (RBFS). Note that the time for calculating the heuristic for RBFS is a projection from the number of nodes expanded and the amount of calculation time this required for A$^*$. This projection is not good but properly propogating calculation time all the way up the chain was deemed inefficient. 
+
 
  
 \begin{table}[!h]
@@ -274,6 +294,8 @@ However, the choice of the optimal heuristic is less clear. The variance in perf
 
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
+
+{Yes in our result, A* generally surpasses RBFS in terms of time efficiency owing to its methodical and informed traversal of the search space. A* relies on heuristic estimates and optimal cost considerations to guide its exploration, resulting in a more effective approach compared to RBFS.}
 
 \subsection{  Can a small sacrifice in optimality give a large reduction in the number of nodes expanded? What about CPU time?}
 
