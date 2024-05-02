@@ -110,7 +110,7 @@ class state:
         horizCon=self.board[:,0:2]==(self.board[:,1:3]+1)
         dist+=2*np.sum(horizCon)
         #Do the same thing for vertical. Thisincludes the empty tile which shouldn't be counted.
-        vertCon=temp[:,0:2]==(temp[:,1:3]+1)
+        vertCon=temp[:,0:2]==(temp[:,1:3]+4)
         dist+=2*np.sum(vertCon)
         return dist
         
@@ -219,7 +219,7 @@ def aStar(nodeState, funType="Other"):
 
     return None  # No solution found
 
-
+#TODO pass a list of what nodes the parrents have already seen so that cycles are reduced. 
 def rbfs(node, f_limit):
     if node.state.is_goal():
         return node, f_limit

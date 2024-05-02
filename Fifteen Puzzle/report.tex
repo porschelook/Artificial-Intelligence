@@ -92,34 +92,27 @@
 In this paper, we examine the performance of two search algorithms, Compassion A* and RBFS, using a 4x4 puzzle as a representation. The environment is randomized to ensure optimal exploration. To enhance efficiency, we introduce a random algorithm designed to avoid repeating the same steps.
 
 \section{Environment Descriptions}
-We consider 
+We consider the setting of the fifteen puzzle. In this setting, a four by four grid contains fifteen(15) tiles, where the tiles can be slid to move the empty square around. The tiles are each numbered and the goal of the program is to find a sequence of moves that will return the tiles to their correct order after being scrambled in the minimum moves with the minimum amount of calculation time. 
 
 \subsection{Heuristic function}
+We used the Manhattan distance as one of our heuristics. For this, we considered each tile to have a target location, and counted the total number of squares each tile must be moved to reach that location. This is equivalent to assuming each tile can be moved through other tiles.
+
+We also used a heuristic suggested by Michael Kim, on his blog at https://michael.kim/blog/puzzle, where the Manhattan distance is augmented by an addition of two moves for each location that has two tiles next to each other that need to be directly swapped. This is because it takes at least three moves to swap two tiles. This is no longer an admissible heuristic because it assumes that each swap must happen independently. 
+
+This is not quite the same as what is reccomended by Mr. Kim, since he does not mention anythin about what to do with vertical swaps. We treated vertical swaps differently because the correct offset between vertical tiles is 4 instead of 1. 
 
 \subsection{A* search}
 
 \begin{algorithm}[h]
   
-  \caption{Programmatic Description of Simple Reflex Agent}
-  \begin{algorithmic}[1]
-    
-    \For {timestep $t$ until termination}
-    \If {on dirty tile}
-    \State clean tile 
-    \EndIf
-    \If{ not on dirty tile and facing wall}
-    \State turn clockwise
-    \EndIf
-    \If{not facing wall and not on dirty tile}
-    \State move forward
-    \EndIf
-    \EndFor
-  \end{algorithmic}
+  \caption{Programmatic Description of A$^*$ search}
+  
   \label{alg:A*}
 \end{algorithm}
 
 
 \subsection{RBFS search}
+\begin{algorithm}
   \label{alg:RBFS}
 \end{algorithm}
 
@@ -138,6 +131,7 @@ We consider
 3. Is the time spent on evaluating the heuristic a significant fraction of the total problem-solving time for any heuristic and algorithm you tested?
 
 4. How did you come up with your heuristic evaluation function?
+We looked to the literature for suggestions. 
 
 5. How do the two algorithms compare in the amount of search involved and the cpu-time?
 
