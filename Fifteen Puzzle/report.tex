@@ -89,7 +89,7 @@
 
 \section{Introduction}
 
-In this paper, we examine the performance of two search algorithms, Compassion A* and RBFS, using a 4x4 puzzle as a representation. The environment is randomized to ensure optimal exploration. To enhance efficiency, we introduce a random algorithm designed to avoid repeating the same steps.
+In this paper, we examine the performance of two search algorithms, Compassion A* and RBFS, using a 4x4 puzzle as a representation. The environment is randomized to ensure optimal exploration. 
 
 \section{Environment Descriptions}
 We consider the setting of the fifteen puzzle. In this setting, a four by four grid contains fifteen(15) tiles, where the tiles can be slid to move the empty square around. The tiles are each numbered and the goal of the program is to find a sequence of moves that will return the tiles to their correct order after being scrambled in the minimum moves with the minimum amount of calculation time. 
@@ -216,7 +216,7 @@ We have developed multiple heuristics for A* to compare with RBFS algorithms.
 
 \section{Results}
 
-The results of our experimentation are summarized in Table 1. We conducted trials on puzzles of varying sizes, ranging from 10x10 to 50x50, using both A* search with heuristic and Recursive Best-First Search (RBFS).
+The results of our experimentation are summarized in Table 1. We conducted trials on puzzles of varying levels of scrambling; we used both A* search and Recursive Best-First Search (RBFS). Note that the time for calculating the heuristic for RBFS is a projection from the number of nodes expanded and the amount of calculation time this required for A$^*$. This projection is not good but properly propogating calculation time all the way up the chain was deemed inefficient. 
 
  
 \begin{table}[!h]
@@ -227,25 +227,53 @@ The results of our experimentation are summarized in Table 1. We conducted trial
  
 
   M : & 10 & 20 & 30 & 40 & 50\\ \hline
-  Avg. Time (A*) & 0.00038433 & 0.0008775 & 0.00324463 & 0.00929986  & 0.02746816 \\ \hline
-  Avg. Time (Heuristic A*)  & 0.00014227  & 0.00028497 & 0.00065334 & 0.00111751& 0.00161616 \\ \hline
-  Avg. Nodes (A*) & 4.2  & 7.7 & 17.3 & 29.1 & 42.2 \\ \hline
-  Avg. Length (A*)  & 2.9   & 5.9 & 9.4 & 10.1 & 12 \\ \hline
-  Avg. Time (RBFS) & 0.00052958 & 0.0012561& 0.00679943 & 0.03392225& 0.85811134\\ \hline
-  Avg. Length (RBFS) & 2.9   & 5.9 & 9.4 & 10.1 & 12 \\ \hline
+  Avg. Time (A*) & 0.0004964700980053749 & 0.001117570899805287 & 0.0018899754992162342 &  0.012311459800548619 & 0.010691216399573022 \\ \hline
+  Avg. Time (Heuristic A*)  & 0.000211696200130973  & 0.0004336503901868127 &0.0005750563985202461 &0.0009521896085061598 & 0.0008289189063361846 \\ \hline
+  Avg. Nodes (A*) & 4.6  & 8.1& 13.1 & 43.4 & 37.7 \\ \hline
+      Avg. Length (A*)  & 3.2   & 5.3 &7.8  & 12 & 12.2 \\ \hline
+        Avg. Time (RBFS) & 0.0003860770018945914  &0.0006645217014010996 & 0.0006280118985159788 & 0.002984051700332202  & 0.047247260099538835 \\ \hline
+  Avg. Time (Heuristic RBFS)  & 0.000915816170131818  &0.00335677524255718  &0.005592533219196898  & 0.008192341009589864& 0.0.3042242322448272 \\ \hline
+  Avg. Nodes (RBFS) & 19.9  & 62.7 & 127.4 & 373.4 &13836.4\\ \hline
+  Avg. Length (RBFS)  & 3.2   & 5.3 &7.8  &12 & 12.2 \\ \hline
     \end{tabular}
   }
-  \caption{Comparison of A* Search and RBFS on Different Puzzle Sizes}\end{table}
+  \caption{Comparison of A* Search and RBFS for Vary Scrambling Using Manhattan Distance}
+\label{table:resultsMan}
 
-\label{table:results}
+\end{table}
+\begin{table}[!h]
+  \centering
+  \scalebox{0.9}{
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+  \hline
  
 
+  M : & 10 & 20 & 30 & 40 & 50\\ \hline
+  Avg. Time (A*) & \\ \hline
+  Avg. Time (Heuristic A*)  &  \\ \hline
+  Avg. Nodes (A*) &  \\ \hline
+      Avg. Length (A*)  &  \\ \hline
+        Avg. Time (RBFS) &  \\ \hline
+  Avg. Time (Heuristic RBFS)  &  \\ \hline
+  Avg. Nodes (RBFS) & \\ \hline
+  Avg. Length (RBFS)  &  \\ \hline
+    \end{tabular}
+  }
+  \caption{Comparison of A* Search and RBFS for Vary Scrambling Using Other Heursitic Distance}
+\label{table:resultsOther}
+
+\end{table}
+
+ 
+
+\subsection{  Is there a clear preference ordering among the heuristics you tested considering the number of nodes searched and the total CPU time taken to solve the problems for the two algorithms?}
  
 The results demonstrate that A* search consistently outperforms Recursive Best-First Search (RBFS) across all puzzle sizes tested. A* search exhibits shorter average solving times and requires fewer nodes to find a solution compared to RBFS. Additionally, while both algorithms produce solutions of comparable lengths, A* search achieves these results more efficiently, making it a better choice for solving the 4x4 puzzle problem.
 
+However, the choice of the optimal heuristic is less clear. The variance in performance is greater than the advantage one heuristic has over the other. 
+
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
-\subsection{  Is there a clear preference ordering among the heuristics you tested considering the number of nodes searched and the total CPU time taken to solve the problems for the two algorithms?}
 
 \subsection{  Can a small sacrifice in optimality give a large reduction in the number of nodes expanded? What about CPU time?}
 
