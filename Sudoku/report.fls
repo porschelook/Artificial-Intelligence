@@ -1,8 +1,8 @@
-PWD c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle
+PWD c:/Users/porsc/OneDrive/Desktop/AI/code_1/Sudoku
 INPUT c:/texlive/2024/texmf.cnf
 INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/porsc/OneDrive/Desktop/AI/code_1/Fifteen Puzzle/report.tex
+INPUT c:/Users/porsc/OneDrive/Desktop/AI/code_1/Sudoku/report.tex
 OUTPUT report.log
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -222,12 +222,8 @@ INPUT c:/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT c:/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
-INPUT c:/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT report.aux
 INPUT ./report.out
 INPUT ./report.out
-INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
