@@ -7,20 +7,16 @@ class board:
             print("Attempt at invalid move")
             return  # decide how to handle this case later
 
-        self.cells[row][col] = {value}  # make the assignment
+     
 
         # eliminate the value from other applicable cells
 
         # eliminate from each element in same row
         for itercol in range(9):
-            if itercol == col:
-                continue
             self.cells[row][itercol].discard(value)
 
         # eliminate from each element in same column
         for iterrow in range(9):
-            if iterrow == row:
-                continue
             self.cells[iterrow][col].discard(value)
 
         # eliminate the value from each element in the box
@@ -29,6 +25,8 @@ class board:
         for rowiter in range(3):
             for coliter in range(3):
                 self.cells[rowoffset * 3 + rowiter][coloffset * 3 + coliter].discard(value)
+
+        self.cells[row][col] = {value}  # make the assignment last, so it can be removed earlier just fine
 
     def printBoard(self):
         for row in range(9):
@@ -43,3 +41,7 @@ class board:
                 else:
                     print(".", end=" ")
             print()
+    def copy(self):
+        output = board()
+        output.cells = [[moveset for moveset in col] for col in self.cells]
+        return output
