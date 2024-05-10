@@ -28,4 +28,11 @@ class board:
         for rowiter in range(3):
             for coliter in range(3):
                 self.cells[rowoffset+rowiter][coloffset+coliter].discard(value)
+    def printBoard(self):
+        for i in range(9):
+            print(self.cells[i]," ",end="")
+            print()
+             
+ 
+
     
