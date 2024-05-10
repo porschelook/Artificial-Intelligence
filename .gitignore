@@ -1,8 +1,9 @@
 /tempCodeRunnerFile.py
 /__pycache__
+*/*~
 /*~
-/*.pdf
-/*.log
-/*.aux
-/*.out
+*.pdf
+*.log
+*.aux
+*.out
 /auto
