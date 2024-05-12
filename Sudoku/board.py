@@ -1,7 +1,7 @@
 class board:
     def __init__(self):
         self.cells = [[{1, 2, 3, 4, 5, 6, 7, 8, 9} for col in range(9)] for row in range(9)]
-
+        #self.cells = [[{0} for col in range(9)] for row in range(9)]
     def fillCell(self, row, col, value):
         if value not in self.cells[row][col]:
             print("Attempt at invalid move of value "+ str(value))
