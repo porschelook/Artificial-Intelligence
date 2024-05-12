@@ -1,25 +1,35 @@
 from board import *
 import time
 
+
 def recursiveSimple(board):
+    #Check to see a solution
     if board.toFill==0:
         return board
+    #check to see if forwardCheck leads to 
     if not board.forwardCheck():
+        print("returning due to forward check")
+        board.printBoard()
         return None
     #now select an index 
     fillX,fillY=board.emptyCells[0]
     #prepare for backtracking
     backup=board.copy()
     moveDomain=backup.cells[fillX][fillY].copy()
+    runMoves=backup.copy()
     print(moveDomain)
     print(str(fillX) + ", "+str(fillY))
     backup.printBoard()
+    #iterate through all the currently valid moves
     for move in moveDomain:
-        board.fillCell(fillX,fillY,move)
-        solution=recursiveSimple(board)
+        if runMoves.fillCell(fillX,fillY,move)==-1:
+           return None#make the move
+        solution=recursiveSimple(runMoves)
         if solution is None:
-            board=backup.copy()
+            runMoves=backup.copy()
+            print("backtracking")
         elif len(solution.emptyCells)==0:
+            print("returning solution")
             return solution
         else:
             solution.printBoard()

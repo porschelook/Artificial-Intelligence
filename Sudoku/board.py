@@ -7,7 +7,7 @@ class board:
     def fillCell(self, row, col, value):
         if value not in self.cells[row][col]:
             print("Attempt at invalid move of value "+ str(value))
-            return  # decide how to handle this case later
+            return -1 # decide how to handle this case later
 
      
 
@@ -34,9 +34,11 @@ class board:
 
     #Do a forward error check and see if any cell has no valid values, False means that the current board is inconsistent
     def forwardCheck(self):
-        for col in self.cells:
-            for value in col:
+        for row in range(len(self.cells)):
+            for col in range(len(self.cells[0])):
+                value=self.cells[row][col]
                 if len(value)==0:
+                    print("forward check fails for cell "+ str(row) + "," +str(col))
                     return False
         return True
     #build the starting conditions from the textfile examples. Will require copy-pasting in some way to manage the fact that lots of them are in the same file. This takes in the name of a file to read in, and expects the file to just contain the board it is to build
@@ -70,4 +72,6 @@ class board:
     def copy(self):
         output = board()
         output.cells = [[moveset for moveset in col] for col in self.cells]
+        output.toFill=self.toFill
+        output.emptyCells=self.emptyCells.copy()
         return output
