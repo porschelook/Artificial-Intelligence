@@ -5,7 +5,7 @@ if __name__ == "__main__":
     b = board()
     print(b.printBoard())
     print("---------------------------")
-    print(b.cells[1][1])
+    print(b.cells)
 
     
     
