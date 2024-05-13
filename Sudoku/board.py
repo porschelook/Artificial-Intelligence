@@ -1,11 +1,13 @@
 class board:
     def __init__(self):
         self.cells = [[{1, 2, 3, 4, 5, 6, 7, 8, 9} for col in range(9)] for row in range(9)]
+        self.toFill=81
+        self.emptyCells=[(row,col) for col in range(9) for row in range(9)]
         #self.cells = [[{0} for col in range(9)] for row in range(9)]
     def fillCell(self, row, col, value):
         if value not in self.cells[row][col]:
             print("Attempt at invalid move of value "+ str(value))
-            return  # decide how to handle this case later
+            return -1 # decide how to handle this case later
 
      
 
@@ -27,17 +29,22 @@ class board:
                 self.cells[rowoffset * 3 + rowiter][coloffset * 3 + coliter].discard(value)
 
         self.cells[row][col] = {value}  # make the assignment last, so it can be removed earlier just fine
+        self.toFill-=1
+        self.emptyCells.remove((row,col))
 
     #Do a forward error check and see if any cell has no valid values, False means that the current board is inconsistent
     def forwardCheck(self):
-        for col in self.cells:
-            for value in col:
+        for row in range(len(self.cells)):
+            for col in range(len(self.cells[0])):
+                value=self.cells[row][col]
                 if len(value)==0:
+                    print("forward check fails for cell "+ str(row) + "," +str(col))
                     return False
         return True
     #build the starting conditions from the textfile examples. Will require copy-pasting in some way to manage the fact that lots of them are in the same file. This takes in the name of a file to read in, and expects the file to just contain the board it is to build
     def buildBoard(self,instring):
         f=open(instring)
+        numFilled=0
         for i in range(9):
             row=f.readline().replace(" ", "")
             for j in range(9):
@@ -46,6 +53,9 @@ class board:
                     continue
                 #print("placing value " +str(value))
                 self.fillCell(i,j,value)
+                numFilled+=1
+        return numFilled
+    
     def printBoard(self):
         for row in range(9):
             if row % 3 == 0 and row != 0:
@@ -62,6 +72,8 @@ class board:
     def copy(self):
         output = board()
         output.cells = [[moveset for moveset in col] for col in self.cells]
+        output.toFill=self.toFill
+        output.emptyCells=self.emptyCells.copy()
         return output
     
     def backtrackSearch(self,node):
