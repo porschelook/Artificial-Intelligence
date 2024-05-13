@@ -63,3 +63,6 @@ class board:
         output = board()
         output.cells = [[moveset for moveset in col] for col in self.cells]
         return output
+    
+    def backtrackSearch(self,node):
+	    return False

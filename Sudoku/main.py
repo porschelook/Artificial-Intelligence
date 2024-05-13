@@ -29,3 +29,6 @@ if __name__ == "__main__":
     s = open("../code_1/Sudoku/testExample.txt", "r")
     b.buildBoard("../code_1/Sudoku/testExample.txt")
     b.printBoard()
+
+
+    b.backtrackSearch()
