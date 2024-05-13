@@ -65,4 +65,6 @@ if __name__ == "__main__":
     print(b.emptyCells)
     print(b.toFill)
     solvedBoard=recursiveSimple(b)
-    solvedBoard.printBoard()
+    #print("solvedBoard ",solvedBoard.printBoard())
+    #solvedBoard.printBoard()
+#----------------------------------------------------

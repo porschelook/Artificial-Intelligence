@@ -76,5 +76,53 @@ class board:
         output.emptyCells=self.emptyCells.copy()
         return output
     
-    def backtrackSearch(self,node):
-	    return False
+    #TEST
+    def backtrackSearch(self):
+        if self.toFill == 0:  # If the board is filled, we've found a solution
+            return True
+
+        row, col = self.emptyCells[0]
+
+        if self.emptyCells and self.toFill > 1:
+            min_domain_size = float('inf')
+            for cell in self.emptyCells:
+                cell_row, cell_col = cell
+                domain_size = len(self.cells[cell_row][cell_col])
+                if domain_size < min_domain_size:
+                    min_domain_size = domain_size
+                    row, col = cell
+
+        for value in self.cells[row][col]:
+            new_board = self.copy()
+
+            print()
+            self.printBoard()
+            
+
+            new_board.fillCell(row, col, value)
+            new_board.propagateConstraints()
+            if new_board.forwardCheck():
+                if new_board.backtrackSearch():
+                    self.cells = new_board.cells
+                    return True
+
+        return False
+
+    def propagateConstraints(self):
+        # Perform constraint propagation through domain-specific inference rules
+        # Implement the inference rules here
+        pass
+
+if __name__ == "__main__":
+    my_board = board()
+    print("forwardCheck ", my_board.forwardCheck())
+    my_board.buildBoard("../code_1/Sudoku/testExample.txt")
+    my_board.printBoard()
+    # Fill your board with initial values (using buildBoard method)
+    # Then initiate the backtracking search from the first empty cell
+    solution_found = my_board.backtrackSearch()
+    if solution_found:
+        print("Solution found:")
+        my_board.printBoard()
+    else:
+        print("No solution found.")
