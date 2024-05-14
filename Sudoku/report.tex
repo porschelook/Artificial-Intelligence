@@ -39,7 +39,7 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
-\title{Report for Programming Assignment 2 (Fifteen Puzzle)}
+\title{Report for Programming Assignment 3 (Sudoku)}
 
 
 % The \author macro works with any number of authors. There are two commands
@@ -115,9 +115,49 @@
 \section{Results}
  \subsection{Backtracking}
 \subsection{Runtime Performance}
-
- 
- 
+\begin{table}[h]\centering
+  \begin{tabular}{lll}
+    \toprule
+    puzzle number& Arbitrary Order Backtracks & Most Constrained Variable Backtracks\\
+    \midrule
+    1& 5 & 0\\
+    \midrule
+    6& 13&0\\
+    \midrule
+    7& 10&0\\
+    \midrule
+    20&10&0\\
+    \midrule
+    30& 8&0\\
+    \midrule
+    41& 12& 0\\
+    \midrule
+    42& 6& 0\\
+    \midrule
+    43& 13&0\\
+    \midrule
+    44&9&0\\
+    \midrule
+    50&6&0\\
+    \midrule
+    55 &11 &0\\
+    \midrule
+    61& 11 &0\\
+    \midrule
+    62 &5&0\\
+    \midrule
+    67&7&0\\
+    \midrule
+    68& 5&0\\
+    \midrule
+    69&7&0\\
+    \midrule
+    70& 12 &1\\
+    \bottomrule
+  \end{tabular}
+  \caption{Number of backtracks for various algorithms for the easy puzzles}
+  \label{tab:resultsEasy}
+\end{table}
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
 

@@ -114,8 +114,10 @@ if __name__ == "__main__":
     b.printBoard()
     print(b.emptyCells)
     print(b.toFill)
-    solvedBoard,backtracks=recursiveConstrained(b)
+    solvedBoard,backtracksConstrained=recursiveConstrained(b)
+    _,backtracksSimple=recursiveSimple(b)
     #print("solvedBoard ",solvedBoard.printBoard())
     solvedBoard.printBoard()
-    print("backtracked number of times: " + str(backtracks))
+    print("backtracked number of times without heuristic: " + str(backtracksSimple))
+    print("backtracked number of times with heuristic: " + str(backtracksConstrained))
 #----------------------------------------------------
