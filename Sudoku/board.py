@@ -1,3 +1,4 @@
+import copy
 class board:
     def __init__(self):
         self.cells = [[{1, 2, 3, 4, 5, 6, 7, 8, 9} for col in range(9)] for row in range(9)]
@@ -71,9 +72,9 @@ class board:
             print()
     def copy(self):
         output = board()
-        output.cells = [[moveset for moveset in col] for col in self.cells]
+        output.cells = copy.deepcopy(self.cells)
         output.toFill=self.toFill
-        output.emptyCells=self.emptyCells.copy()
+        output.emptyCells=copy.deepcopy(self.emptyCells)
         return output
     
     #TEST
@@ -116,7 +117,7 @@ class board:
 if __name__ == "__main__":
     my_board = board()
     print("forwardCheck ", my_board.forwardCheck())
-    my_board.buildBoard("../code_1/Sudoku/testExample.txt")
+    my_board.buildBoard("testExample.txt")
     my_board.printBoard()
     # Fill your board with initial values (using buildBoard method)
     # Then initiate the backtracking search from the first empty cell
