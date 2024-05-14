@@ -56,7 +56,7 @@ class board:
                 self.fillCell(i,j,value)
                 numFilled+=1
         return numFilled
-    
+
     def printBoard(self):
         for row in range(9):
             if row % 3 == 0 and row != 0:
@@ -76,12 +76,20 @@ class board:
         output.toFill=self.toFill
         output.emptyCells=copy.deepcopy(self.emptyCells)
         return output
-    
+    def mostConstrainedVariable(self):
+        min_domain_size = float('inf')
+        for cell in self.emptyCells:
+                cell_row, cell_col = cell
+                domain_size = len(self.cells[cell_row][cell_col])
+                if domain_size < min_domain_size:
+                    min_domain_size = domain_size
+                    row, col = cell
+        return row, col
     #TEST
     def backtrackSearch(self):
         if self.toFill == 0:  # If the board is filled, we've found a solution
             return True
-
+        #this does most constrained variable
         row, col = self.emptyCells[0]
 
         if self.emptyCells and self.toFill > 1:
