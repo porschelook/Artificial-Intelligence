@@ -90,22 +90,32 @@
  \end{abstract}
 
 \section{Introduction}
+SuDoKu is a challenge problem, being both a puzzle and a constraint satisfaction problem. In this game, each unit (rows, columns, and boxes) must adhere to the "all-diff" constraint, meaning every digit within a unit must be unique. The 81 squares on the SuDoKu grid are akin to variables, each with a domain from 1 to 9.
 
- 
-\section{Environment Descriptions}
- 
- 
- 
-\subsection{Backtracking Search}
- 
-   
-   
-   \label{alg:Backtracking Search}
- 
-
-\subsection{Constraint Propagation}
   
-  \label{alg:Constraint Propagation}
+\section{Environment Descriptions}
+
+\subsection{Constraint propagation}
+In the constraint propagation step, the SuDoKu board undergoes a series of rule applications in the following order. This process aims to systematically decrease the domain values associated with each variable:
+\begin{description}
+  \item[Rule 1:] If a cell has only one value remaining in its domain, assign that value to the cell.
+  \item[Rule 2:] If a value x is not present in the domain of any other cell within the same row, column, or box as a particular cell, assign x to that cell.
+  \item[Rule 3:] Identify k squares within any row, column, or box, where each square shares a domain containing the same k numbers or a subset of those numbers. Then, eliminate those k numbers from the domains of all other cells within that unit. This is referred to as the "naked double" and "naked triple" rule when k=2 and k=3, respectively.
+\end{description}
+
+
+\label{alg:Constraint Propagation}
+ 
+ 
+ 
+   
+   
+ 
+ 
+
+\subsection{Backtracking Search}
+  
+\label{alg:Backtracking Search}
  
 
 \section{Experimental setup}

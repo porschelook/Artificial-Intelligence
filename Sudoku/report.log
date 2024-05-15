@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  9 MAY 2024 23:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.17)  14 MAY 2024 19:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -539,30 +539,39 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [1
+)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[1
 
 
-{c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}] (./report.aux)
+{c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.177 \end{document}
+                    ] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 9816B95FD46D8F3E027DA47FBE9FAA44;1493.
+(rerunfilecheck)             Checksum: 5C1843C384E5F2F83BB3EAC2131CF67A;1493.
  ) 
 Here is how much of TeX's memory you used:
- 15348 strings out of 474104
- 235211 string characters out of 5747502
- 1932496 words of memory out of 5000000
- 37460 multiletter control sequences out of 15000+600000
- 577237 words of font info for 77 fonts, out of 8000000 for 9000
+ 15376 strings out of 474104
+ 235551 string characters out of 5747502
+ 1940496 words of memory out of 5000000
+ 37467 multiletter control sequences out of 15000+600000
+ 579099 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,8n,79p,1052b,454s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (1 page, 26208 bytes).
+Output written on report.pdf (2 pages, 35428 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 24153 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 77 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 26201 words of extra memory for PDF output out of 29859 (max. 10000000)
 
