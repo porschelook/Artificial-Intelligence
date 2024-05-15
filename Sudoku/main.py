@@ -111,8 +111,8 @@ def validBoardSeq(seq):
 def readAllpb():
     problemSet = []
     problemComments = []
-    #fname = "../code_1/Sudoku/sudoku-problems.txt"
-    fname = "sudoku-problems.txt"
+    fname = "../code_1/Sudoku/sudoku-problems.txt"
+    # fname = "sudoku-problems.txt"
     with open(fname, "r") as f:
         lines = [line.strip() for line in f]
 
@@ -148,10 +148,9 @@ if __name__ == "__main__":
     print(b.cells[0][0])
     print("forwardCheck ", b.forwardCheck())
 
-    
-    #b.buildBoard("../code_1/Sudoku/testExample.txt")
+    b.buildBoard("../code_1/Sudoku/testExample.txt")
 
-    b.buildBoard("testExample.txt")
+    # b.buildBoard("testExample.txt")
     b.printBoard()
     print(b.emptyCells)
 
@@ -166,3 +165,8 @@ if __name__ == "__main__":
     problemSet, problemComments = readAllpb()
     print(problemSet[0])
     print(problemComments[0])
+
+    for x in problemSet:
+        print(x)
+    for x in problemComments:
+        print(x)
