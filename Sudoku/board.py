@@ -2,14 +2,12 @@ import copy
 class board:
     def __init__(self):
         self.cells = [[{1, 2, 3, 4, 5, 6, 7, 8, 9} for col in range(9)] for row in range(9)]
-        self.toFill=81
         self.emptyCells=[(row,col) for col in range(9) for row in range(9)]
         #self.cells = [[{0} for col in range(9)] for row in range(9)]
     def fillCell(self, row, col, value):
         if value not in self.cells[row][col]:
             print("Attempt at invalid move of value "+ str(value))
             return -1 # decide how to handle this case later
-
      
 
         # eliminate the value from other applicable cells
@@ -30,8 +28,12 @@ class board:
                 self.cells[rowoffset * 3 + rowiter][coloffset * 3 + coliter].discard(value)
 
         self.cells[row][col] = {value}  # make the assignment last, so it can be removed earlier just fine
-        self.toFill-=1
-        self.emptyCells.remove((row,col))
+    
+        try:
+            self.emptyCells.remove((row,col))
+        except:
+            print("already assigned this element")
+            return -1
 
     #Do a forward error check and see if any cell has no valid values, False means that the current board is inconsistent
     def forwardCheck(self):
@@ -76,10 +78,14 @@ class board:
     def copy(self):
         output = board()
         output.cells = copy.deepcopy(self.cells)
-        output.toFill=self.toFill
+        
         output.emptyCells=copy.deepcopy(self.emptyCells)
         return output
+    
     def mostConstrainedVariable(self):
+        if len(self.emptyCells)==0:
+            print("stopping")
+            return 1,1
         min_domain_size = float('inf')
         for cell in self.emptyCells:
                 cell_row, cell_col = cell
@@ -88,9 +94,58 @@ class board:
                     min_domain_size = domain_size
                     row, col = cell
         return row, col
+    def doNakedSingles(self): #yes I see the unfortunate wording
+        #iterate through "empty" cells looking for those who have only one possible action left, then fill those in with the fill cell
+        numberOfHits=0
+        for row,col in self.emptyCells:
+            values=self.cells[row][col]
+            if len(values)==1:
+                self.fillCell(row,col,list(values)[0])
+                numberOfHits+=1
+        return numberOfHits
+    def doHiddenSingles(self):
+        #iterate through "empty" cells looking for those who have unique actions
+        numberOfHits=0
+        for row,col in self.emptyCells:
+            values=self.cells[row][col]
+
+            #remove values present in the row
+            for colIter in range(9):
+                if colIter==col:
+                        continue
+                removeVals=self.cells[row][colIter]
+                #actually do the removing
+                for v in removeVals:
+                    values.discard(v)
+            
+            #remove values present in the col
+            for rowIter in range(9):
+                if rowIter==row:
+                    continue
+                removeVals=self.cells[rowIter][col]
+                #actually do the removing
+                for v in removeVals:
+                    values.discard(v)
+            #remove from the box
+            rowoffset = row // 3
+            coloffset = col // 3
+            for rowiter in range(3):
+                for coliter in range(3):
+                    rowtemp=rowoffset * 3 + rowiter
+                    coltemp=coloffset * 3 + coliter
+                    if rowtemp==row and coltemp==col:
+                        continue
+                
+                    removeVals=self.cells[rowtemp][coltemp]
+                    for v in removeVals:
+                        values.discard(v)
+            if len(values)==1:
+                numberOfHits+=1
+                self.fillCell(row,col,list(values)[0])
+        return numberOfHits
     #TEST
     def backtrackSearch(self):
-        if self.toFill == 0:  # If the board is filled, we've found a solution
+        if len(self.emptyCells) == 0:  # If the board is filled, we've found a solution
             return True
         #this does most constrained variable
         row, col = self.emptyCells[0]
@@ -123,7 +178,14 @@ class board:
     def propagateConstraints(self):
         # Perform constraint propagation through domain-specific inference rules
         # Implement the inference rules here
-        pass
+        hits =self.doNakedSingles()
+        if hits>0:
+            return
+        hits=self.doHiddenSingles()
+        if hits>0:
+            self.propogateConstraints()
+            return
+        #put the rest of the rules
 
 # if __name__ == "__main__":
 #     my_board = board()

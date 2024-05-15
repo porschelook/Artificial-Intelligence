@@ -4,13 +4,17 @@ import time
 
 def recursiveSimple(board):
     #Check to see a solution
-    if board.toFill==0:
+    if len(board.emptyCells)==0:
         return board, 0 #solution and number of backtracks
     #check to see if forwardCheck leads to 
     if not board.forwardCheck():
         #print("returning due to forward check")
         board.printBoard()
         return None, 0 #comunicate should backtrack
+    #do inference rules first
+    board.propagateConstraints()
+    if len(board.emptyCells)==0:
+        return board, 0 #solution and number of backtracks
     #now select an index 
     fillX,fillY=board.emptyCells[0]
     #prepare for backtracking
@@ -46,13 +50,17 @@ def recursiveSimple(board):
 
 def recursiveConstrained(board):
     #Check to see a solution
-    if board.toFill==0:
+    if len(board.emptyCells)==0:
         return board, 0 #solution and number of backtracks
     #check to see if forwardCheck leads to 
     if not board.forwardCheck():
         #print("returning due to forward check")
         board.printBoard()
         return None, 0 #comunicate should backtrack
+     #do inference rules first
+    board.propagateConstraints()
+    if len(board.emptyCells)==0:
+        return board, 0 #solution and number of backtracks
     #now select an index 
     fillX,fillY=board.mostConstrainedVariable()
     #prepare for backtracking
@@ -110,10 +118,11 @@ if __name__ == "__main__":
       #  print(x)
     
     #s = open("../code_1/Sudoku/testExample.txt", "r")
-    b.buildBoard("../code_1/Sudoku/testExample.txt")
+    #b.buildBoard("../code_1/Sudoku/testExample.txt")
+    b.buildBoard("testExample.txt")
     b.printBoard()
     print(b.emptyCells)
-    print(b.toFill)
+ 
     solvedBoard,backtracksConstrained=recursiveConstrained(b)
     _,backtracksSimple=recursiveSimple(b)
     #print("solvedBoard ",solvedBoard.printBoard())
