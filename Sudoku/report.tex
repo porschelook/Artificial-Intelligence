@@ -86,15 +86,18 @@
 
 
 \begin{abstract}
-  
+  We solved the problem of SuDoKu with backtracking search. We used both simple backtracking search and various levels of inference procedures based on increasingly complicated models of the problem. We found that increasing the complexity of the models decreased the amount of backtracking required to solve various problems. 
  \end{abstract}
 
 \section{Introduction}
-SuDoKu is a challenge problem, being both a puzzle and a constraint satisfaction problem. In this game, each unit (rows, columns, and boxes) must adhere to the "all-diff" constraint, meaning every digit within a unit must be unique. The 81 squares on the SuDoKu grid are akin to variables, each with a domain from 1 to 9.
+SuDoKu is a challenge problem, being both a puzzle and a constraint satisfaction problem. In this game, each unit (rows, columns, and boxes) must adhere to the "all-diff" constraint, meaning every digit within a unit must be unique. The 81 squares on the SuDoKu grid are akin to variables, each with a domain from 1 to 9. Depending on the problem, various cells will also be forced to certain values. 
+
+We implemented backtracking linesearch with several different levels of inference from the dynamics of the problems. 
 
   
 \section{Environment Descriptions}
-
+\subsection{The board}
+the board is a nine by nine grid with each row, column, and sub-three-by-three grid maintaining its own all-diff constraint. We implemented thiss with an array of sets in python. When an element was assigned to a cell, we removed that value from all the relavent neighbors. 
 \subsection{Constraint propagation}
 In the constraint propagation step, the SuDoKu board undergoes a series of rule applications in the following order. This process aims to systematically decrease the domain values associated with each variable:
 \begin{description}
@@ -120,6 +123,7 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
 
 \section{Experimental setup}
 \subsection{Fixed  Baseline}
+
 \subsection{Most Constrained Variable}
 
 \section{Results}
@@ -165,7 +169,7 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
     70& 12 &1\\
     \bottomrule
   \end{tabular}
-  \caption{Number of backtracks for various algorithms for the easy puzzles}
+  \caption{Number of backtracks for various algorithms for the easy puzzles. These algorithms did not use any of the inference rules besides forward checking. }
   \label{tab:resultsEasy}
 \end{table}
 \section{Discussion}
