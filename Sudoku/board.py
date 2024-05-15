@@ -6,7 +6,7 @@ class board:
         #self.cells = [[{0} for col in range(9)] for row in range(9)]
     def fillCell(self, row, col, value):
         if value not in self.cells[row][col]:
-            print("Attempt at invalid move of value "+ str(value))
+            #print("Attempt at invalid move of value "+ str(value))
             return -1 # decide how to handle this case later
      
 
@@ -41,7 +41,7 @@ class board:
             for col in range(len(self.cells[0])):
                 value=self.cells[row][col]
                 if len(value)==0:
-                    print("forward check fails for cell "+ str(row) + "," +str(col))
+                    #print("forward check fails for cell "+ str(row) + "," +str(col))
                     return False
         return True
     #build the starting conditions from the textfile examples. Will require copy-pasting in some way to manage the fact that lots of them are in the same file. This takes in the name of a file to read in, and expects the file to just contain the board it is to build
@@ -52,6 +52,17 @@ class board:
             row=f.readline().replace(" ", "")
             for j in range(9):
                 value=int(row[j])
+                if value==0:
+                    continue
+                #print("placing value " +str(value))
+                self.fillCell(i,j,value)
+                numFilled+=1
+        return numFilled
+    def buildBoardString(self,instring):
+        numFilled=0
+        for i in range(9):
+            for j in range(9):
+                value=int(instring[j+9*i])
                 if value==0:
                     continue
                 #print("placing value " +str(value))
@@ -176,6 +187,7 @@ class board:
         return False
 
     def propagateConstraints(self):
+        return
         # Perform constraint propagation through domain-specific inference rules
         # Implement the inference rules here
         hits =self.doNakedSingles()
