@@ -58,6 +58,7 @@ class board:
         return numFilled
 
     def printBoard(self):
+        print("-------------------------------------")
         for row in range(9):
             if row % 3 == 0 and row != 0:
                 print("-" * 21)
@@ -70,6 +71,8 @@ class board:
                 else:
                     print(".", end=" ")
             print()
+        print("-------------------------------------")
+
     def copy(self):
         output = board()
         output.cells = copy.deepcopy(self.cells)
@@ -122,16 +125,16 @@ class board:
         # Implement the inference rules here
         pass
 
-if __name__ == "__main__":
-    my_board = board()
-    print("forwardCheck ", my_board.forwardCheck())
-    my_board.buildBoard("testExample.txt")
-    my_board.printBoard()
-    # Fill your board with initial values (using buildBoard method)
-    # Then initiate the backtracking search from the first empty cell
-    solution_found = my_board.backtrackSearch()
-    if solution_found:
-        print("Solution found:")
-        my_board.printBoard()
-    else:
-        print("No solution found.")
+# if __name__ == "__main__":
+#     my_board = board()
+#     print("forwardCheck ", my_board.forwardCheck())
+#     my_board.buildBoard("testExample.txt")
+#     my_board.printBoard()
+#     # Fill your board with initial values (using buildBoard method)
+#     # Then initiate the backtracking search from the first empty cell
+#     solution_found = my_board.backtrackSearch()
+#     if solution_found:
+#         print("Solution found:")
+#         my_board.printBoard()
+#     else:
+#         print("No solution found.")

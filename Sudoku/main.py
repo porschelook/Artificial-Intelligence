@@ -110,7 +110,7 @@ if __name__ == "__main__":
       #  print(x)
     
     #s = open("../code_1/Sudoku/testExample.txt", "r")
-    b.buildBoard("testExample.txt")
+    b.buildBoard("../code_1/Sudoku/testExample.txt")
     b.printBoard()
     print(b.emptyCells)
     print(b.toFill)
