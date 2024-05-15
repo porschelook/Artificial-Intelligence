@@ -1,1 +1,1 @@
-recursiveConstrained
+recursiveSimple
