@@ -112,7 +112,7 @@ def readAllpb():
     problemSet = []
     problemComments = []
     fname = "../code_1/Sudoku/sudoku-problems.txt"
-    fname = "sudoku-problems.txt"
+    #fname = "sudoku-problems.txt"
     with open(fname, "r") as f:
         lines = [line.strip() for line in f]
 
@@ -156,6 +156,7 @@ if __name__ == "__main__":
 
     problemSet, problemComments = readAllpb()
     for i in range(len(problemSet)):
+
     #print(problemSet[0])
         if "E" in problemComments[i]:
             continue
@@ -175,7 +176,11 @@ if __name__ == "__main__":
         solvedBoard, backtracksConstrained = recursiveConstrained(b)
         _, backtracksSimple = recursiveSimple(b)
         # print("solvedBoard ",solvedBoard.printBoard())
-        #solvedBoard.printBoard()
+        if solvedBoard == None:
+            print("not found solution <<<<<<<<<<----------------------->>>>>>>>>>>>")
+        else:
+            solvedBoard.printBoard()
+       
         print("backtracked number of times without heuristic: " + str(backtracksSimple))
         print("backtracked number of times with heuristic: " + str(backtracksConstrained))
     # ----------------------------------------------------
