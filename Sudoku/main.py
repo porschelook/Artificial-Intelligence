@@ -90,7 +90,7 @@ def recursiveConstrained(board):
             # print("returning solution")
             return solution, backtracks
 
-    print("ran through every solution")
+    #print("ran through every solution")
     return None, 0
 
 
@@ -158,8 +158,11 @@ if __name__ == "__main__":
     b.rule=x
     
     problemSet, problemComments = readAllpb()
-    for i in range(30):
+    for i in range(len(problemSet)):
+
     #print(problemSet[0])
+        if "E" in problemComments[i]:
+            continue
         print(problemComments[i])
         #print(problemSet[i])
         b = board()
