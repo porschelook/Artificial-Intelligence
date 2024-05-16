@@ -162,11 +162,11 @@ if __name__ == "__main__":
     print("backtracked number of times with heuristic: " + str(backtracksConstrained))
     # ----------------------------------------------------
 
-    problemSet, problemComments = readAllpb()
-    print(problemSet[0])
-    print(problemComments[0])
+    # problemSet, problemComments = readAllpb()
+    # print(problemSet[0])
+    # print(problemComments[0])
 
-    for x in problemSet:
-        print(x)
-    for x in problemComments:
-        print(x)
+    # for x in problemSet:
+    #     print(x)
+    # for x in problemComments:
+    #     print(x)
