@@ -112,7 +112,7 @@ def readAllpb():
     problemSet = []
     problemComments = []
     fname = "../code_1/Sudoku/sudoku-problems.txt"
-    fname = "sudoku-problems.txt"
+    #fname = "sudoku-problems.txt"
     with open(fname, "r") as f:
         lines = [line.strip() for line in f]
 

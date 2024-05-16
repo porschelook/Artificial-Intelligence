@@ -268,22 +268,19 @@ class board:
     #     return False
 
     def propagateConstraints(self):
-        return
-        # Perform constraint propagation through domain-specific inference rules
-        # Implement the inference rules here
-        hits = self.doNakedSingles()
-        if hits > 0:
-            return
-        hits = self.doHiddenSingles()
-        if hits > 0:
-            self.propogateConstraints()
-            return
-
-        # put the rest of the rules
-        hits = self.doNakedPairs()
-        if hits > 0:
-            return
-
+    # Perform constraint propagation through domain-specific inference rules
+        while True:
+            hits = self.doNakedSingles()
+            if hits > 0:
+                continue
+            hits = self.doHiddenSingles()
+            if hits > 0:
+                continue
+            hits = self.doNakedPairs()
+            if hits > 0:
+                continue
+            # Implement remaining inference rules similarly
+            break  # If no rule applies, exit the loop
 
 # if __name__ == "__main__":
 #     my_board = board()
