@@ -181,24 +181,30 @@ class board:
                 for other_col in range(9):
                     if other_col != col and values == self.cells[row][other_col]:
                         # Found a naked pair, eliminate these values from other cells in the same row
+                        numberOfHits+=1
                         for c in range(9):
                             if c != col and c != other_col:
                                 self.cells[row][c] -= values
+                                #this code is the same as naked singles
+                                '''
                                 if len(self.cells[row][c]) == 1:
                                     self.fillCell(row, c, list(self.cells[row][c])[0])
                                     numberOfHits += 1
-                                    self.propagateConstraints()
+                                    self.propagateConstraints()'''
+                                
                 # Iterate through other cells in the same column
                 for other_row in range(9):
                     if other_row != row and values == self.cells[other_row][col]:
                         # Found a naked pair, eliminate these values from other cells in the same column
+                        numberOfHits+=1
                         for r in range(9):
                             if r != row and r != other_row:
                                 self.cells[r][col] -= values
-                                if len(self.cells[r][col]) == 1:
+                                '''if len(self.cells[r][col]) == 1:
                                     self.fillCell(r, col, list(self.cells[r][col])[0])
                                     numberOfHits += 1
-                                    self.propagateConstraints()
+                                    self.propagateConstraints()'''
+                #what about the three by three cell? 
 
         return numberOfHits
 
@@ -362,10 +368,10 @@ class board:
             hits = self.doHiddenSingles()
             if hits > 0:
                 continue
-            hits = self.doNakedPairs()
+            #hits = self.doNakedPairs()
             if hits > 0:
                 continue
-            hits = self.doHiddenPairs()
+            #hits = self.doHiddenPairs()
             if hits > 0:
                 continue
             # hits = self.doNakedTriples()
@@ -375,25 +381,7 @@ class board:
             # if hits > 0:
             #     continue
             break  # If no rule applies, exit the loop
-# while True:
-#             hits = self.doNakedSingles()
-#             if hits > 0:
-#                 continue
-#             print(hits)
-#             hits = self.doHiddenSingles()
-#             if hits > 0:
-#                 continue
-#             print(hits)
-#             hits = self.doNakedPairs()
-#             if hits > 0:
-#                 continue
-#             print(hits)
-#             hits = self.doHiddenPairs()
-#             if hits > 0:
-#                 continue
-#             print(hits)
-#             # Implement remaining inference rules similarly
-#             break  # If no rule applies, exit the loop
+
 # if __name__ == "__main__":
 #     my_board = board()
 #     print("forwardCheck ", my_board.forwardCheck())

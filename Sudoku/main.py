@@ -112,7 +112,7 @@ def readAllpb():
     problemSet = []
     problemComments = []
     fname = "../code_1/Sudoku/sudoku-problems.txt"
-    #fname = "sudoku-problems.txt"
+    fname = "sudoku-problems.txt"
     with open(fname, "r") as f:
         lines = [line.strip() for line in f]
 
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     for i in range(len(problemSet)):
 
     #print(problemSet[0])
-        if "E" in problemComments[i]:
+        if "Easy" in problemComments[i]:
             continue
         print(problemComments[i])
         #print(problemSet[i])
