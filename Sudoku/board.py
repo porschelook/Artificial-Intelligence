@@ -177,7 +177,7 @@ class board:
         for row, col in self.emptyCells:
             
             values = self.cells[row][col]
-            print(values)
+            #print("values ",values)
             # Check if the cell has exactly two possible values
             if len(values) == 2:
                 # Iterate through other cells in the same row
@@ -325,37 +325,7 @@ class board:
 
         return numberOfHits
  
-
-    # #TEST
-    # def backtrackSearch(self):
-    #     if len(self.emptyCells) == 0:  # If the board is filled, we've found a solution
-    #         return True
-    #     #this does most constrained variable
-    #     row, col = self.emptyCells[0]
-
-    #     if self.emptyCells and self.toFill > 1:
-    #         min_domain_size = float('inf')
-    #         for cell in self.emptyCells:
-    #             cell_row, cell_col = cell
-    #             domain_size = len(self.cells[cell_row][cell_col])
-    #             if domain_size < min_domain_size:
-    #                 min_domain_size = domain_size
-    #                 row, col = cell
-
-    #     for value in self.cells[row][col]:
-    #         new_board = self.copy()
-
-    #         print()
-    #         self.printBoard()
-
-    #         new_board.fillCell(row, col, value)
-    #         new_board.propagateConstraints()
-    #         if new_board.forwardCheck():
-    #             if new_board.backtrackSearch():
-    #                 self.cells = new_board.cells
-    #                 return True
-
-    #     return False
+ 
 
     def propagateConstraints(self):
         
@@ -375,6 +345,7 @@ class board:
                 hits = self.doHiddenPairs()
                 if hits > 0:
                     continue
+                
             if self.rule == 3:
                 hits = self.doNakedTriples()
                 if hits > 0:
