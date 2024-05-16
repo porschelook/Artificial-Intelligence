@@ -8,7 +8,7 @@ def recursiveSimple(board):
         return board, 0  # solution and number of backtracks
     # check to see if forwardCheck leads to
     if not board.forwardCheck():
-        # print("returning due to forward check")
+        #print("returning due to forward check")
         #board.printBoard()
         return None, 0  # comunicate should backtrack
     # do inference rules first
@@ -38,10 +38,10 @@ def recursiveSimple(board):
         if solution is None:
             runMoves = backup.copy()
             backtracks += 1
-            # print("backtracking")
+            #print("backtracking")
         else:
             # solution.printBoard()
-            # print("returning solution")
+            #print("returning solution")
             return solution, backtracks
 
     #print("ran through every solution")
@@ -155,9 +155,11 @@ if __name__ == "__main__":
     #print(b.emptyCells)
 
     problemSet, problemComments = readAllpb()
-    for i in range(len(problemSet)):
+    for i in range(3):
     #print(problemSet[0])
         print(problemComments[i])
+        #print(problemSet[i])
+        b = board()
         b.buildBoardString(problemSet[i])
         b.printBoard()
         print("-"*12)
@@ -171,7 +173,7 @@ if __name__ == "__main__":
         solvedBoard, backtracksConstrained = recursiveConstrained(b)
         _, backtracksSimple = recursiveSimple(b)
         # print("solvedBoard ",solvedBoard.printBoard())
-        solvedBoard.printBoard()
+        #solvedBoard.printBoard()
         print("backtracked number of times without heuristic: " + str(backtracksSimple))
         print("backtracked number of times with heuristic: " + str(backtracksConstrained))
     # ----------------------------------------------------

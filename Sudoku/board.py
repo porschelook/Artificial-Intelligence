@@ -33,7 +33,7 @@ class board:
             self.emptyCells.remove((row,col))
         except:
             print("already assigned this element")
-            return -1
+            return -2
 
     #Do a forward error check and see if any cell has no valid values, False means that the current board is inconsistent
     def forwardCheck(self):
@@ -60,9 +60,11 @@ class board:
         return numFilled
     def buildBoardString(self,instring):
         numFilled=0
+        stringIndex=0
         for i in range(9):
             for j in range(9):
-                value=int(instring[j+9*i])
+                value=int(instring[stringIndex])
+                stringIndex+=1
                 if value==0:
                     continue
                 #print("placing value " +str(value))
