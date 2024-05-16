@@ -153,7 +153,10 @@ if __name__ == "__main__":
     #b.buildBoard("testExample.txt")
     #b.printBoard()
     #print(b.emptyCells)
-
+    print('rule 1(default), 2 , 3:')
+    x = input()
+    b.rule=x
+    
     problemSet, problemComments = readAllpb()
     for i in range(len(problemSet)):
 

@@ -2,7 +2,9 @@ import copy
 
 
 class board:
+    
     def __init__(self):
+        self.rule = 1
         self.cells = [
             [{1, 2, 3, 4, 5, 6, 7, 8, 9} for col in range(9)] for row in range(9)
         ]
@@ -173,8 +175,9 @@ class board:
         # Iterate through "empty" cells looking for naked pairs
         numberOfHits = 0
         for row, col in self.emptyCells:
+            
             values = self.cells[row][col]
-
+            print(values)
             # Check if the cell has exactly two possible values
             if len(values) == 2:
                 # Iterate through other cells in the same row
@@ -361,25 +364,29 @@ class board:
     #     return False
 
     def propagateConstraints(self):
+        
         while True:
+            #default
             hits = self.doNakedSingles()
-            if hits > 0:
-                continue
             hits = self.doHiddenSingles()
             if hits > 0:
                 continue
-            #hits = self.doNakedPairs()
-            if hits > 0:
-                continue
-            #hits = self.doHiddenPairs()
-            if hits > 0:
-                continue
-            # hits = self.doNakedTriples()
-            # if hits > 0:
-            #     continue
-            # hits = self.doHiddenTriples()
-            # if hits > 0:
-            #     continue
+
+            if self.rule == 2 or self.rule == 3:
+                hits = self.doNakedPairs()
+                if hits > 0:
+                    continue
+                hits = self.doHiddenPairs()
+                if hits > 0:
+                    continue
+            if self.rule == 3:
+                hits = self.doNakedTriples()
+                if hits > 0:
+                    continue
+                hits = self.doHiddenTriples()
+                if hits > 0:
+                    continue
+            
             break  # If no rule applies, exit the loop
 
 # if __name__ == "__main__":
