@@ -11,8 +11,9 @@ class board:
 
     def fillCell(self, row, col, value):
         if value not in self.cells[row][col]:
-            print("Attempt at invalid move of value " + str(value))
-            return -1  # decide how to handle this case later
+            #print("Attempt at invalid move of value "+ str(value))
+            return -1 # decide how to handle this case later
+     
 
         # eliminate the value from other applicable cells
 
@@ -41,15 +42,15 @@ class board:
             self.emptyCells.remove((row, col))
         except:
             print("already assigned this element")
-            return -1
+            return -2
 
     # Do a forward error check and see if any cell has no valid values, False means that the current board is inconsistent
     def forwardCheck(self):
         for row in range(len(self.cells)):
             for col in range(len(self.cells[0])):
-                value = self.cells[row][col]
-                if len(value) == 0:
-                    print("forward check fails for cell " + str(row) + "," + str(col))
+                value=self.cells[row][col]
+                if len(value)==0:
+                    #print("forward check fails for cell "+ str(row) + "," +str(col))
                     return False
         return True
 
@@ -66,6 +67,19 @@ class board:
                 # print("placing value " +str(value))
                 self.fillCell(i, j, value)
                 numFilled += 1
+        return numFilled
+    def buildBoardString(self,instring):
+        numFilled=0
+        stringIndex=0
+        for i in range(9):
+            for j in range(9):
+                value=int(instring[stringIndex])
+                stringIndex+=1
+                if value==0:
+                    continue
+                #print("placing value " +str(value))
+                self.fillCell(i,j,value)
+                numFilled+=1
         return numFilled
 
     def printBoard(self):
@@ -254,6 +268,7 @@ class board:
     #     return False
 
     def propagateConstraints(self):
+        return
         # Perform constraint propagation through domain-specific inference rules
         # Implement the inference rules here
         hits = self.doNakedSingles()

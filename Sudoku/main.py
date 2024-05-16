@@ -8,8 +8,8 @@ def recursiveSimple(board):
         return board, 0  # solution and number of backtracks
     # check to see if forwardCheck leads to
     if not board.forwardCheck():
-        # print("returning due to forward check")
-        board.printBoard()
+        #print("returning due to forward check")
+        #board.printBoard()
         return None, 0  # comunicate should backtrack
     # do inference rules first
     board.propagateConstraints()
@@ -21,9 +21,9 @@ def recursiveSimple(board):
     backup = board.copy()
     moveDomain = backup.cells[fillX][fillY].copy()
     runMoves = backup.copy()
-    print(moveDomain)
-    print(str(fillX) + ", " + str(fillY))
-    backup.printBoard()
+    #print(moveDomain)
+    #print(str(fillX) + ", " + str(fillY))
+    #backup.printBoard()
     backtracks = 0
     # iterate through all the currently valid moves
     for move in moveDomain:
@@ -38,13 +38,13 @@ def recursiveSimple(board):
         if solution is None:
             runMoves = backup.copy()
             backtracks += 1
-            # print("backtracking")
+            #print("backtracking")
         else:
             # solution.printBoard()
-            # print("returning solution")
+            #print("returning solution")
             return solution, backtracks
 
-    print("ran through every solution")
+    #print("ran through every solution")
     return None, 0
 
 
@@ -55,7 +55,7 @@ def recursiveConstrained(board):
     # check to see if forwardCheck leads to
     if not board.forwardCheck():
         # print("returning due to forward check")
-        board.printBoard()
+        #board.printBoard()
         return None, 0  # comunicate should backtrack
     # do inference rules first
     board.propagateConstraints()
@@ -67,9 +67,9 @@ def recursiveConstrained(board):
     backup = board.copy()
     moveDomain = backup.cells[fillX][fillY].copy()
     runMoves = backup.copy()
-    print(moveDomain)
-    print(str(fillX) + ", " + str(fillY))
-    backup.printBoard()
+    #print(moveDomain)
+    #print(str(fillX) + ", " + str(fillY))
+    #backup.printBoard()
     backtracks = 0
     # iterate through all the currently valid moves
     for move in moveDomain:
@@ -112,7 +112,7 @@ def readAllpb():
     problemSet = []
     problemComments = []
     fname = "../code_1/Sudoku/sudoku-problems.txt"
-    # fname = "sudoku-problems.txt"
+    fname = "sudoku-problems.txt"
     with open(fname, "r") as f:
         lines = [line.strip() for line in f]
 
@@ -145,28 +145,37 @@ if __name__ == "__main__":
     b = board()
     b.printBoard()
     print("---------------------------")
-    print(b.cells[0][0])
-    print("forwardCheck ", b.forwardCheck())
+    #print(b.cells[0][0])
+    #print("forwardCheck ", b.forwardCheck())
 
-    b.buildBoard("../code_1/Sudoku/testExample.txt")
+    #b.buildBoard("../code_1/Sudoku/testExample.txt")
 
-    # b.buildBoard("testExample.txt")
-    b.printBoard()
-    print(b.emptyCells)
+    #b.buildBoard("testExample.txt")
+    #b.printBoard()
+    #print(b.emptyCells)
 
-    solvedBoard, backtracksConstrained = recursiveConstrained(b)
-    _, backtracksSimple = recursiveSimple(b)
-    # print("solvedBoard ",solvedBoard.printBoard())
-    solvedBoard.printBoard()
-    print("backtracked number of times without heuristic: " + str(backtracksSimple))
-    print("backtracked number of times with heuristic: " + str(backtracksConstrained))
+    problemSet, problemComments = readAllpb()
+    for i in range(3):
+    #print(problemSet[0])
+        print(problemComments[i])
+        #print(problemSet[i])
+        b = board()
+        b.buildBoardString(problemSet[i])
+        b.printBoard()
+        print("-"*12)
+        '''
+        for x in problemSet:
+        print(x)
+        for x in problemComments:
+        print(x)
+        '''
+        
+        solvedBoard, backtracksConstrained = recursiveConstrained(b)
+        _, backtracksSimple = recursiveSimple(b)
+        # print("solvedBoard ",solvedBoard.printBoard())
+        #solvedBoard.printBoard()
+        print("backtracked number of times without heuristic: " + str(backtracksSimple))
+        print("backtracked number of times with heuristic: " + str(backtracksConstrained))
     # ----------------------------------------------------
 
-    # problemSet, problemComments = readAllpb()
-    # print(problemSet[0])
-    # print(problemComments[0])
-
-    # for x in problemSet:
-    #     print(x)
-    # for x in problemComments:
-    #     print(x)
+   
