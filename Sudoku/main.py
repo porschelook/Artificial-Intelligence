@@ -155,7 +155,7 @@ if __name__ == "__main__":
     #print(b.emptyCells)
 
     problemSet, problemComments = readAllpb()
-    for i in range(3):
+    for i in range(30):
     #print(problemSet[0])
         print(problemComments[i])
         #print(problemSet[i])
@@ -173,7 +173,11 @@ if __name__ == "__main__":
         solvedBoard, backtracksConstrained = recursiveConstrained(b)
         _, backtracksSimple = recursiveSimple(b)
         # print("solvedBoard ",solvedBoard.printBoard())
-        #solvedBoard.printBoard()
+        if solvedBoard == None:
+            print("not found solution <<<<<<<<<<----------------------->>>>>>>>>>>>")
+        else:
+            solvedBoard.printBoard()
+       
         print("backtracked number of times without heuristic: " + str(backtracksSimple))
         print("backtracked number of times with heuristic: " + str(backtracksConstrained))
     # ----------------------------------------------------

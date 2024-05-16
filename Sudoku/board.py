@@ -235,6 +235,93 @@ class board:
                                         self.propagateConstraints()
 
         return numberOfHits
+    def doNakedTriples(self):
+        numberOfHits = 0
+        for row in range(9):
+            for col in range(9):
+                values = self.cells[row][col]
+                if len(values) > 1:
+                    # Check other cells in the same row for naked triples
+                    for other_col1 in range(col + 1, 9):
+                        for other_col2 in range(other_col1 + 1, 9):
+                            triple_values = values.union(self.cells[row][other_col1], self.cells[row][other_col2])
+                            if len(triple_values) == 3:
+                                # Found a naked triple, eliminate other values from these three cells in the same row
+                                for c in range(9):
+                                    if c != col and c != other_col1 and c != other_col2:
+                                        self.cells[row][c] -= triple_values
+                                        if len(self.cells[row][c]) == 1:
+                                            self.fillCell(row, c, list(self.cells[row][c])[0])
+                                            numberOfHits += 1
+                                            self.propagateConstraints()
+
+                    # Check other cells in the same column for naked triples
+                    for other_row1 in range(row + 1, 9):
+                        for other_row2 in range(other_row1 + 1, 9):
+                            triple_values = values.union(self.cells[other_row1][col], self.cells[other_row2][col])
+                            if len(triple_values) == 3:
+                                # Found a naked triple, eliminate other values from these three cells in the same column
+                                for r in range(9):
+                                    if r != row and r != other_row1 and r != other_row2:
+                                        self.cells[r][col] -= triple_values
+                                        if len(self.cells[r][col]) == 1:
+                                            self.fillCell(r, col, list(self.cells[r][col])[0])
+                                            numberOfHits += 1
+                                            self.propagateConstraints()
+
+        return numberOfHits
+    def doHiddenTriples(self):
+        numberOfHits = 0
+        for row in range(9):
+            for col in range(9):
+                values = self.cells[row][col]
+                if len(values) > 1:
+                    # Check other cells in the same row for hidden triples
+                    for other_col1 in range(col + 1, 9):
+                        for other_col2 in range(other_col1 + 1, 9):
+                            triple_values = values.union(self.cells[row][other_col1], self.cells[row][other_col2])
+                            if len(triple_values) == 3:
+                                # Found a potential hidden triple, check if other cells in the row contain these values
+                                hidden_triple_found = True
+                                for c in range(9):
+                                    if c != col and c != other_col1 and c != other_col2:
+                                        if self.cells[row][c].issubset(triple_values):
+                                            hidden_triple_found = False
+                                            break
+                                if hidden_triple_found:
+                                    # Found a hidden triple, eliminate other values from these three cells in the same row
+                                    for c in range(9):
+                                        if c != col and c != other_col1 and c != other_col2:
+                                            self.cells[row][c] -= triple_values
+                                            if len(self.cells[row][c]) == 1:
+                                                self.fillCell(row, c, list(self.cells[row][c])[0])
+                                                numberOfHits += 1
+                                                self.propagateConstraints()
+
+                    # Check other cells in the same column for hidden triples
+                    for other_row1 in range(row + 1, 9):
+                        for other_row2 in range(other_row1 + 1, 9):
+                            triple_values = values.union(self.cells[other_row1][col], self.cells[other_row2][col])
+                            if len(triple_values) == 3:
+                                # Found a potential hidden triple, check if other cells in the column contain these values
+                                hidden_triple_found = True
+                                for r in range(9):
+                                    if r != row and r != other_row1 and r != other_row2:
+                                        if self.cells[r][col].issubset(triple_values):
+                                            hidden_triple_found = False
+                                            break
+                                if hidden_triple_found:
+                                    # Found a hidden triple, eliminate other values from these three cells in the same column
+                                    for r in range(9):
+                                        if r != row and r != other_row1 and r != other_row2:
+                                            self.cells[r][col] -= triple_values
+                                            if len(self.cells[r][col]) == 1:
+                                                self.fillCell(r, col, list(self.cells[r][col])[0])
+                                                numberOfHits += 1
+                                                self.propagateConstraints()
+
+        return numberOfHits
+ 
 
     # #TEST
     # def backtrackSearch(self):
@@ -268,7 +355,6 @@ class board:
     #     return False
 
     def propagateConstraints(self):
-    # Perform constraint propagation through domain-specific inference rules
         while True:
             hits = self.doNakedSingles()
             if hits > 0:
@@ -279,9 +365,35 @@ class board:
             hits = self.doNakedPairs()
             if hits > 0:
                 continue
-            # Implement remaining inference rules similarly
+            hits = self.doHiddenPairs()
+            if hits > 0:
+                continue
+            # hits = self.doNakedTriples()
+            # if hits > 0:
+            #     continue
+            # hits = self.doHiddenTriples()
+            # if hits > 0:
+            #     continue
             break  # If no rule applies, exit the loop
-
+# while True:
+#             hits = self.doNakedSingles()
+#             if hits > 0:
+#                 continue
+#             print(hits)
+#             hits = self.doHiddenSingles()
+#             if hits > 0:
+#                 continue
+#             print(hits)
+#             hits = self.doNakedPairs()
+#             if hits > 0:
+#                 continue
+#             print(hits)
+#             hits = self.doHiddenPairs()
+#             if hits > 0:
+#                 continue
+#             print(hits)
+#             # Implement remaining inference rules similarly
+#             break  # If no rule applies, exit the loop
 # if __name__ == "__main__":
 #     my_board = board()
 #     print("forwardCheck ", my_board.forwardCheck())
