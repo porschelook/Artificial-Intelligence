@@ -92,7 +92,7 @@
 \section{Introduction}
 SuDoKu is a challenge problem, being both a puzzle and a constraint satisfaction problem. In this game, each unit (rows, columns, and boxes) must adhere to the "all-diff" constraint, meaning every digit within a unit must be unique. The 81 squares on the SuDoKu grid are akin to variables, each with a domain from 1 to 9. Depending on the problem, various cells will also be forced to certain values. 
 
-We implemented backtracking linesearch with several different levels of inference from the dynamics of the problems. 
+We implemented backtracking linesearch with several different levels of inference from the dynamics of the problems.  We iteratively added more and more advanced levels of inference as we tried more and more difficult problems. 
 
   
 \section{Environment Descriptions}
@@ -123,12 +123,20 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
 
 \section{Experimental setup}
 \subsection{Fixed  Baseline}
-
+For this case, we selected the  cell to fill in in an arbitrary, consistent order while propogating constraints forward after each action and also remoing entries filled in by hidden and naked singles inference rules. 
 \subsection{Most Constrained Variable}
+For this case, after running through all the inference rules we would select the cell with the least number of choices (after implementing our first set of inference rules this would always be at least two choices, but before then it could be 1). 
 
 \section{Results}
- \subsection{Backtracking}
-\subsection{Runtime Performance}
+We ran the easy problems through both versions of variable selection without any inference rules other than forward checking. The results of these experiments can be seen in Table ~\ref{tab:resultsEasy}. Since we achieved zero backtracks with these puzzles without any affitional inference rules, we did not rerun them with more rules.
+
+For the medium and hard puzzles, we were sometimes able to achieve no backtracking with just the singles inference rules, but not always. Those that could be solved with just the singles inference rules are found in Table~\ref{tab:firstInferences}.
+\subsection{Backtracking}
+In general, the harder problems required more complicated rules to bound the backtracking. Also, using a fixed order to fill in the cells was strictly worse than using the most-constrained variable.
+
+The experts who grade the problems seem to do a poor job of it. Some medium problems could be solved without backtracking with the same level of rules as used in the easy problems, the same for hard and medium. Also, sometimes with the same set of rules the medium problems would require more backtracking than the hard problems.
+ \subsection{Runtime Performance}
+ The solving time would either take longer than we were willing to wait for a solution, in the case that not enough rules were used, or the problem would be solved in too little time for a human to notice. 
 \begin{table}[h]\centering
   \begin{tabular}{lll}
     \toprule
@@ -171,6 +179,92 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
   \end{tabular}
   \caption{Number of backtracks for various algorithms for the easy puzzles. These algorithms did not use any of the inference rules besides forward checking. }
   \label{tab:resultsEasy}
+\end{table}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lll}
+   \toprule
+    puzzle number& Arbitrary Order Backtracks & Most Constrained Variable Backtracks\\
+    \midrule
+    2&9&0\\
+    \midrule
+    3&15&0\\
+    \midrule
+    8&15&6\\
+    \midrule
+    10&10&3\\
+    \midrule
+    11&13&2\\
+    \midrule
+    12&12&1\\
+    \midrule
+    13&21&3\\
+    \midrule
+    21&12&1\\
+    \midrule
+    22&6&2\\
+    \midrule
+    23&13&4\\
+    \midrule
+    24&16&1\\
+    \midrule
+    26&11&3\\
+    \midrule
+    31&8&0\\
+    \midrule
+    32&16&5\\
+    \midrule
+    33&10&0\\
+    \midrule
+    36&8&0\\
+    \midrule
+    37&16&2\\
+    \midrule
+    38&15&5\\
+    \midrule
+    45&8&0\\
+    \midrule
+    46&11&0\\
+    \midrule
+    47&10&0\\
+    \midrule
+    53&11&0\\
+    \midrule
+    54&11&0\\
+    \midrule
+    56&13&4\\
+    \midrule
+    57&11&1\\
+    \midrule
+    58&14&2\\
+    \midrule
+    59&13&2\\
+    \midrule
+    63&9&1\\
+    \midrule
+    64&11&2\\
+    \midrule
+    65&11&0\\
+    \midrule
+    666&14&3\\
+    \midrule
+    71&15&4\\
+    \midrule
+    72&11&4\\
+    \midrule
+    73&22&2\\
+    \midrule
+    74&14&3\\
+    \midrule
+    75&15&8\\
+    \midrule
+    76&12&3\\
+    \midrule
+    77&16&5\\
+           \bottomrule
+  \end{tabular}
+  \caption{Number of backtracks for each heuristic with the first two inference rules for various puzzles. As you can see the hard and medium difficulty level is not as well seperated, since both hard and medium puzzles show similar levels of backtracking under these rule assignments. The evil problems were not tested here because they were not solved in a resonable time.  }
+  \label{tab:firstInferences}
 \end{table}
 \section{Discussion}
 % Answer the remaining questions not answered in earlier sections
