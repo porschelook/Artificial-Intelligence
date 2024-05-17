@@ -84,7 +84,7 @@
 
 
 \begin{abstract}
-  We solved the problem of SuDoKu with backtracking search. We used both simple backtracking search and various levels of inference procedures based on increasingly complicated models of the problem. We found that increasing the complexity of the models decreased the amount of backtracking required to solve various problems. 
+  We solved the problem of SuDoKu with backtracking search. We used both simple backtracking search and various levels of inference procedures based on increasingly complicated models of the problem. We found that increasing the complexity of the models decreased the amount of backtracking required to solve various problems. We were able to solve medium and hard problems, but were unable to get the more complicated inference methods to work and were thus unable to solve the evil problems. 
  \end{abstract}
 
 \section{Introduction}
@@ -343,8 +343,7 @@ The experts who grade the problems seem to do a poor job of it. Some medium prob
   \label{tab:firstInferences}
 \end{table}
 \section{Discussion}
-% Answer the remaining questions not answered in earlier sections
-
+The problems listed as more difficult very broadly required more backtracking to solve. In addition, adding inference rules reduced the amount of backtracking required, but the most effective heuristic we found for reducing backtracking was to use most constrained variable ordering instead of an arbitrary ordering. 
 
 
   
