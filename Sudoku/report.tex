@@ -117,8 +117,62 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
  
 
 \subsection{Backtracking Search}
+
+\begin{algorithm}
+  \begin{algorithmic}
+ \If { board has no empty cells: }
+    \State return board, 0  
+  \EndIf
+  \If { not forwardCheck(board) }
+    \State return None, 0   
+  \EndIf
+       
+  \State propagateConstraints(board)
+
+  \If { board has no empty cells }
+    \State return board, 0   
+  \EndIf
   
-\label{alg:Backtracking Search}
+
+  \State (fillX, fillY) = mostConstrainedVariable(board)
+  \State backup = copy(board)
+  \State moveDomain = copy(backup.cells[fillX][fillY])
+  \State runMoves = copy(backup)
+  \State backtracks = 0
+
+
+
+  \For {move in moveDomain:}
+  \If {fillCell(runMoves, fillX, fillY, move) == -1:}
+      \State {continue }
+      \EndIf
+
+      \If {not forwardCheck(runMoves)}
+      \State {runMoves = copy(backup)}
+
+      \State {backtracks += 1}
+
+      \State {continue }
+      \EndIf
+      \State {solution, backs = recursiveConstrained(runMoves)}
+      \State {backtracks += backs}
+
+
+
+      \If {if solution is not None}
+      \State return solution, backtracks  # Return found solution
+      \EndIf
+
+      \State {runMoves = copy(backup)}
+      \State {backtracks += 1  }
+      \EndFor
+  \State return None, 0           
+    
+         \end{algorithmic}
+ \label{alg:Backtracking Search}
+ 
+
+ 
  
 
 \section{Experimental setup}
