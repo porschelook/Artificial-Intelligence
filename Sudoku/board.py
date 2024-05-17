@@ -338,6 +338,8 @@ class board:
         while True:
             #default
             hits = self.doNakedSingles()
+            if hits > 0:
+                continue
             hits = self.doHiddenSingles()
             if hits > 0:
                 continue
