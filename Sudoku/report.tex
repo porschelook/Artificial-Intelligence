@@ -1,5 +1,3 @@
-
-
 \documentclass{article}
 
 
@@ -118,7 +116,7 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
 
 \subsection{Backtracking Search}
 
-\begin{algorithm}
+
   \begin{algorithmic}
  \If { board has no empty cells: }
     \State return board, 0  
@@ -160,7 +158,7 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
 
 
       \If {if solution is not None}
-      \State return solution, backtracks  # Return found solution
+      \State return solution, backtracks
       \EndIf
 
       \State {runMoves = copy(backup)}
