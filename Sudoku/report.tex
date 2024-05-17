@@ -98,16 +98,56 @@ We implemented backtracking linesearch with several different levels of inferenc
 the board is a nine by nine grid with each row, column, and sub-three-by-three grid maintaining its own all-diff constraint. We implemented thiss with an array of sets in python. When an element was assigned to a cell, we removed that value from all the relavent neighbors. 
 \subsection{Constraint propagation}
 In the constraint propagation step, the SuDoKu board undergoes a series of rule applications in the following order. This process aims to systematically decrease the domain values associated with each variable:
+
+
+
 \begin{description}
   \item[Rule 1:] If a cell has only one value remaining in its domain, assign that value to the cell.
   \item[Rule 2:] If a value x is not present in the domain of any other cell within the same row, column, or box as a particular cell, assign x to that cell.
   \item[Rule 3:] Identify k squares within any row, column, or box, where each square shares a domain containing the same k numbers or a subset of those numbers. Then, eliminate those k numbers from the domains of all other cells within that unit. This is referred to as the "naked double" and "naked triple" rule when k=2 and k=3, respectively.
 \end{description}
 
+\begin{algorithm}[h]
+  
+  \caption{propagateConstraints}
+  \begin{algorithmic}
+\While {True}
+    \State {hits = self.doNakedSingles()}
+    \If {hits > 0:}
+        \State {continue}
+    \EndIf
+        \State {hits = self.doHiddenSingles()}
+        \If {hits > 0:}
+        \State {continue}
+    \EndIf
+    \If {self.rule == 2 or self.rule == 3:}
+    \State {hits = self.doNakedPairs()}
+    \If {hits > 0:}
+    \State {continue}
+\EndIf
+    \State {hits = self.doHiddenPairs()}
+    \If {hits > 0:}
+    \State {continue}
+    \EndIf
+\EndIf
+\If {self.rule == 3:}
+ 
 
+   
+    \State  {hits = self.doNakedTriples()}
+    \If {hits > 0:}
+    \State {continue}
+\EndIf
+            \State   {hits = self.doHiddenTriples()}
+            \If {hits > 0:}
+            \State {continue}
+        \EndIf
+        \EndIf  
+            \State  {break}  
+            \EndWhile
+\end{algorithmic}
 \label{alg:Constraint Propagation}
- 
- 
+\end{algorithm}
  
    
    
@@ -115,8 +155,12 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
  
 
 \subsection{Backtracking Search}
+Backtracking searches operate similarly to depth-first search algorithms. In each iteration, the system selects variables for configuration. This is followed by constraint propagation. If a conflict arises after the spread The algorithm will retrace the steps. Withdraw a work assignment and explore alternatives, on the other hand, if the diffusion of restrictions is successful. The search will continue and the assignment will continue. This iterative process lasts until a comprehensive assignment that meets the puzzle criteria is found. or return a failure signal
 
 
+\begin{algorithm}[h]
+  
+  \caption{Backtracking Search}
   \begin{algorithmic}
  \If { board has no empty cells: }
     \State return board, 0  
@@ -168,7 +212,8 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
     
          \end{algorithmic}
  \label{alg:Backtracking Search}
- 
+\end{algorithm}
+
 
  
  
