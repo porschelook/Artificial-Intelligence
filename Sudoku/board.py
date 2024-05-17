@@ -334,7 +334,7 @@ class board:
  
 
     def propagateConstraints(self):
-        
+        return
         while True:
             #default
             hits = self.doNakedSingles()

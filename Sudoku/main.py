@@ -153,7 +153,7 @@ if __name__ == "__main__":
     #b.buildBoard("testExample.txt")
     #b.printBoard()
     #print(b.emptyCells)
-    print('rule 1(default), 2 , 3:')
+    print('rule 1 (Naked and Hidden Singles) \nrule 2 (Naked and Hidden Singles and Pairs)  \nrule 3 (Naked and Hidden Singles, Pairs, and Triples.')
     x = input()
     b.rule=x
     
@@ -167,7 +167,7 @@ if __name__ == "__main__":
         #print(problemSet[i])
         b = board()
         b.buildBoardString(problemSet[i])
-        b.printBoard()
+        # b.printBoard()
         print("-"*12)
         '''
         for x in problemSet:
@@ -180,9 +180,11 @@ if __name__ == "__main__":
         _, backtracksSimple = recursiveSimple(b)
         # print("solvedBoard ",solvedBoard.printBoard())
         if solvedBoard == None:
-            print("not found solution <<<<<<<<<<----------------------->>>>>>>>>>>>")
+            print()
+            # print("not found solution <<<<<<<<<<----------------------->>>>>>>>>>>>")
         else:
-            solvedBoard.printBoard()
+            # solvedBoard.printBoard()
+            print()
        
         print("backtracked number of times without heuristic: " + str(backtracksSimple))
         print("backtracked number of times with heuristic: " + str(backtracksConstrained))

@@ -174,6 +174,30 @@ In the constraint propagation step, the SuDoKu board undergoes a series of rule 
  
 
 \section{Experimental setup}
+Sudoku Puzzles: Prepare a set of Sudoku puzzles of varying difficulty levels (easy, medium, hard, and expert).
+
+Inference Rules Implementation: Ensure each inference rule (Naked Singles, Hidden Singles, Naked Pairs, Hidden Pairs, Naked Triples, Hidden Triples) is implemented correctly.
+
+Rule Subsets: Define the subsets of rules to be tested:
+No inference
+Naked and Hidden Singles
+Naked and Hidden Singles and Pairs
+Naked and Hidden Singles, Pairs, and Triples
+\subsection{Inference Rules Explanation
+}
+{Naked Singles: If a cell has only one possible candidate, that candidate must be the solution for that cell.}
+
+{Hidden Singles: If a candidate appears only once in a row, column, or block, it must be the solution for that cell.}
+
+{Naked Pairs: If two cells in a unit (row, column, or block) contain the same two candidates and no others, those candidates can be removed from other cells in that unit.}
+
+{Hidden Pairs: If two candidates are the only ones that can go into two cells within a unit, those cells must contain these two candidates.}
+
+{Naked Triples: If three cells in a unit contain only the same three candidates and no others, those candidates can be removed from other cells in that unit.}
+
+{Hidden Triples: If three candidates are restricted to exactly three cells in a unit, those cells must contain these three candidates.}
+
+
 \subsection{Fixed  Baseline}
 For this case, we selected the  cell to fill in in an arbitrary, consistent order while propogating constraints forward after each action and also remoing entries filled in by hidden and naked singles inference rules. 
 \subsection{Most Constrained Variable}
