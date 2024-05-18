@@ -161,8 +161,8 @@ if __name__ == "__main__":
     for i in range(len(problemSet)):
 
     #print(problemSet[0])
-        if "Easy" in problemComments[i]:
-            continue
+        if "Evil" in problemComments[i]:
+            continue#skip the evil boards
         print(problemComments[i])
         #print(problemSet[i])
         b = board()
