@@ -12,6 +12,8 @@ NO_WALL = 0
 WALL = 1
 
 vacuum_model = None
+sizeofborad = int(input("Select size of borad (type '0' is default)\n"))
+
 model = int(input("Select Model: \n1 Simple_Agent \n2 Random_Agent \n3 ThreeBit_Agent \n"))
 numRuns=1
 match model:
@@ -41,13 +43,13 @@ timetoStop=np.zeros(numRuns)
 for run in range(numRuns):
     #restart the enviornment after each run
     if map == 1:
-        state = environment(NO_WALL)
+        state = environment(NO_WALL,sizeofborad)
 
         state.printCurrentWorld()
 
  
     if map == 2:
-        state = environment(WALL)
+        state = environment(WALL,sizeofborad)
         state.printCurrentWorld()
  
 

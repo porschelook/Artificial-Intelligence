@@ -191,6 +191,10 @@ With more memory the agent could remember all the spaces it had yet to travel to
   \end{algorithmic}\caption{The structure of the low memory agent as if-then rules}
   \label{alg:ThreeBit}
 \end{algorithm}
+
+\subsection{New agent that can look next cell denpend on input }
+new wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+
 \section{Experimental setup}
 The agent starts at the bottom left hand corner of a 10 by 10 grid facing up. It can advance one square in the direction it is facing, and can turn $90^\circ$ either direction during a time step. The agent was run for 500 time steps with the number of clean tiles recorded at each step. The random agent was run 50 times with the room and agent reset after 500 time steps each time.
 
@@ -199,6 +203,10 @@ There were two configurations of room. One configuration consisted of 10 by 10 c
 % please include more detail about the room with extra walls
 
 The room with internal walls has walls in the middle such that one room is of size 5 and the other is of size 4. There are four gaps in these internal walls right around the intersection between the walls.  The simulation was run for 500 time steps and repeated 50 times for the random agent. 
+
+
+
+
 \section{Results}
 Here we include several figures of number of clean cells vs. number of time steps.  In our experiments, the random agent took 500 steps to clean 90\% of the area of it succeeded in doing so at all. it failed to clean 90\% more than five times, so the average is also 500. This is explained in table~\ref{tab:randomPerf}
 
@@ -263,6 +271,8 @@ Here we include several figures of number of clean cells vs. number of time step
 
 We were surprised by how difficult the low-memory agent was to implement successfully and that it performed so poorly when additional walls were introduced.
 
+
+\subsection It should compare at least two different approaches and try to conclude some hypothesis: say a method X works better than Y under these conditions. 
 
 
 

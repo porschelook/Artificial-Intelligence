@@ -41,38 +41,75 @@ class environment:
 
     UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face in an order such that +1 is clockwise and -1 is counterclockwise
     INITIAL_DIRECTION=UP
-    
-    def __init__(self,wall):
-        self.rooms = [[room(f"room {i}-{j}") for j in range(10)] for i in range(10)]
-        UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face
-        self.INITIAL_X = 0 #start point
-        self.INITIAL_Y = 9 #start point
-        self.INITIAL_DIRECTION=UP
-
-        self.ROOM_DIMENSION=10
-        self.Total_clean = 0
-        self.Total_action = 0
-
-        self.current_x = self.INITIAL_X #start point
-        self.current_y = self.INITIAL_Y #start point
-        self.current_direction=self.INITIAL_DIRECTION #start direction
+    size_Board = 10 #default
+    def __init__(self,wall,sizeBoard):
         
-        self.Iswall = wall
 
-        wallPosition = int(self.ROOM_DIMENSION/2)
-        print(self.ROOM_DIMENSION/2)
-        if self.Iswall == WALL:
-            print("asdasd")
-            for i in range(0, self.ROOM_DIMENSION):
-                # set Wall
-                self.rooms[wallPosition][i].IsDoor = 0
-                self.rooms[i][wallPosition].IsDoor = 0
-        # set Door
-        
-        self.rooms[5][self.door1].IsDoor = 1
-        self.rooms[5][self.door2].IsDoor = 1
-        self.rooms[self.door1][5].IsDoor = 1
-        self.rooms[self.door2][5].IsDoor = 1
+        if sizeBoard > 0:
+                print("new")   
+                self.rooms = [[room(f"room {i}-{j}") for j in range(sizeBoard)] for i in range(sizeBoard)]  
+                UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face
+                self.INITIAL_X = 0 #start point
+                self.INITIAL_Y = sizeBoard-1 #start point
+                self.INITIAL_DIRECTION=UP
+                self.ROOM_DIMENSION=sizeBoard
+                self.Total_clean = 0
+                self.Total_action = 0
+                self.current_x = self.INITIAL_X #start point
+                self.current_y = self.INITIAL_Y #start point
+                self.current_direction=self.INITIAL_DIRECTION #start direction
+                self.Iswall = wall
+                wallPosition = int(self.ROOM_DIMENSION/2)
+                self.size_Board =  sizeBoard
+                print(self.ROOM_DIMENSION/2)
+                if self.Iswall == WALL:
+                
+                        print("asdasd")
+                        for i in range(0, self.ROOM_DIMENSION):
+                                # set Wall
+                                self.rooms[wallPosition][i].IsDoor = 0
+                                self.rooms[i][wallPosition].IsDoor = 0
+                        # set Door
+                        
+                        self.rooms[5][self.door1].IsDoor = 1
+                        self.rooms[5][self.door2].IsDoor = 1
+                        self.rooms[self.door1][5].IsDoor = 1
+                        self.rooms[self.door2][5].IsDoor = 1
+
+
+        else:
+                print("default")   
+                self.rooms = [[room(f"room {i}-{j}") for j in range(10)] for i in range(10)]
+                UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face
+                self.INITIAL_X = 0 #start point
+                self.INITIAL_Y = 9 #start point
+                self.INITIAL_DIRECTION=UP
+
+                self.ROOM_DIMENSION=10
+                self.Total_clean = 0
+                self.Total_action = 0
+
+                self.current_x = self.INITIAL_X #start point
+                self.current_y = self.INITIAL_Y #start point
+                self.current_direction=self.INITIAL_DIRECTION #start direction
+                
+                self.Iswall = wall
+
+                wallPosition = int(self.ROOM_DIMENSION/2)
+                print(self.ROOM_DIMENSION/2)
+                if self.Iswall == WALL:
+                
+                        print("asdasd")
+                        for i in range(0, self.ROOM_DIMENSION):
+                                # set Wall
+                                self.rooms[wallPosition][i].IsDoor = 0
+                                self.rooms[i][wallPosition].IsDoor = 0
+                        # set Door
+                        
+                        self.rooms[5][self.door1].IsDoor = 1
+                        self.rooms[5][self.door2].IsDoor = 1
+                        self.rooms[self.door1][5].IsDoor = 1
+                        self.rooms[self.door2][5].IsDoor = 1
         
         self.printCurrentWorld()
 
@@ -127,7 +164,7 @@ class environment:
         
         if test_x<0 or test_y<0:
                 return True
-        if test_x>=10 or test_y>=10:
+        if test_x>=self.size_Board or test_y>=self.size_Board:
                 return True
         
          
@@ -160,7 +197,7 @@ class environment:
         
         if test_x<0 or test_y<0:
                 return True
-        if test_x>=10 or test_y>=10:
+        if test_x>=self.size_Board or test_y>=self.size_Board:
                 return True
         
         
@@ -184,8 +221,8 @@ class environment:
         #self.rooms[5][7].Isclean = 1 #test clean print
         if self.Iswall == WALL:
             print("--------------------------------")
-            for i in range(0, 10):
-                for j in range(0, 10):
+            for i in range(0, self.size_Board):
+                for j in range(0, self.size_Board):
                     if x == j and y == i:
                         print("R ", end="") 
                         continue
@@ -202,8 +239,8 @@ class environment:
 
         else:
             print("--------------------------------")
-            for i in range(0, 10):
-                for j in range(0, 10):
+            for i in range(0, self.size_Board):
+                for j in range(0, self.size_Board):
                     if x == j and y == i:
                         print("R ", end="") 
                         continue
