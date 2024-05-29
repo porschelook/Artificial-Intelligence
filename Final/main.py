@@ -11,7 +11,7 @@ import numpy as np
 
 NO_WALL = 0
 WALL = 1
-
+RANDOMWALL= 2
 vacuum_model = None
 sizeofborad = int(input("Select size of borad (type '0' is default)\n"))
 
@@ -39,7 +39,7 @@ match model:
         numRuns=1
         #set the model to be the newwwwwwwwww one
 
-map = int(input("NoWall 1 \nWall 2\n"))
+map = int(input("NoWall 1 \nWall 2 \nRandom_Wall 3\n"))
 
 #run a fixed number of steps. 500 should be good
 
@@ -49,7 +49,6 @@ for run in range(numRuns):
     #restart the enviornment after each run
     if map == 1:
         state = environment(NO_WALL,sizeofborad)
-
         state.printCurrentWorld()
 
  
@@ -57,6 +56,9 @@ for run in range(numRuns):
         state = environment(WALL,sizeofborad)
         state.printCurrentWorld()
  
+    if map == 3: 
+        state = environment(RANDOMWALL,sizeofborad)
+        state.printCurrentWorld()
 
     stop = int(state.ROOM_DIMENSION*state.ROOM_DIMENSION*0.90)
     for i in range(500):
