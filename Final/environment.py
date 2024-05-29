@@ -66,11 +66,15 @@ class environment:
                 
                         print("asdasd")
                         for i in range(0, self.ROOM_DIMENSION):
+                                randX = random.randint(0, sizeBoard-1)
+                                randY = random.randint(0, sizeBoard-1)
+                                
                                 # set Wall
-                                self.rooms[wallPosition][i].IsDoor = 0
-                                self.rooms[i][wallPosition].IsDoor = 0
+                                self.rooms[randX][randY].IsDoor = 0
+                                self.rooms[randY][randX].IsDoor = 0
+                                # self.rooms[wallPosition][i].IsDoor = 0
+                                # self.rooms[i][wallPosition].IsDoor = 0
                         # set Door
-                        
                         self.rooms[5][self.door1].IsDoor = 1
                         self.rooms[5][self.door2].IsDoor = 1
                         self.rooms[self.door1][5].IsDoor = 1
