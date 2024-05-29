@@ -5,6 +5,7 @@ from simpleAgent import *
 from RandomAgent import *
 from lowmemoryAgent import *
 from threeBitAgent import *
+from NewAgent import *
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -14,7 +15,7 @@ WALL = 1
 vacuum_model = None
 sizeofborad = int(input("Select size of borad (type '0' is default)\n"))
 
-model = int(input("Select Model: \n1 Simple_Agent \n2 Random_Agent \n3 ThreeBit_Agent \n"))
+model = int(input("Select Model: \n1 Simple_Agent \n2 Random_Agent \n3 ThreeBit_Agent \n4 NewAgent\n"))
 numRuns=1
 match model:
     case 1:
@@ -32,7 +33,11 @@ match model:
         vacuum_model=threeBitAgent()
         numRuns=1
         #set the model to be a small-memory agent
- 
+    case 4:
+        print("model_4")
+        vacuum_model=NewAgent()
+        numRuns=1
+        #set the model to be the newwwwwwwwww one
 
 map = int(input("NoWall 1 \nWall 2\n"))
 
