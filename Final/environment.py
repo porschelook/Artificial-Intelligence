@@ -43,7 +43,7 @@ class environment:
     INITIAL_DIRECTION=UP
     size_Board = 10 #default
     def __init__(self,wall,sizeBoard):
-        self.scanDistance=5
+        self.scanDistance=2
 
         if sizeBoard > 0:
             print("new")
