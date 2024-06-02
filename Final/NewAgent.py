@@ -1,10 +1,11 @@
 from environment import *
-class Agent:
-    def stepProgram(self,environment):
-        return
 
 
 class NewAgent(Agent):
+    def __init__(self, enviornment):# needs to generate the plan before it executes it
+        #extract list of walls, build new architecture that captures belief states.
+        
+        
     def stepProgram(self,environment):
         # from simple agent **********************************************************
         
