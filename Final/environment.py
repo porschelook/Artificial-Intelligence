@@ -21,6 +21,7 @@ class room:
 
     def __init__(self, name):
         self.name = name
+        self.Isclean=random.randrange(2)-1
 
 
 # define the room and the robot inside it.
