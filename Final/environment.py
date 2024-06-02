@@ -43,7 +43,7 @@ class environment:
     INITIAL_DIRECTION=UP
     size_Board = 10 #default
     def __init__(self,wall,sizeBoard):
-        
+        self.scanDistance=5
 
         if sizeBoard > 0:
                 print("new")   
@@ -116,7 +116,39 @@ class environment:
                         self.rooms[self.door2][5].IsDoor = 1
         
         self.printCurrentWorld()
+    def scan(self):
+        if self.current_direction == environment.UP:
+            startIndex=self.current_y
+            endIndex=max(0,self.current_y-self.scanDistance)
+            scanList=[]
+            for i in range(startIndex,endIndex,-1):
+                scanList.append(self.rooms[i][self.current_x])
+            return scanList
+        if self.current_direction == environment.DOWN:
+            startIndex=self.current_y
+            endIndex=min(self.size_Board-1,self.current_y+self.scanDistance)
+            scanList=[]
+            for i in range(startIndex,endIndex,1):
+                    scanList.append(self.rooms[i][self.current_x])
+            return scanList
+        if self.current_direction == environment.RIGHT:
+            startIndex=self.current_x
+            endIndex=min(self.sizeBoard-1,self.current_x+self.scanDistance)
+            scanList=[]
+            for i in range(startIndex,endIndex,1):
+                scanList.append(self.rooms[self.current_y][i])
+            return scanList
 
+        if self.current_direction == environment.LEFT:
+            startIndex=self.current_x
+            endIndex=max(0,self.current_x-self.scanDistance)
+            scanList=[]
+            for i in range(startIndex,endIndex,-1):
+                scanList.append(self.rooms[self.current_y][i])
+            return scanList
+                self.current_x-=1
+        
+        
     def advance(self):
             #moves based on stored orientation
         if self.current_direction == environment.UP:
