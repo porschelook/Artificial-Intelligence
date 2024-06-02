@@ -165,7 +165,6 @@ class environment:
             for i in range(startIndex,endIndex,-1):
                 scanList.append(self.rooms[self.current_y][i])
             return scanList
-                self.current_x-=1
         
         
     def advance(self):
