@@ -210,7 +210,7 @@ class environment:
         if self.current_direction == environment.LEFT:
             test_x = self.current_x - 1
         if self.Iswall == WALL:
-
+            
             if test_x == 5:
                 if test_y != self.door1 or test_y != self.door2:
                     return True
@@ -242,7 +242,20 @@ class environment:
         print("detectWall")
         print("test_x : ", test_x)
         print("test_y : ", test_y)
+        if self.Iswall == RANDOMWALL:
+            if test_x < self.size_Board and test_y < self.size_Board and test_x >= 0 and test_y >= 0 :
+                print(self.rooms[test_y][test_x].IsDoor )
+                if  self.rooms[test_y ][ test_x].IsDoor == 0 :
+                    print("F_WALLLLLLLLL")
+                    return True
+            if test_x < 0 or test_y < 0:
+                return True
+            if test_x >= self.size_Board or test_y >= self.size_Board:
+                return True     
+            
         if self.Iswall == WALL:
+            
+           
             if test_x == 5:
                 if test_y != self.door1 and test_y != self.door2:
                     return True
@@ -286,7 +299,7 @@ class environment:
                         if self.rooms[i][j].Isclean == False:
                             print("* ", end="")
                         else:
-                            print("  ", end="")
+                            print("C ", end="")
                 print("\n")
 
             print("--------------------------------")
