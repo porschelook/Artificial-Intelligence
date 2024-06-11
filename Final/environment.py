@@ -42,6 +42,42 @@ class environment:
     UP,RIGHT,DOWN,LEFT=range(4)#define directions robot can face in an order such that +1 is clockwise and -1 is counterclockwise
     INITIAL_DIRECTION=UP
     size_Board = 10 #default
+
+    
+    countCell = 0
+    # def CheckCanPassThroughAllCell(self,x,y):
+    #         if self.countCell >= 3:
+    #             return False
+    #         if x < 0:
+    #             self.countCell+=1
+    #             return False
+    #         if y < 0:
+    #             self.countCell+=1
+    #             return False
+    #         if x >= self.size_Board:
+    #             self.countCell+=1
+    #             return False
+    #         if y >= self.size_Board:   
+    #             self.countCell+=1 
+    #             return False
+            
+    #         if self.rooms[x][y+1].IsDoor == 0:
+    #             self.countCell+=1
+    #             CheckCanPassThroughAllCell(x,y+1)
+    #         if self.rooms[x][y-1].IsDoor == 0:
+    #             self.countCell+=1
+    #             CheckCanPassThroughAllCell(x,y-1)
+
+    #         if self.rooms[x+1][y].IsDoor == 0:
+    #             self.countCell+=1
+    #             CheckCanPassThroughAllCell(x+1,y)
+
+    #         if self.rooms[x-1][y].IsDoor == 0:  
+    #             self.countCell+=1  
+    #             CheckCanPassThroughAllCell(x-1,y)
+
+
+    #         return True
     def __init__(self,wall,sizeBoard):
         self.scanDistance=2
 
@@ -76,19 +112,23 @@ class environment:
                 self.rooms[self.door1][5].IsDoor = 1
                 self.rooms[self.door2][5].IsDoor = 1
             if self.Iswall == RANDOMWALL:
-                for i in range(0, self.ROOM_DIMENSION):
+                for i in range(0, self.ROOM_DIMENSION+10):
                     randX = random.randint(0, self.size_Board - 1)
                     randY = random.randint(0, self.size_Board - 1)
+
+                    # print(CheckCanPassThroughAllCell(randX,randY))
+
                     # set Wall
                     self.rooms[randX][randY].IsDoor = 0
-                    self.rooms[randY][randX].IsDoor = 0
+                    #self.rooms[randY][randX].IsDoor = 0
                     # self.rooms[wallPosition][i].IsDoor = 0
                     # self.rooms[i][wallPosition].IsDoor = 0
                 # set Door
-                self.rooms[5][self.door1].IsDoor = 1
-                self.rooms[5][self.door2].IsDoor = 1
-                self.rooms[self.door1][5].IsDoor = 1
-                self.rooms[self.door2][5].IsDoor = 1
+                self.rooms[self.ROOM_DIMENSION//2][self.ROOM_DIMENSION//2-1].IsDoor = 1
+                self.rooms[self.ROOM_DIMENSION//2][self.ROOM_DIMENSION//2+1].IsDoor = 1
+                self.rooms[self.ROOM_DIMENSION//2-1][self.ROOM_DIMENSION//2].IsDoor = 1
+                self.rooms[self.ROOM_DIMENSION//2+1][self.ROOM_DIMENSION//2].IsDoor = 1
+                self.rooms[self.INITIAL_X][self.INITIAL_Y].IsDoor = 1 #can not be the start position
 
         else:
             print("default")
@@ -120,14 +160,15 @@ class environment:
                 self.rooms[5][self.door2].IsDoor = 1
                 self.rooms[self.door1][5].IsDoor = 1
                 self.rooms[self.door2][5].IsDoor = 1
+                
             if self.Iswall == RANDOMWALL:
-                for i in range(0, self.ROOM_DIMENSION):
+                for i in range(0, self.ROOM_DIMENSION+10):
                     randX = random.randint(0, self.size_Board - 1)
                     randY = random.randint(0, self.size_Board - 1)
 
                     # set Wall
                     self.rooms[randX][randY].IsDoor = 0
-                    self.rooms[randY][randX].IsDoor = 0
+                    #self.rooms[randY][randX].IsDoor = 0
                     # self.rooms[wallPosition][i].IsDoor = 0
                     # self.rooms[i][wallPosition].IsDoor = 0
                 # set Door
@@ -136,6 +177,9 @@ class environment:
                 self.rooms[self.door1][5].IsDoor = 1
                 self.rooms[self.door2][5].IsDoor = 1
         self.printCurrentWorld()
+    
+        
+    
     def scan(self):
         if self.current_direction == environment.UP:
             startIndex=self.current_y
@@ -210,7 +254,7 @@ class environment:
         if self.current_direction == environment.LEFT:
             test_x = self.current_x - 1
         if self.Iswall == WALL:
-
+            
             if test_x == 5:
                 if test_y != self.door1 or test_y != self.door2:
                     return True
@@ -242,7 +286,20 @@ class environment:
         print("detectWall")
         print("test_x : ", test_x)
         print("test_y : ", test_y)
+        if self.Iswall == RANDOMWALL:
+            if test_x < self.size_Board and test_y < self.size_Board and test_x >= 0 and test_y >= 0 :
+                print(self.rooms[test_y][test_x].IsDoor )
+                if  self.rooms[test_y ][ test_x].IsDoor == 0 :
+                    print("F_WALLLLLLLLL")
+                    return True
+            if test_x < 0 or test_y < 0:
+                return True
+            if test_x >= self.size_Board or test_y >= self.size_Board:
+                return True     
+            
         if self.Iswall == WALL:
+            
+           
             if test_x == 5:
                 if test_y != self.door1 and test_y != self.door2:
                     return True
@@ -286,7 +343,7 @@ class environment:
                         if self.rooms[i][j].Isclean == False:
                             print("* ", end="")
                         else:
-                            print("  ", end="")
+                            print("- ", end="")
                 print("\n")
 
             print("--------------------------------")
@@ -305,7 +362,7 @@ class environment:
                         if self.rooms[i][j].Isclean == False:
                             print("* ", end="")
                         else:
-                            print("C ", end="")
+                            print("- ", end="")
                 print("\n")
 
             print("--------------------------------")
