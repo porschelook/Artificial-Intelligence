@@ -7,7 +7,7 @@ class VacuumAgent:
         self.cols = len(environment[0])
         self.current_position = (0, 0)  # Starting position
         self.actions = [(0, 1), (0, -1), (1, 0), (-1, 0)]  # Up, Down, Right, Left
-        
+        self.num_actions = 0  # Counter for number of actions taken
     def is_valid_position(self, position):
         x, y = position
         return 0 <= x < self.rows and 0 <= y < self.cols and self.environment[x][y] != 'W'
@@ -44,6 +44,7 @@ class VacuumAgent:
                     # Clean the current position
                     self.environment[current_position[0]][current_position[1]] = 'C'
                     print(f"Cleaned position {current_position}")
+                    self.num_actions += 1  # Increment action counter
                     # Continue searching for other D cells
                     break  # Exit the inner loop to re-evaluate the environment
                 
@@ -54,8 +55,9 @@ class VacuumAgent:
                         new_cost = total_cost + self.cost(current_position, new_position)
                         priority = new_cost + self.heuristic(new_position)
                         heapq.heappush(frontier, (priority, new_position))
-        
-        print("Cleaning complete.")
+                        self.num_actions += 1  # Increment action counter
+
+        print(f"Cleaning complete. Total actions taken: {self.num_actions}")
     
     def has_dirty_cells(self):
         # Check if there are any D cells left in the environment
@@ -69,7 +71,7 @@ class VacuumAgent:
 environment_with_walls = [
     ['C', 'D', 'W', 'C'],
     ['C', 'W', 'C', 'D'],
-    ['D', 'D', 'C', 'W'],
+    ['D', 'D', 'C', 'D'],
     ['C', 'C', 'W', 'C']
 ]
 
