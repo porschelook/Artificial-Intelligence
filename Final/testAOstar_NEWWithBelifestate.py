@@ -181,11 +181,11 @@ grid = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 1, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0],
     [0, 1, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0],
 ]
 start = (0, 0)
 # Create grid world and find the path to clean all cells using Straight-Line algorithm
@@ -195,6 +195,7 @@ straight_line_path, straight_line_actions = straight_line_cleaner.clean_grid()
 # Print the path on the grid and the number of actions for Straight-Line algorithm
 print("Straight-Line Path found:")
 print_map(grid, straight_line_path, straight_line_cleaner.belief_grid)
+print(straight_line_path)
 print(f"Number of actions taken by Straight-Line: {straight_line_actions}")
 
 # Create grid world and find the path to clean all cells using AO* algorithm
@@ -205,6 +206,7 @@ ao_star_path, ao_star_actions = ao_star_clean_all(grid_world)
 if ao_star_path:
     print("\nAO* Path found:")
     print_map(grid, ao_star_path, grid_world.belief_grid)
+    print(ao_star_path)
     print(f"Number of actions taken by AO*: {ao_star_actions}")
 else:
     print("No path found by AO*.")
