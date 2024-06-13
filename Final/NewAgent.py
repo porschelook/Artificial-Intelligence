@@ -168,7 +168,15 @@ class BeliefNode:
             return self#don't go into a wall
 
         return result.scan()
-    
+
+    def turnLeft(self):
+        result=self.copy()
+        result.currentFacing=(result.currentFacing-1)%4
+        return result.scan()
+    def turnRight(self):
+        result=self.copy()
+        result.currentFacing=(result.currentFacing+1)%4
+        return result.scan()
 class NewAgent(Agent):
     def __init__(self, env):# needs to generate the plan before it executes it
         self.beliefSpace=[BeliefNode(env)]
