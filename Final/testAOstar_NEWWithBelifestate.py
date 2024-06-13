@@ -109,7 +109,73 @@ def print_map(grid, path, belief_grid):
                 print("?", end=" ")
         print()
 
+class StraightLineCleaner:
+    def __init__(self, grid, start):
+        self.grid = grid
+        self.start = start
+        self.n = len(grid)
+        self.belief_grid = [['?' for _ in range(self.n)] for _ in range(self.n)]
+        self.belief_grid[start[0]][start[1]] = '0'  # Starting position is known to be empty
+        self.cleaned_cells = set([start])
+        self.actions = 0
 
+    def is_within_bounds(self, position):
+        x, y = position
+        return 0 <= x < self.n and 0 <= y < self.n
+
+    def is_obstacle(self, position):
+        x, y = position
+        return self.grid[x][y] == 1
+
+    def move(self, position, direction):
+        dx, dy = MOVEMENTS[direction]
+        new_pos = (position[0] + dx, position[1] + dy)
+        if self.is_within_bounds(new_pos):
+            if self.grid[new_pos[0]][new_pos[1]] == 1:
+                self.belief_grid[new_pos[0]][new_pos[1]] = 'X'  # Update belief grid with obstacle
+            else:
+                self.cleaned_cells.add(new_pos)
+                self.belief_grid[new_pos[0]][new_pos[1]] = '0'
+            return new_pos
+        return position
+
+    def clean_grid(self):
+        position = self.start
+        path = [position]
+        for i in range(self.n):
+            for j in range(self.n):
+                new_pos = (i, j)
+                if self.is_within_bounds(new_pos) and not self.is_obstacle(new_pos):
+                    while position != new_pos:
+                        if position[1] < new_pos[1]:  # Move Right
+                            position = self.move(position, 'E')
+                        elif position[1] > new_pos[1]:  # Move Left
+                            position = self.move(position, 'W')
+                        elif position[0] < new_pos[0]:  # Move Down
+                            position = self.move(position, 'S')
+                        elif position[0] > new_pos[0]:  # Move Up
+                            position = self.move(position, 'N')
+                        self.actions += 1
+                        path.append(position)
+        return path, self.actions
+
+# Function to print the grid with the path and belief state
+def print_map(grid, path, belief_grid):
+    path_set = set(path)
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if (i, j) in path_set:
+                print("P", end=" ")
+            elif belief_grid[i][j] == 'X':
+                print("X", end=" ")
+            elif belief_grid[i][j] == '0':
+                print("0", end=" ")
+            else:
+                print("?", end=" ")
+        print()
+
+# Example grid (0 = empty, 1 = obstacle)
+ 
 # Example grid (0 = empty, 1 = obstacle)
 grid = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -122,15 +188,37 @@ grid = [
     [0, 0, 1, 0, 0, 0, 0, 0],
 ]
 start = (0, 0)
+# Create grid world and find the path to clean all cells using Straight-Line algorithm
+straight_line_cleaner = StraightLineCleaner(grid, start)
+straight_line_path, straight_line_actions = straight_line_cleaner.clean_grid()
 
-# Create grid world and find the path to clean all cells
+# Print the path on the grid and the number of actions for Straight-Line algorithm
+print("Straight-Line Path found:")
+print_map(grid, straight_line_path, straight_line_cleaner.belief_grid)
+print(f"Number of actions taken by Straight-Line: {straight_line_actions}")
+
+# Create grid world and find the path to clean all cells using AO* algorithm
 grid_world = Grid(grid, start)
-path, actions = ao_star_clean_all(grid_world)
+ao_star_path, ao_star_actions = ao_star_clean_all(grid_world)
 
-# Print the path on the grid and the number of actions
-if path:
-    print("Path found:")
-    print_map(grid, path, grid_world.belief_grid)
-    print(f"Number of actions taken: {actions}")
+# Print the path on the grid and the number of actions for AO* algorithm
+if ao_star_path:
+    print("\nAO* Path found:")
+    print_map(grid, ao_star_path, grid_world.belief_grid)
+    print(f"Number of actions taken by AO*: {ao_star_actions}")
 else:
-    print("No path found.")
+    print("No path found by AO*.")
+
+
+
+# # Create grid world and find the path to clean all cells
+# grid_world = Grid(grid, start)
+# path, actions = ao_star_clean_all(grid_world)
+
+# # Print the path on the grid and the number of actions
+# if path:
+#     print("Path found:")
+#     print_map(grid, path, grid_world.belief_grid)
+#     print(f"Number of actions taken: {actions}")
+# else:
+#     print("No path found.")
