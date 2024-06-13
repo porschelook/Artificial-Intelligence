@@ -21,6 +21,7 @@ class BeliefNode:
             return
         
         #extract list of walls, build new architecture that captures belief states.
+        #fill in walls with the symbol w
         #for now there are no walls
         self.beliefCells=[[{0,1} for cell in row] for row in env.rooms]
         self.current_x=env.current_x
@@ -42,11 +43,37 @@ class BeliefNode:
         out.height=len(self.beliefCells)
         out.width=len(self.beliefCells[1])
         return out
-        
+    def __hash__(self):
+        has="("+str(self.current_x)+","+str(self.current_y)+","+str(self.currentFacing)+");\n"
+        for row in self.beliefCells:
+            
+            for item in row:
+                if item=={1,0}:
+                    has+="?"
+                else:
+                    has+=str(item)
+            has+="\n"
+
+        return hash(has)
+    def __eq__(self,other):
+        return self.__hash__()==other.__hash__()
+    '''    
+    def __eq__(self,other):
+        if self.current_x!=other.current_x:
+            return False
+        if self.current_y!=other.current_y:
+            return False
+        if self.currentFacing!=other.currentFacing:
+            return False
+        for i in range(self.width):
+            for j in range(self.height):
+                if self.beliefCells[i][j]!=other..beliefCells[i][j]:
+                    return False
+        return True
+    '''
                
     #This will return a set of states based on all posibilities of the scanning operation
     def scan(self):
-        #TODO remove randomization from states already known
         out=[]
         if self.currentFacing==Up:
             selectx=self.current_x
@@ -110,7 +137,38 @@ class BeliefNode:
                     j+=1
                 out.append(additionalElement)
             return out
-           
+        #define all the actions, turning and advancing (which automatically scans), and cleaning
+    def clean(self):
+        out=self.copy()
+        out.beliefCells[self.current_y][self.current_x]=0
+        return out
+    def advance(self):
+        # moves based on stored orientation
+        result=self.copy()
+        if self.currentFacing == Up:
+            result.current_y -= 1
+        if self.currentFacing == Down:
+            result.current_y += 1
+        if self.currentFacing == Right:
+            result.current_x += 1
+        if self.currentFacing == Left:
+            result.current_x -= 1
+        # fix position to be within bounds
+        if result.current_y < 0:
+            return self
+        
+        if result.current_x <0:
+            return self
+        if result.current_y >=self.height:
+            return self
+        if result.current_x >= self.width:
+            return self
+        # Next is to fix the robot from encountering a wall in the middle of the field
+        if result.beliefCells[result.current_y][result.current_x]=="w":
+            return self#don't go into a wall
+
+        return result.scan()
+    
 class NewAgent(Agent):
     def __init__(self, env):# needs to generate the plan before it executes it
         self.beliefSpace=[BeliefNode(env)]

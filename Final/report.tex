@@ -84,11 +84,14 @@
 
 
 \begin{abstract}
- This will be finished after we have the results.
+
 \end{abstract}
 
 \section{Introduction}
 In this paper we present performance of three different autonomous agents that control a simulated robot vacuum in two different configurations of room. The robot vacuum is assumed to have a perfect sensors and can perfectly navigate and clean individual squares of a 10 by 10 grid. The room begins completely covered in dirt and the goal of the agents is to clean as much of the room as fast as possible.  compared
+
+
+We note that even on a $3\times 3$ board, there are at least $2^9$ possible belief states. This means that producing a complete plan is not feasible for reasonable problems in reasonable time. 
 \section{Agent Descriptions}
 The available actions of the agent are to clean the square it is on, to move forward one square, to turn left (counter clockwise) $90^\circ$, to turn right (clockwise) $90^\circ$, and to turn off. Since there is no cost for making actions, no agent that we designed was instructed to turn off.
 
