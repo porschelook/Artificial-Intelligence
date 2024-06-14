@@ -194,22 +194,30 @@ class NewAgent(Agent):
         
     #it is valid in this case to have a map from belief states to actions because repeated belief states will never occur.  In other words, detect cycles by returning to the same belief state
     def AndOrSearch(self):
+        #this uses iterative deepening
         #start with and search instead because the first action will be scan
         plan={self.beliefSpace:"scan"}
-        plan=self.AndSearch(self.beliefSpace.scan(),plan,set())
+        lim=1
+        plan=self.AndSearch(self.beliefSpace.scan(),plan,set(),lim)
+        while plan is None:
+            lim+=1
+            plan={self.beliefSpace:"scan"}
+            plan=self.AndSearch(self.beliefSpace.scan(),plan,set(),lim)
         return plan
-    def AndSearch(self,states,plan,path):
+    def AndSearch(self,states,plan,path,depthlim):
+        if depthlim<0:
+            return None#went too deep
         output={}#new dictionary
         print(states)
         if states is None:#this detects wall collisions
             return None
         for state in states:
-            partialPlan=self.OrSearch(state,plan,path)
+            partialPlan=self.OrSearch(state,plan,path,depthlim-1)
             if partialPlan is None:
                 return None
             output.update(partialPlan)#append plan together
         return output
-    def OrSearch(self,state,plan,path):
+    def OrSearch(self,state,plan,path,depthlim):
         if state in path:
             return None
         
@@ -226,25 +234,25 @@ class NewAgent(Agent):
         #try each action, but only if it is useful
         if state.currentCellDirty():
             
-            NewPlan = self.AndSearch([state.clean()],plan,newPath)
+            NewPlan = self.AndSearch([state.clean()],plan,newPath,depthlim)
             if NewPlan is not None:
                 output= copy.deepcopy(NewPlan)
                 output[state]="clean"#append to the plan
                 return output
         #try advancing, if it would reach a wall that will be detected elsewhere
-        NewPlan = self.AndSearch(state.advance(),plan,newPath)
+        NewPlan = self.AndSearch(state.advance(),plan,newPath,depthlim)
         if NewPlan is not None:
             output= copy.deepcopy(NewPlan)
             output[state]="advance"#append to the plan
             return output
         #try turning right
-        NewPlan = self.AndSearch(state.turnRight(),plan,newPath)
+        NewPlan = self.AndSearch(state.turnRight(),plan,newPath,depthlim)
         if NewPlan is not None:
             output= copy.deepcopy(NewPlan)
             output[state]="right"#append to the plan
             return output
         #left
-        NewPlan = self.AndSearch(state.turnLeft(),plan,newPath)
+        NewPlan = self.AndSearch(state.turnLeft(),plan,newPath,depthlim)
         if NewPlan is not None:
             output= copy.deepcopy(NewPlan)
             output[state]="left"#append to the plan
