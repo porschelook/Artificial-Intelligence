@@ -79,7 +79,7 @@ class BeliefNode:
             selectx=self.current_x
             starty=self.current_y
             endy=max(0,self.current_y-self.scanDistance)
-            perms=itertools.product([0,1],repeat=starty-endy)
+            perms=itertools.product([0,1],repeat=abs(starty-endy))
             for item in perms:
                 additionalElement=self.copy()
                 j=0
@@ -97,7 +97,7 @@ class BeliefNode:
             selectx=self.current_x
             starty=self.current_y
             endy=min(self.height,self.current_y+self.scanDistance)
-            perms=itertools.product([0,1],repeat=starty-endy)
+            perms=itertools.product([0,1],repeat=abs(starty-endy))
             for item in perms:
                 additionalElement=self.copy()
                 j=0
@@ -112,11 +112,11 @@ class BeliefNode:
             selecty=self.current_y
             startx=self.current_x
             endx=max(0,self.current_x-self.scanDistance)
-            perms=itertools.product([0,1],repeat=startx-endx)
+            perms=itertools.product([0,1],repeat=abs(startx-endx))
             for item in perms:
                 additionalElement=self.copy()
                 j=0
-                for x in range(starty,endy, -1):
+                for x in range(startx,endx, -1):
                     if (additionalElement.beliefCells[selecty][x])=={1,0}:
                         additionalElement.beliefCells[selecty][x]=item[j]
                     j+=1
@@ -127,17 +127,24 @@ class BeliefNode:
             selecty=self.current_y
             startx=self.current_x
             endx=min(self.width,self.current_x+self.scanDistance)
-            perms=itertools.product([0,1],repeat=startx-endx)
+            perms=itertools.product([0,1],repeat=abs(startx-endx))
             for item in perms:
                 additionalElement=self.copy()
                 j=0
-                for x in range(starty,endy, 1):
+                for x in range(startx,endx, 1):
                     if (additionalElement.beliefCells[selecty][x])=={1,0}:
                         additionalElement.beliefCells[selecty][x]=item[j]
                     j+=1
                 out.append(additionalElement)
             return out
         #define all the actions, turning and advancing (which automatically scans), and cleaning
+    def isGoal(self):
+        for row in self.beliefCells:
+                    
+            for item in row:
+                if item!=0:
+                    return False
+        return True
     def clean(self):
         out=self.copy()
         out.beliefCells[self.current_y][self.current_x]=0
@@ -155,17 +162,17 @@ class BeliefNode:
             result.current_x -= 1
         # fix position to be within bounds
         if result.current_y < 0:
-            return self
+            return None
         
         if result.current_x <0:
-            return self
+            return None
         if result.current_y >=self.height:
-            return self
+            return None
         if result.current_x >= self.width:
-            return self
+            return None
         # Next is to fix the robot from encountering a wall in the middle of the field
         if result.beliefCells[result.current_y][result.current_x]=="w":
-            return self#don't go into a wall
+            return None#don't go into a wall
 
         return result.scan()
 
@@ -177,9 +184,67 @@ class BeliefNode:
         result=self.copy()
         result.currentFacing=(result.currentFacing+1)%4
         return result.scan()
+    def currentCellDirty(self):
+        return self.beliefCells[self.current_y][self.current_x]==1
 class NewAgent(Agent):
     def __init__(self, env):# needs to generate the plan before it executes it
-        self.beliefSpace=[BeliefNode(env)]
+        self.beliefSpace=BeliefNode(env)
+        self.plan=self.AndOrSearch()
+        print(self.plan)
+        
+    #it is valid in this case to have a map from belief states to actions because repeated belief states will never occur.  In other words, detect cycles by returning to the same belief state
+    def AndOrSearch(self):
+        #start with and search instead because the first action will be scan
+        plan={self.beliefSpace:"scan"}
+        plan=self.AndSearch(self.beliefSpace.scan(),plan)
+        return plan
+    def AndSearch(self,states,plan):
+        output={}#new dictionary
+        print(states)
+        if states is None:#this detects wall collisions
+            return None
+        for state in states:
+            partialPlan=self.OrSearch(state,plan)
+            if partialPlan is None:
+                return None
+            output.update(partialPlan)#append plan together
+        return output
+    def OrSearch(self,state,plan):
+        #check for goal state
+        if state.isGoal():
+            output= copy.deepcopy(plan)
+            output[state]="stop"#append to the plan
+            output["goal"]=True
+            return output
+        if state in plan.keys():
+            return None#this is to mark a failure
+        
+        #try each action, but only if it is useful
+        if state.currentCellDirty():
+            NewPlan = self.AndSearch([state.clean()],plan)
+            if NewPlan is not None:
+                output= copy.deepcopy(NewPlan)
+                output[state]="clean"#append to the plan
+                return output
+        #try advancing, if it would reach a wall that will be detected elsewhere
+        NewPlan = self.AndSearch(state.advance(),plan)
+        if NewPlan is not None:
+            output= copy.deepcopy(NewPlan)
+            output[state]="advance"#append to the plan
+            return output
+        #try turning right
+        NewPlan = self.AndSearch(state.turnRight(),plan)
+        if NewPlan is not None:
+            output= copy.deepcopy(NewPlan)
+            output[state]="right"#append to the plan
+            return output
+        #left
+        NewPlan = self.AndSearch(state.turnLeft(),plan)
+        if NewPlan is not None:
+            output= copy.deepcopy(NewPlan)
+            output[state]="left"#append to the plan
+            return output
+        return None
     def stepProgram(self,environment):
         # from simple agent **********************************************************
         
