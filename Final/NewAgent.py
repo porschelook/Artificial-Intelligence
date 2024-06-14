@@ -196,20 +196,23 @@ class NewAgent(Agent):
     def AndOrSearch(self):
         #start with and search instead because the first action will be scan
         plan={self.beliefSpace:"scan"}
-        plan=self.AndSearch(self.beliefSpace.scan(),plan)
+        plan=self.AndSearch(self.beliefSpace.scan(),plan,set())
         return plan
-    def AndSearch(self,states,plan):
+    def AndSearch(self,states,plan,path):
         output={}#new dictionary
         print(states)
         if states is None:#this detects wall collisions
             return None
         for state in states:
-            partialPlan=self.OrSearch(state,plan)
+            partialPlan=self.OrSearch(state,plan,path)
             if partialPlan is None:
                 return None
             output.update(partialPlan)#append plan together
         return output
-    def OrSearch(self,state,plan):
+    def OrSearch(self,state,plan,path):
+        if state in path:
+            return None
+        
         #check for goal state
         if state.isGoal():
             output= copy.deepcopy(plan)
@@ -218,28 +221,30 @@ class NewAgent(Agent):
             return output
         if state in plan.keys():
             return None#this is to mark a failure
-        
+        newPath=copy.deepcopy(path)
+        newPath.add(state)
         #try each action, but only if it is useful
         if state.currentCellDirty():
-            NewPlan = self.AndSearch([state.clean()],plan)
+            
+            NewPlan = self.AndSearch([state.clean()],plan,newPath)
             if NewPlan is not None:
                 output= copy.deepcopy(NewPlan)
                 output[state]="clean"#append to the plan
                 return output
         #try advancing, if it would reach a wall that will be detected elsewhere
-        NewPlan = self.AndSearch(state.advance(),plan)
+        NewPlan = self.AndSearch(state.advance(),plan,newPath)
         if NewPlan is not None:
             output= copy.deepcopy(NewPlan)
             output[state]="advance"#append to the plan
             return output
         #try turning right
-        NewPlan = self.AndSearch(state.turnRight(),plan)
+        NewPlan = self.AndSearch(state.turnRight(),plan,newPath)
         if NewPlan is not None:
             output= copy.deepcopy(NewPlan)
             output[state]="right"#append to the plan
             return output
         #left
-        NewPlan = self.AndSearch(state.turnLeft(),plan)
+        NewPlan = self.AndSearch(state.turnLeft(),plan,newPath)
         if NewPlan is not None:
             output= copy.deepcopy(NewPlan)
             output[state]="left"#append to the plan
