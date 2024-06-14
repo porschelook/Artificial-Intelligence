@@ -175,7 +175,7 @@ class BeliefNode:
             return None#don't go into a wall
 
         return result.scan()
-
+    
     def turnLeft(self):
         result=self.copy()
         result.currentFacing=(result.currentFacing-1)%4
@@ -250,20 +250,30 @@ class NewAgent(Agent):
             output[state]="left"#append to the plan
             return output
         return None
+    def fillScan(self,scanResults):
+        direction=self.beliefSpace.currentFacing
+        i=0
+        for item in scanResults:
+            if direction==Down:
+                self.beliefSpace.beliefCells[self.current_y-i][self.current_x]=item
+            if direction==Up:
+                self.beliefSpace.beliefCells[self.current_y+i][self.current_x]=item
+            if direction==Left:
+                self.beliefSpace.beliefCells[self.current_y][self.current_x-i]=item
+            if direction==Right:
+                self.beliefSpace.beliefCells[self.current_y][self.current_x+i]=item
+            i+=1
     def stepProgram(self,environment):
         # from simple agent **********************************************************
-        
-        #first, if the room is dirty, clean it
-        if(not environment.getCurrentRoom().Isclean):
-            environment.getCurrentRoom().Isclean=True
-            environment.clean+=1
-            return
-        #Next, if the way forward is clear, move forward
-        if(not environment.detectWall()):
-            print(not environment.detectWall())
+        outputs=environment.scan()
+        self.fillScan(outputs)
+        move=plan[self.beliefSpace]
+        print(move)
+        if move=="advance":
             environment.advance()
-            return
-        #If the way is blocked, turn right
-        environment.turnRight()
-    
- 
+        if move=="left":
+            environment.turnLeft()
+        if move=="right":
+            environment.turnRight()
+        if move=="clean":
+            environment.clean()
