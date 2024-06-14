@@ -9,8 +9,8 @@ class BeliefNode:
     def __init__(self,env=None):
         if env==None:
             
-            #extract list of walls, build new architecture that captures belief states.
-            #for now there are no walls
+            
+            #for now there are no walls NEXT STEP is EXTRACT WALS
             self.beliefCells=[]
             self.current_x=0
             self.current_y=0
@@ -32,8 +32,6 @@ class BeliefNode:
         self.height=len(self.beliefCells)
         self.width=len(self.beliefCells[1])
         self.scanDistance=env.scanDistance
-        #for now, use fixed size
-        self.scanDistance=2
     #return a deep copy
     def copy(self):
         out=BeliefNode()
@@ -59,20 +57,7 @@ class BeliefNode:
         return hash(has)
     def __eq__(self,other):
         return self.__hash__()==other.__hash__()
-    '''    
-    def __eq__(self,other):
-        if self.current_x!=other.current_x:
-            return False
-        if self.current_y!=other.current_y:
-            return False
-        if self.currentFacing!=other.currentFacing:
-            return False
-        for i in range(self.width):
-            for j in range(self.height):
-                if self.beliefCells[i][j]!=other..beliefCells[i][j]:
-                    return False
-        return True
-    '''
+   
                
     #This will return a set of states based on all posibilities of the scanning operation
     def scan(self):
@@ -205,6 +190,7 @@ class NewAgent(Agent):
             lim+=1
             plan={self.beliefSpace:"scan"}
             plan=self.AndSearch(self.beliefSpace.scan(),plan,set(),lim)
+        print(lim)
         return plan
     def AndSearch(self,states,plan,path,depthlim):
         if depthlim<0:
