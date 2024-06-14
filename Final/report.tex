@@ -103,6 +103,48 @@ The agents have the ability to detect whether the square they are on are clean o
 
 We initially intended to design an agent that would produce a straight-line path and would therefore find a path to each cell and clean it, a version of the traveling salesman problem. However, due to poor project managment we were unable to implement this setup. We also intended to use AO* on belief states, but have instead implemented AO* on a fully observable setting, where we use AO* to find the optimal route of an agent with perfect knowledge.
 
+Our version of And/Or search starts with an and step because it has to resolve any of the possible states it could begin in depending on which cells it could observe from its starting point, which it won't know until it begins executing its plan. The full algorithm in psuedocode is presented in Algorithm~\ref{alg:IDAO}. 
+\begin{algorithm}[h]
+  \caption{Iterative Deepening And/Or search as used in our project}
+  \begin{algorithmic}[1]
+    \State function And-Or-Search
+    \For {limit$=1\ldots n$}
+      \State plan=AndSearch(initialStates, emptyPlan, emptyPath, limit )
+      \If {plan is not failure}
+        \State return plan
+      \EndIf
+    \EndFor
+    \State
+    \State AndSearch(states, plan,path,limit)
+    \If {depthlim<0}
+      \State return failure
+    \EndIf
+    \For {state$_i$ in states}
+     \State plan$_i$ = OrSearch(state$_i$, plan, path,limit-1)
+      \If {plan$_i$ is failure}
+        \State return failure
+      \EndIf
+      \State Merge plans
+    \EndFor
+    \State Return merged plan
+    \State
+    \State OrSearch(state,plan,path,limit)
+    \If {DetectCycle}
+      \State return failure
+    \EndIf
+    \If {In Goal State}
+      \State mark plan complete and return
+    \EndIf
+    \For {each action}
+      \State plan = AndSearch(states resulting from action, plan, path, limit)
+      \If {plan is not failure}
+        \State return plan
+      \EndIf
+    \EndFor
+    \State return failure
+  \end{algorithmic}
+  \label{alg:IDAO}
+\end{algorithm}
 
 \section{Environment setup}
 Each cell that is not a wall is randomly initialized as dirty or clean. This means that a robot that produces a plan to only clean dirty cells could be more efficient.
@@ -134,4 +176,6 @@ The room with internal walls has walls in the middle such that one room is of si
 \section{Results}
 
 
+\section{Discussion}
+We found that when proposing a project that it is best to do preliminary research about the difficulties assosiated with setup before submitting a proposal of work. In addition, we could likely have benefited from asking for specific citations when we were suggested to use AO* because a week was spent simply trying to understand how this applied to And-Or graphs while little progress was made otherwise. 
 \end{document}
