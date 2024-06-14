@@ -35,7 +35,7 @@ match model:
         #set the model to be a small-memory agent
     case 4:
         print("model_4")
-        vacuum_model=NewAgent()
+        vacuum_model=NewAgent(environment(NO_WALL,2))
         numRuns=1
         #set the model to be the newwwwwwwwww one
 
