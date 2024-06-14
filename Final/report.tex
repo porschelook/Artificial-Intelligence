@@ -37,7 +37,7 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
-\title{Report for Programming Assignment 1}
+\title{Report for Planning a Path for a Vacuum Cleaner Agent in a Dynamic Environment}
 
 
 % The \author macro works with any number of authors. There are two commands
@@ -88,8 +88,8 @@
 \end{abstract}
 
 \section{Introduction}
-In this paper we present performance of three different autonomous agents that control a simulated robot vacuum in two different configurations of room. The robot vacuum is assumed to have a perfect sensors and can perfectly navigate and clean individual squares of a 10 by 10 grid. The room begins completely covered in dirt and the goal of the agents is to clean as much of the room as fast as possible.  compared
 
+In this project, the focus lies on simulating an efficient path for a vacuum cleaning robot within dynamic environments. The diversity of real-world rooms and their varying layouts renders fixed paths impractical for universal application. Thus, our aim is to develop a solution that adapts to changing environments, ensuring optimal cleaning efficiency regardless of room type or layout. This simulation endeavors to explore and implement strategies that enable the robot to navigate dynamically and effectively, enhancing its utility in real-world scenarios.
 
 We note that even on a $3\times 3$ board, there are at least $2^9$ possible belief states. This means that producing a complete plan is not feasible for reasonable problems in reasonable time. 
 \section{Agent Descriptions}
@@ -198,6 +198,17 @@ With more memory the agent could remember all the spaces it had yet to travel to
 \subsection{New agent that can look next cell denpend on input }
 new wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 
+\section{Environment setup}
+In our experimental setup, we categorize environments into three types: NOWALL, FIXWALL, and RANDOMWALL.
+
+\subsection{NOWALL Environment:} This type of environment is characterized by open spaces without any fixed obstacles or walls. It represents scenarios where the robotic vacuum cleaner has unrestricted movement and can navigate freely across the entire area.
+
+\subsection{FIXWALL Environment:} In contrast to NOWALL environments, FIXWALL environments include fixed obstacles or walls that create defined pathways and rooms within the space. This setup simulates typical indoor environments where rooms are separated by walls and furniture, influencing the robot's path planning and navigation strategy.
+
+\subsection{RANDOMWALL Environment:} This environment type introduces variability by including randomly placed obstacles or walls within the space. The placement of these obstacles varies across different runs or simulations, mimicking dynamic and unpredictable real-world environments. This setup challenges the robot's ability to adapt its cleaning route dynamically in response to changing environmental conditions.
+
+
+Each environment type serves a specific purpose in our experiments: NOWALL for testing unrestricted navigation scenarios, FIXWALL for evaluating path planning efficiency in structured environments, and RANDOMWALL for assessing adaptability and robustness in unpredictable settings. By systematically testing our robotic vacuum cleaner in these varied environments, we aim to develop and refine intelligent algorithms that optimize cleaning routes and enhance overall performance across diverse real-world conditions.
 \section{Experimental setup}
 The agent starts at the bottom left hand corner of a 10 by 10 grid facing up. It can advance one square in the direction it is facing, and can turn $90^\circ$ either direction during a time step. The agent was run for 500 time steps with the number of clean tiles recorded at each step. The random agent was run 50 times with the room and agent reset after 500 time steps each time.
 
