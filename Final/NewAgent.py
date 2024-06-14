@@ -1,6 +1,8 @@
 from environment import *
+from simpleAgent import *
 import itertools
 import copy
+
 Up, Down, Left, Right= range(4)
 
 class BeliefNode:
@@ -208,7 +210,7 @@ class NewAgent(Agent):
         if depthlim<0:
             return None#went too deep
         output={}#new dictionary
-        print(states)
+        #print(states)
         if states is None:#this detects wall collisions
             return None
         for state in states:
@@ -262,20 +264,28 @@ class NewAgent(Agent):
         direction=self.beliefSpace.currentFacing
         i=0
         for item in scanResults:
+            if item.Isclean:
+                cell=0
+            else:
+                cell=1
+            #This needs to include whether it is a wall, which still isn't quite clear to me. 
+            #if item.isWall:
+             #   cell="w"
+            
             if direction==Down:
-                self.beliefSpace.beliefCells[self.current_y-i][self.current_x]=item
+                self.beliefSpace.beliefCells[self.beliefSpace.current_y-i][self.beliefSpace.current_x]=cell
             if direction==Up:
-                self.beliefSpace.beliefCells[self.current_y+i][self.current_x]=item
+                self.beliefSpace.beliefCells[self.beliefSpace.current_y+i][self.beliefSpace.current_x]=cell
             if direction==Left:
-                self.beliefSpace.beliefCells[self.current_y][self.current_x-i]=item
+                self.beliefSpace.beliefCells[self.beliefSpace.current_y][self.beliefSpace.current_x-i]=cell
             if direction==Right:
-                self.beliefSpace.beliefCells[self.current_y][self.current_x+i]=item
+                self.beliefSpace.beliefCells[self.beliefSpace.current_y][self.beliefSpace.current_x+i]=cell
             i+=1
     def stepProgram(self,environment):
         # from simple agent **********************************************************
         outputs=environment.scan()
         self.fillScan(outputs)
-        move=plan[self.beliefSpace]
+        move=self.plan[self.beliefSpace]
         print(move)
         if move=="advance":
             environment.advance()
@@ -284,4 +294,4 @@ class NewAgent(Agent):
         if move=="right":
             environment.turnRight()
         if move=="clean":
-            environment.clean()
+           self.clean(environment)

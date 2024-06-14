@@ -1,5 +1,9 @@
 from environment import *
 class Agent:
+    def clean(self,env):
+       env.getCurrentRoom().Isclean=True
+       env.clean+=1
+       return
     def stepProgram(self,environment):
         return
 
