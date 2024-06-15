@@ -14,7 +14,7 @@ NO_WALL = 0
 WALL = 1
 RANDOMWALL= 2
 
-rrrrunn = int(input("Select run program '1' is fully , '2' partially)\n"))
+rrrrunn = int(input("Select run program '1' is fully observable environments , '2' partially observable environments)\n"))
 
 if  rrrrunn == 1:
     map = int(input("NoWall 0 \nWall 1 \nRandom_Wall 2\n"))
