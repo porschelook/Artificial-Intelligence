@@ -1,10 +1,6 @@
 import sys
 import random
 from environment import *
-from simpleAgent import *
-from RandomAgent import *
-from lowmemoryAgent import *
-from threeBitAgent import *
 from NewAgent import *
 import matplotlib.pyplot as plt
 import numpy as np
