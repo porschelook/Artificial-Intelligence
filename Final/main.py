@@ -19,7 +19,7 @@ rrrrunn = int(input("Select run program '1' is fully , '2' partially)\n"))
 if  rrrrunn == 1:
     map = int(input("NoWall 0 \nWall 1 \nRandom_Wall 2\n"))
 
-    for i in range(5,11):
+    for i in range(5,15):
             straight_line_actions = 0
             state=environment(map,i)
             action = 0
