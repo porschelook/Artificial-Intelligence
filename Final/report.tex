@@ -104,6 +104,7 @@ The agents have the ability to detect whether the square they are on are clean o
 We initially intended to design an agent that would produce a straight-line path and would therefore find a path to each cell and clean it, a version of the traveling salesman problem. However, due to poor project managment we were unable to implement this setup. We also intended to use AO* on belief states, but have instead implemented AO* on a fully observable setting, where we use AO* to find the optimal route of an agent with perfect knowledge.
 
 Our version of And/Or search starts with an and step because it has to resolve any of the possible states it could begin in depending on which cells it could observe from its starting point, which it won't know until it begins executing its plan. The full algorithm in psuedocode is presented in Algorithm~\ref{alg:IDAO}. 
+\pagebreak
 \begin{algorithm}[h]
   \caption{Iterative Deepening And/Or search as used in our project}
   \begin{algorithmic}[1]
@@ -146,6 +147,163 @@ Our version of And/Or search starts with an and step because it has to resolve a
   \label{alg:IDAO}
 \end{algorithm}
 
+
+
+
+
+
+\pagebreak
+\pagebreak
+
+For a fully observable environment, our algorithms for Straightline is:
+\begin{algorithm}[h]
+  \caption{Straight-Line Cleaner}
+  \begin{algorithmic}[1]
+  \State \textbf{Initialize:} grid, start position
+  \State \textbf{Initialize:} belief grid with unknowns (`?`) except the start position (`0`)
+  \State \textbf{Initialize:} cleaned cells set with start position
+  \State \textbf{Initialize:} action counter to 0
+  
+  \Function{is\_within\_bounds}{position}
+      \State \Return \textbf{True} if position is within grid boundaries \textbf{else False}
+  \EndFunction
+  
+  \Function{is\_obstacle}{position}
+      \State \Return \textbf{True} if position is an obstacle \textbf{else False}
+  \EndFunction
+  
+  \Function{move}{position, direction}
+      \State Calculate new position based on direction
+      \If{new position is within bounds}
+          \If{new position is an obstacle}
+              \State Mark new position as `X` in belief grid
+          \Else
+              \State Add new position to cleaned cells
+              \State Mark new position as `0` in belief grid
+          \EndIf
+          \State \Return new position
+      \EndIf
+      \State \Return current position
+  \EndFunction
+  
+  \Function{clean\_grid}{}
+      \State Initialize current position to start position
+      \State Initialize path with start position
+      \For{each cell in the grid}
+          \If{cell is within bounds and not an obstacle}
+              \While{current position is not the target cell}
+                  \If{current column < target column}
+                      \State Move right
+                  \ElsIf{current column > target column}
+                      \State Move left
+                  \ElsIf{current row < target row}
+                      \State Move down
+                  \ElsIf{current row > target row}
+                      \State Move up
+                  \EndIf
+                  \State Increment action counter
+                  \State Add new position to path
+              \EndWhile
+          \EndIf
+      \EndFor
+      \State \Return path, action counter
+  \EndFunction
+  \end{algorithmic}
+  \end{algorithm}
+
+ 
+
+  \pagebreak
+For a fully observable environment, our algorithms for AO* is:
+
+  \begin{algorithm}[H]
+    \caption{AO* Cleaner}
+    \begin{algorithmic}[1]
+    \State \textbf{Initialize:} grid, start position
+    \State \textbf{Initialize:} belief grid with unknowns (`?`) except the start position (`0`)
+    \State \textbf{Calculate:} total cells to clean
+    
+    \Function{is\_within\_bounds}{position}
+        \State \Return \textbf{True} if position is within grid boundaries \textbf{else False}
+    \EndFunction
+    
+    \Function{is\_obstacle}{position}
+        \State \Return \textbf{True} if position is an obstacle \textbf{else False}
+    \EndFunction
+    
+    \Function{move}{position, direction}
+        \State Calculate new position based on direction
+        \If{new position is within bounds}
+            \If{new position is an obstacle}
+                \State Mark new position as `X` in belief grid
+            \EndIf
+            \State \Return new position
+        \EndIf
+        \State \Return current position
+    \EndFunction
+    
+    \Function{update\_belief}{position}
+        \If{position is an obstacle}
+            \State Mark as `X` in belief grid
+        \Else
+            \State Mark as `0` in belief grid
+        \EndIf
+    \EndFunction
+    
+    \Function{heuristic}{position, goal}
+        \State \Return Manhattan distance between position and goal
+    \EndFunction
+    
+    \Function{ao\_star\_clean\_all}{grid\_world}
+        \State \textbf{Initialize:} start position
+        \State \textbf{Initialize:} open list with start node (f, g, position, path)
+        \State \textbf{Initialize:} closed list
+        \State \textbf{Initialize:} cleaned cells with start position
+        \State \textbf{Initialize:} path and action counter
+    
+        \While{open list is not empty}
+            \State Pop node with smallest f value from open list
+            \If{node is in closed list}
+                \State \textbf{Continue}
+            \EndIf
+    
+            \State Append current position to path
+            \State Increment action counter
+    
+            \State Update belief grid with current position
+    
+            \If{all cells are cleaned}
+                \State \Return path, action counter
+            \EndIf
+    
+            \State Add current position to closed list
+    
+            \For{each direction}
+                \State Calculate next position
+                \If{next position is valid and not cleaned}
+                    \State Add next position to cleaned cells
+                    \State Calculate new g value
+                    \State Calculate new f value
+                    \State Push new node (f, g, next position, path) to open list
+                \EndIf
+            \EndFor
+    
+            \If{no valid moves}
+                \State Backtrack to previous position
+                \State Increment action counter
+                \If{path is not empty}
+                    \State Calculate new f value for backtracked position
+                    \State Push new node (f, g, backtracked position, path) to open list
+                \EndIf
+            \EndIf
+        \EndWhile
+    
+        \State \Return None, action counter
+    \EndFunction
+    \end{algorithmic}
+    \end{algorithm}
+  
+    
 \section{Environment setup}
 
 In our experimental setup, we categorize environments into three types: NOWALL, FIXWALL, and RANDOMWALL.
@@ -197,13 +355,15 @@ In the fully observed environment, we tested the performance of two cleaning str
 \end{table}
  
  
-Analysis
+\subsection{Analysis}
 The results indicate a significant reduction in the number of actions required when using the AO* algorithm compared to the Straight-Line approach. As the grid size increases, the disparity in the number of actions taken by each strategy also grows, showcasing the scalability and efficiency of the AO* algorithm.
 
-Efficiency: AO* consistently outperforms the Straight-Line strategy by finding more optimal paths and reducing redundant movements.
-Scalability: The performance gap widens with increasing grid size, highlighting AO*'s ability to handle larger environments more effectively.
-Practical Implications: Implementing AO* in practical cleaning robots can lead to more efficient operations, saving time and energy.
-Overall, the AO* algorithm proves to be a superior strategy for navigating and cleaning environments, especially as complexity increases. This demonstrates the potential for significant improvements in autonomous robotic cleaning efficiency.
+\subsection{Efficiency:} AO* consistently outperforms the Straight-Line strategy by finding more optimal paths and reducing redundant movements.
+\subsection{Scalability:} The performance gap widens with increasing grid size, highlighting AO*'s ability to handle larger environments more effectively.
+\subsection{Practical Implications:} Implementing AO* in practical cleaning robots can lead to more efficient operations, saving time and energy.
+
+
+In Conclusion, the AO* algorithm proves to be a superior strategy for navigating and cleaning environments, especially as complexity increases. This demonstrates the potential for significant improvements in autonomous robotic cleaning efficiency.
 
 
 \section{Discussion}
