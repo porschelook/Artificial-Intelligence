@@ -323,7 +323,7 @@ It can advance one square in the direction it is facing, and can turn $90^\circ$
 We will conduct our tests in three different environments: 1 .No Wall, 2. Fixed Wall and 3. Random Wall.
 For each environment, we will employ the Straight Line Strategy and utilize the AO* search algorithm. Additionally, we will adjust the board size across six different dimensions: 5x5, 6x6, 7x7, 8x8, 9x9, 10x10, 11x11, 12x12, 13x13,and 14x14.
 
- 
+ However, in fully observable environments where belief states are not utilized, our approach performed admirably due to the absence of complexity introduced by uncertain or partial information about the environment.
 
 
 
@@ -363,6 +363,8 @@ In the fully observed environment, we tested the performance of two cleaning str
 \end{table}
  
  
+
+
 \subsection{Analysis}
 The results indicate a significant reduction in the number of actions required when using the AO* algorithm compared to the Straight-Line approach. As the grid size increases, the disparity in the number of actions taken by each strategy also grows, showcasing the scalability and efficiency of the AO* algorithm.
 
@@ -376,4 +378,6 @@ In Conclusion, the AO* algorithm proves to be a superior strategy for navigating
 
 \section{Discussion}
 We found that when proposing a project that it is best to do preliminary research about the difficulties assosiated with setup before submitting a proposal of work. In addition, we could likely have benefited from asking for specific citations when we were suggested to use AO* because a week was spent simply trying to understand how this applied to And-Or graphs while little progress was made otherwise. 
+
+However, in fully observable environments where belief states are not utilized, our approach performed admirably due to the absence of complexity introduced by uncertain or partial information about the environment.
 \end{document}
