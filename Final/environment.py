@@ -82,7 +82,7 @@ class environment:
         self.scanDistance = 2
 
         if sizeBoard > 0:
-            print("new")
+            # print("new")
             self.rooms = [
                 [room(f"room {i}-{j}") for j in range(sizeBoard)]
                 for i in range(sizeBoard)
@@ -100,7 +100,7 @@ class environment:
             self.Iswall = wall
             wallPosition = int(self.ROOM_DIMENSION / 2)
             self.size_Board = sizeBoard
-            print(self.ROOM_DIMENSION / 2)
+            # print(self.ROOM_DIMENSION / 2)
             if self.Iswall == WALL:
                 for i in range(0, self.ROOM_DIMENSION):
                     # set Wall
@@ -109,14 +109,18 @@ class environment:
                     self.rooms[wallPosition][i].Isclean = 1
                     self.rooms[i][wallPosition].Isclean = 1
                 # set Door
-                self.rooms[5][self.door1].IsDoor = 1
-                self.rooms[5][self.door2].IsDoor = 1
-                self.rooms[self.door1][5].IsDoor = 1
-                self.rooms[self.door2][5].IsDoor = 1
-                self.rooms[5][self.door1].Isclean = 1
-                self.rooms[5][self.door2].Isclean = 1
-                self.rooms[self.door1][5].Isclean = 1
-                self.rooms[self.door2][5].Isclean = 1
+                self.rooms[wallPosition][wallPosition].IsDoor = 1
+                self.rooms[wallPosition-1][wallPosition].IsDoor = 1
+                self.rooms[wallPosition+1][wallPosition].IsDoor = 1
+                self.rooms[wallPosition][wallPosition-1].IsDoor = 1
+                self.rooms[wallPosition][wallPosition+1].IsDoor = 1
+
+                self.rooms[wallPosition][wallPosition].Isclean = 1
+                self.rooms[wallPosition-1][wallPosition].Isclean = 1
+                self.rooms[wallPosition+1][wallPosition].Isclean = 1
+                self.rooms[wallPosition][wallPosition-1].Isclean = 1
+                self.rooms[wallPosition][wallPosition+1].Isclean = 1
+ 
             if self.Iswall == RANDOMWALL:
                 for i in range(0, self.ROOM_DIMENSION + 10):
                     randX = random.randint(0, self.size_Board - 1)
@@ -160,7 +164,7 @@ class environment:
                 ].Isclean = 1
                 self.rooms[self.INITIAL_X][self.INITIAL_Y].Isclean = 1
         else:
-            print("default")
+            # print("default")
             self.rooms = [[room(f"room {i}-{j}") for j in range(10)] for i in range(10)]
             UP, RIGHT, DOWN, LEFT = range(4)  # define directions robot can face
             self.INITIAL_X = 0  # start point
@@ -178,7 +182,7 @@ class environment:
             self.Iswall = wall
             self.size_Board = 10
             wallPosition = int(self.ROOM_DIMENSION / 2)
-            print(self.ROOM_DIMENSION / 2)
+            # print(self.ROOM_DIMENSION / 2)
             if self.Iswall == WALL:
                 for i in range(0, self.ROOM_DIMENSION):
                     # set Wall
@@ -187,14 +191,14 @@ class environment:
                     self.rooms[wallPosition][i].Isclean = 1
                     self.rooms[i][wallPosition].Isclean = 1
                 # set Door
-                self.rooms[5][self.door1].IsDoor = 1
-                self.rooms[5][self.door2].IsDoor = 1
-                self.rooms[self.door1][5].IsDoor = 1
-                self.rooms[self.door2][5].IsDoor = 1
-                self.rooms[5][self.door1].Isclean = 1
-                self.rooms[5][self.door2].Isclean = 1
-                self.rooms[self.door1][5].Isclean = 1
-                self.rooms[self.door2][5].Isclean = 1
+                self.rooms[wallPosition][wallPosition-1].IsDoor = 1
+                self.rooms[wallPosition][wallPosition+1].IsDoor = 1
+                self.rooms[wallPosition-1][wallPosition].IsDoor = 1
+                self.rooms[wallPosition+1][wallPosition].IsDoor = 1
+                self.rooms[wallPosition][wallPosition-1].Isclean = 1
+                self.rooms[wallPosition][wallPosition+1].Isclean = 1
+                self.rooms[wallPosition-1][wallPosition].Isclean = 1
+                self.rooms[wallPosition+1][wallPosition].Isclean = 1
             if self.Iswall == RANDOMWALL:
                 for i in range(0, self.ROOM_DIMENSION + 10):
                     randX = random.randint(0, self.size_Board - 1)
@@ -207,15 +211,16 @@ class environment:
                     # self.rooms[wallPosition][i].IsDoor = 0
                     # self.rooms[i][wallPosition].IsDoor = 0
                 # set Door
-                self.rooms[5][self.door1].IsDoor = 1
-                self.rooms[5][self.door2].IsDoor = 1
-                self.rooms[self.door1][5].IsDoor = 1
-                self.rooms[self.door2][5].IsDoor = 1
-                self.rooms[5][self.door1].Isclean = 1
-                self.rooms[5][self.door2].Isclean = 1
-                self.rooms[self.door1][5].Isclean = 1
-                self.rooms[self.door2][5].Isclean = 1
-        self.printCurrentWorld()
+                wallPosition = int(self.ROOM_DIMENSION / 2)
+                self.rooms[wallPosition][wallPosition-1].IsDoor = 1
+                self.rooms[wallPosition][wallPosition+1].IsDoor = 1
+                self.rooms[wallPosition-1][wallPosition].IsDoor = 1
+                self.rooms[wallPosition+1][wallPosition].IsDoor = 1
+                self.rooms[wallPosition][wallPosition-1].Isclean = 1
+                self.rooms[wallPosition][wallPosition+1].Isclean = 1
+                self.rooms[wallPosition-1][wallPosition].Isclean = 1
+                self.rooms[wallPosition+1][wallPosition].Isclean = 1
+        # self.printCurrentWorld()
 
     def scan(self):
         if self.current_direction == environment.UP:
@@ -319,9 +324,9 @@ class environment:
             test_x = self.current_x + 1
         if self.current_direction == environment.LEFT:
             test_x = self.current_x - 1
-        print("detectWall")
-        print("test_x : ", test_x)
-        print("test_y : ", test_y)
+        # print("detectWall")
+        # print("test_x : ", test_x)
+        # print("test_y : ", test_y)
         if self.Iswall == RANDOMWALL:
             if (
                 test_x < self.size_Board
@@ -329,9 +334,9 @@ class environment:
                 and test_x >= 0
                 and test_y >= 0
             ):
-                print(self.rooms[test_y][test_x].IsDoor)
+                # print(self.rooms[test_y][test_x].IsDoor)
                 if self.rooms[test_y][test_x].IsDoor == 0:
-                    print("F_WALLLLLLLLL")
+                    # print("F_WALLLLLLLLL")
                     return True
             if test_x < 0 or test_y < 0:
                 return True
@@ -347,7 +352,7 @@ class environment:
                 and test_y >= 0
             ):
                 if self.rooms[test_y][test_x].IsDoor == 0:
-                    print("F_WALLLLLLLLL")
+                    # print("F_WALLLLLLLLL")
                     return True
 
         if test_x < 0 or test_y < 0:
@@ -361,11 +366,40 @@ class environment:
         return self.current_x == 0 and self.current_y == 9
 
     def getCurrentRoom(self):
-        print("current_x ", self.current_x)
-        print("current_y ", self.current_y)
+        # print("current_x ", self.current_x)
+        # print("current_y ", self.current_y)
 
         return self.rooms[self.current_y][self.current_x]
+    def wallcreate(self):
+        ans = [[0 for x in range(self.size_Board)] for y in range(self.size_Board)] # x = width, y = height
+# [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
+         
+        x = self.current_x
+        y = self.current_y
+
+        # self.rooms[5][7].Isclean = 1 #test clean print
+        
+            
+        for i in range(0, self.size_Board):
+                for j in range(0, self.size_Board):
+                    if x == j and y == i:
+                        # print("R ", end="")
+                        continue
+                    if self.rooms[i][j].IsDoor == False:
+                         
+                        ans[i][j] = 1
+                    else:
+                        if self.rooms[i][j].Isclean == False:
+                             
+                            ans[i][j] = 0
+                        else:
+                            
+                            ans[i][j] = 0
+                 
+         
+     
+        return ans
     def printCurrentWorld(self):
 
         x = self.current_x
@@ -411,17 +445,20 @@ class environment:
 
 
 def scanDistanceANDcleanthatCELL(environment, distance):
+    action = 0
     for _ in range(distance):
         if environment.detectWall():
             break
         current_room = environment.getCurrentRoom()
         if not current_room.Isclean:
             current_room.Isclean = True
-            print(
-                f"Cleaning room at ({environment.current_x}, {environment.current_y})"
-            )
+            action = action +1
+            # print(
+            #     f"Cleaning room at ({environment.current_x}, {environment.current_y})"
+            # )
         environment.advance()
-    environment.printCurrentWorld()
+        action = action +1
+    # environment.printCurrentWorld()
      
 
     turnList = [0, 1,2,3]
@@ -429,62 +466,78 @@ def scanDistanceANDcleanthatCELL(environment, distance):
 
     if randomTurnList[0] == 0:
         environment.turnRight()
+        action = action +1
     elif randomTurnList[0] == 1: 
         environment.turnRight()
+        action = action +1
         if not environment.detectWall():
             environment.advance()
+            action = action +1
         environment.turnRight()
+        action = action +1
     elif randomTurnList[0] == 2: 
         environment.turnLeft()
+        action = action +1
         if not environment.detectWall():
             environment.advance()
+            action = action +1
         environment.turnLeft()
+        action = action +1
     else:
         environment.turnLeft()
+        action = action +1
+    return action 
 
-
-def straightLineAlgorithm(environment):
+def straightLineAlgorithm(environment,action):
     initial_direction = environment.current_direction
     scanDistance = 7
+    
     while not all_cells_cleaned(environment):
-        environment.printCurrentWorld()
+        # environment.printCurrentWorld()
         current_room = environment.getCurrentRoom()
         if not current_room.Isclean:
             current_room.Isclean = True
-            print(
-                f"Cleaning room at ({environment.current_x}, {environment.current_y})"
-            )
-        scanDistanceANDcleanthatCELL(environment, scanDistance)
+            action = action + 1
+            # print(
+            #     f"Cleaning room at ({environment.current_x}, {environment.current_y})"
+            # )
+        acttionfromscandistacne = scanDistanceANDcleanthatCELL(environment, scanDistance)
         if environment.detectWall():
             if environment.current_direction == environment.RIGHT:
                 environment.turnRight()
+                action = action +1 
                 if environment.detectWall():
                     environment.turnRight()
                     environment.turnRight()
+                    action = action +2
             else:
                 environment.turnLeft()
+                action = action +1
                 if environment.detectWall():
                     environment.turnLeft()
                     environment.turnLeft()
+                    action = action +2
+    
+    return action+acttionfromscandistacne
 
 def all_cells_cleaned(environment):
-    print("ALL :", all(room.Isclean for row in environment.rooms for room in row))
+    # print("ALL :", all(room.Isclean for row in environment.rooms for room in row))
     return all(room.Isclean for row in environment.rooms for room in row)
 
 
-def main():
-    sizeBoard = 7
-    wall = NO_WALL
-    environment2 = environment(wall, sizeBoard)
-    print("Initial Environment:")
-    environment2.printCurrentWorld()
+# def main():
+#     sizeBoard = 7
+#     wall = NO_WALL
+#     environment2 = environment(wall, sizeBoard)
+#     print("Initial Environment:")
+#     environment2.printCurrentWorld()
 
-    print("Running Straight Line Algorithm...")
-    straightLineAlgorithm(environment2)
+#     print("Running Straight Line Algorithm...")
+#     straightLineAlgorithm(environment2)
 
-    print("Final Environment:")
-    environment2.printCurrentWorld()
+#     print("Final Environment:")
+#     environment2.printCurrentWorld()
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

@@ -1,3 +1,4 @@
+
 import heapq
 
 class VacuumAgent:
@@ -43,7 +44,7 @@ class VacuumAgent:
                 if self.environment[current_position[0]][current_position[1]] == 'D':
                     # Clean the current position
                     self.environment[current_position[0]][current_position[1]] = 'C'
-                    print(f"Cleaned position {current_position}")
+                    # print(f"Cleaned position {current_position}")
                     self.num_actions += 1  # Increment action counter
                     # Continue searching for other D cells
                     break  # Exit the inner loop to re-evaluate the environment
@@ -68,12 +69,12 @@ class VacuumAgent:
         return False
 # Example environment with walls
 # D = Dirty, C = Clean, W = Wall
-environment_with_walls = [
-    ['C', 'D', 'W', 'C'],
-    ['C', 'W', 'C', 'D'],
-    ['D', 'D', 'C', 'D'],
-    ['C', 'C', 'W', 'C']
-]
+# environment_with_walls = [
+#     ['C', 'D', 'W', 'C'],
+#     ['C', 'W', 'C', 'D'],
+#     ['D', 'D', 'C', 'D'],
+#     ['C', 'C', 'W', 'C']
+# ]
 
-agent_with_walls = VacuumAgent(environment_with_walls)
-agent_with_walls.ao_star_search()
+# agent_with_walls = VacuumAgent(environment_with_walls)
+# agent_with_walls.ao_star_search()
