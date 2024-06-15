@@ -17,7 +17,7 @@ RANDOMWALL= 2
 rrrrunn = int(input("Select run program '1' is fully observable environments , '2' partially observable environments)\n"))
 
 if  rrrrunn == 1:
-    map = int(input("NoWall 0 \nWall 1 \nRandom_Wall 2\n"))
+    map = int(input("NoWall 0 \nFixedWall 1 \nRandom_Wall 2\n"))
 
     for i in range(5,15):
             straight_line_actions = 0
